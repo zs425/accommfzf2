@@ -1,0 +1,31 @@
+<fieldset>
+	<p>
+		<strong>
+			<?php if (isset($this->changeBack) && ($this->changeBack != NULL)): ?>
+			    <?php echo "#".$this->changeId." ".$this->adminId->getUsername();?> changed back for #<?php echo $this->changeBack;?> - <?php echo date('d/M/y h:i A', $this->changeDate)?>
+			<?php else: ?>
+				<?php echo "#".$this->changeId." ".$this->adminId->getUsername();?> made changes - <?php echo date('d/M/y h:i A', $this->changeDate)?>
+			<?php endif; ?>
+		</strong>
+		<a class="btn btn-primary" href="<?php echo $this->url('zfcadmin/localdata/product', array('action'=>'changeback', 'id'=>$this->changeId))?>"><?php echo $this->translate('Change back')?></a>
+	</p>
+	
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Field</th>
+				<th>Original value</th>
+				<th>New Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach($this->detail as $detail): ?>
+	            <tr>
+	                <td><?php echo $detail->getChangeField();?></td>
+	                <td><?php echo $detail->getOldValue();?></td>
+	                <td><?php echo $detail->getNewValue();?></td>
+	            </tr>            
+	    	<?php endforeach; ?>
+		</tbody>
+	</table>
+</fieldset>

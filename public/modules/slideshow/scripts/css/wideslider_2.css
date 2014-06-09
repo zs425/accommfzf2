@@ -1,0 +1,8 @@
+/*** pdcf ***/
+#wideslider .slide-img {height:296px; display:block; margin:0 auto; border:5px solid #fff;position:relative;
+/*border-bottom:10px solid #fff;*/ background-repeat:no-repeat; background-position:50% 0;}
+#wideslider .slide-pag {width:980px; height:45px; display:block; margin:0 auto;text-align:right;position:relative;top:-25px;right:30px}
+#wideslider .slide-pag img {cursor:pointer;}
+#wideslider .slide-caption {position:absolute;top:15px;right:0;display:none;color:#fff;
+background:url(/modules/slideshow/scripts/images/transp-black.png) repeat;font-size:1.9em;text-align:center;padding:10px 30px;}
+#wideslider .noCaption {margin:0;padding:0;width:0;height:0}

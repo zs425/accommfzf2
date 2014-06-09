@@ -1,0 +1,15 @@
+<div class="col-sm-12">
+	<p class="alert alert-info">
+		<i class="fa fa-spinner fa-spin"></i>										
+		<?php echo $this->message?>
+		<br/>
+	<?php if ($this->progresscount && $this->count): ?>
+		Progress: <?php echo $this->progresscount?>/<?php echo $this->count?></p>
+	<?php endif; ?>
+	</p>
+	<?php if ($this->progresscount && $this->count): ?>
+	<div class="progress">
+		<div class="progress-bar bg-color-greenLight" role="progressbar" style="width: <?php echo ceil(($this->progresscount / $this->count)*100) ?>%"><?php echo ceil(($this->progresscount / $this->count)*100) ?>%</div>
+	</div>
+	<?php endif; ?>
+</div>

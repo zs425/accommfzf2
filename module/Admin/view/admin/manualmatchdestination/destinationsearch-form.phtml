@@ -1,0 +1,57 @@
+<?php 
+   	$this->destinationSearchForm->prepare();
+	$this->destinationSearchForm->setAttribute('action', $this->action);
+	echo $this->form()->openTag($this->destinationSearchForm);
+?>
+
+<div class="smart-form">	
+	<fieldset>
+		<div class="row">
+			<section class="col col-6">
+				<label class="label"><?php echo $this->translate("Destination name")?></label>
+				<label class="input">
+					<?php echo $this->formrow($this->destinationSearchForm->get('name')->setAttribute('class', 'input-sm'));?>												
+				</label>
+			</section>
+			<section class="col col-6">
+				<label class="label"><?php echo $this->translate("Id")?></label>
+				<label class="input">
+					<?php echo $this->formrow($this->destinationSearchForm->get('id')->setAttribute('class', 'input-sm'));?>												
+				</label>
+				<div class="note">Only a number.</div>
+			</section>
+		</div>
+		<section>
+			<label class="label"><?php echo $this->destinationSearchForm->get('searchOption')->getLabel(); ?></label>
+			<div class="">
+				<?php $radios = $this->destinationSearchForm->get('searchOption')->getValueOptions(); ?>
+				<?php foreach($radios as $key => $val): ?>
+					<label class="radio">
+						<input type="radio" name="searchOption" value="<?php echo $key; ?>" <?php echo ($this->destinationSearchForm->get('searchOption')->getValue() == $key)?'checked="checked"':''; ?>>
+						<i></i><?php echo $val; ?>
+					</label>
+				<?php endforeach; ?>
+			</div>
+		</section>
+	</fieldset>
+	<footer>
+		<a href="<?php echo $this->url('zfcadmin/centraldb/manualmatchdestination/default', array('action' => 'addDestination')); ?>" class="btn btn-default">Add Destination</a>
+		<?php echo $this->formButton()->render($this->destinationSearchForm->get('search')->setAttribute('class', 'btn btn-primary'), 'Search'); ?>
+	</footer>
+</div>
+<?php echo $this->form()->closeTag($this->destinationSearchForm) ?>
+
+<script>
+	$("#searchDestination").click(function(){
+		$('#wid-id-1 .widget-body').addClass('widget-body-ajax-loading');
+		$.ajax({
+			type: "POST",
+			url:"<?php echo $this->action; ?>",
+			data: $('#destinationsearchform').serialize(),
+		}).done(function(html) {
+			$('.destination-content').html(html);
+			$('#wid-id-1 .widget-body').removeClass('widget-body-ajax-loading');
+		});
+		return false;
+	});
+</script>

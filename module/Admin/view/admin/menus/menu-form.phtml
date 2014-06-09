@@ -1,0 +1,104 @@
+
+<!-- widget grid -->
+<section id="widget-grid" class="">
+
+<?php $this->menuForm->setAttribute('action', $this->action)?>
+<?php $this->menuForm->prepare();?>
+<?php echo $this->form()->openTag($this->menuForm)?>
+
+    <!-- START ROW -->
+
+    <div class="row">
+
+        <!-- NEW COL START -->
+        <div class="col-sm-12 col-md-12 col-lg-12 ">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-custombutton="false">
+                <!-- widget options:
+                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                data-widget-colorbutton="false"
+                data-widget-editbutton="false"
+                data-widget-togglebutton="false"
+                data-widget-deletebutton="false"
+                data-widget-fullscreenbutton="false"
+                data-widget-custombutton="false"
+                data-widget-collapsed="true"
+                data-widget-sortable="false"
+
+                -->
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                    <h2>General</h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+
+                    </div>
+                    <!-- end widget edit box -->
+
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <div class="smart-form">
+                            <fieldset>
+                                <section>
+                                    <label class="label"><?php echo $this->translate('Menu title')?></label>
+                                    <label class="input <?php echo ($this->formElementErrors($this->menuForm->get('menu_title')))?"state-error":""; ?>">
+                                        <?php echo $this->formrow($this->menuForm->get('menu_title')->setAttribute('class', 'input-sm'))?>
+                                    </label>
+                                </section>
+                                
+                                <section>
+                                    <label class="label"><?php echo $this->translate('Short description')?></label>
+                                    <label class="input">
+                                        <?php echo $this->formBootstrapEditor($this->menuForm->get('menu_description'));?>
+                                    </label>
+                                </section>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+    
+        </div>
+        <!-- END COL -->
+    
+    </div>
+    
+    <!-- END ROW -->
+        
+    <!-- START ROW -->
+
+    <div class="row">
+
+        <!-- NEW COL START -->
+        <div class="col-sm-12 col-md-12 col-lg-12 ">
+            <div class="smart-form">
+                <footer>
+                    <?php echo $this->formButton()->render($this->menuForm->get('submit-menuForm'), 'Save menu'); ?>                                                            
+                    
+                </footer>
+            </div>
+    
+        </div>
+        <!-- END COL -->
+    
+    </div>
+    
+    <!-- END ROW -->
+    
+                        
+<?php echo $this->form()->closeTag($this->menuForm); ?>
+</section>

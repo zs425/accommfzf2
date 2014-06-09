@@ -1,0 +1,15 @@
+ALTER TABLE  `bao_destinations` ADD  `baodestination_weather_url` VARCHAR( 90 ) NULL AFTER  `baodestination_url`;
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/tanunda' WHERE `baodestination_url` = 'tanunda';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/rowland-flat' WHERE `baodestination_url` = 'rowland-flat';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/marananga' WHERE `baodestination_url` = 'marananga';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/lyndoch' WHERE `baodestination_url` = 'lyndoch';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/seppeltsfield' WHERE `baodestination_url` = 'seppeltsfield';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/gawler' WHERE `baodestination_url` = 'gawler';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/angaston' WHERE `baodestination_url` = 'angaston';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/cockatoo-valley' WHERE `baodestination_url` = 'cockatoo-valley';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/nuriootpa' WHERE `baodestination_url` = 'nuriootpa';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/springton' WHERE `baodestination_url` = 'springton';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'vic/williamstown' WHERE `baodestination_url` = 'williamstown';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/greenock' WHERE `baodestination_url` = 'gomersal';
+UPDATE `bao_destinations` SET `baodestination_weather_url` = 'sa/willaston' WHERE `baodestination_url` = 'willaston';
+ALTER TABLE  `bao_destinations` ADD INDEX (  `baodestination_weather_url` );

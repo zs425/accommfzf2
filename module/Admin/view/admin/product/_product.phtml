@@ -1,0 +1,30 @@
+<tr>
+	<td><label class="checkbox">		                                	
+    	<input type="checkbox" class="checkbox" name="id[]" value="<?=$this->product_id?>" />
+    	<i></i> </label></td>				                                	
+	<td><strong><?=$this->product_name?></strong></td>
+    <td><?=$this->product_state?></td>
+    <td><?=$this->product_region?></td>
+    <td><?=$this->product_city?></td>
+    <td><?=$this->product_category?></td>
+    <td><?=$this->product_source?></td>
+    <td>
+    	<a href="<?=$this->url('zfcadmin/localdata/product', array('action'=>'rescan', 'id'=>$this->product_id))?>" title="Info" class="btn btn-mini">
+            Rescan Local</a> /
+            <a href="<?=$this->url('zfcadmin/localdata/product', array('action'=>'rescan', 'id'=>$this->product_id))?>" title="Info" class="btn btn-mini">
+            Rescan Central</a> /
+        <a href="<?=$this->url('zfcadmin/localdata/product', array('action'=>'info', 'id'=>$this->product_id))?>" title="Info" class="btn btn-mini"><i class="fa fa-info-circle"></i></a>
+        <a href="<?=$this->url('zfcadmin/localdata/product', array('action'=>'edit', 'id'=>$this->product_id))?>" title="Edit" class="btn btn-mini"><i class="fa fa-edit"></i></a>
+    <?php if($this->product_deleted != 1):?>
+        <a href="#deleteModal-<?php echo $this->product_id; ?>" title="Delete" class="delete-btn btn btn-mini"><i class="fa fa-times"></i></a>        
+    <?php endif; ?>
+    </td>
+</tr>
+
+<?php echo $this->partial('shared/modal/link-confirmation', array(
+        	'id'            => 'deleteModal-' . $this->product_id,
+        	'title'         => $this->translate('Action confirmation'),
+        	'body'          => $this->translate('You are about to delete product, continue?'),
+        	'confirmLabel'  => $this->translate('Delete product'),
+        	'url'           => $this->url('zfcadmin/localdata/product', array('action'=>'delete', 'id'=>$this->product_id)),
+    	)) ?>

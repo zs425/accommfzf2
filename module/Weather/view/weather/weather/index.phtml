@@ -1,0 +1,76 @@
+<?php foreach($this->availableAreas as $area):?>
+<div class="well weatherContainer">
+    <div class="weatherHeader" data-weather-url="<?php echo $area['baodestination_weather_url']?>"><?php echo $area['baodestination_name'] . ' ' . $this->translate('Forecast')?></div>
+    <div class="weatherContent">
+        <div class="loading"></div>
+        <div class="weatherData">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="day" colspan="3"></th>
+                        <th class="wind"><?php echo $this->translate('Wind')?></th>
+                        <th class="rain"><?php echo $this->translate('Rain')?></th>
+                        <th class="humidity"><?php echo $this->translate('Humidity')?></th>
+                        <th class="temp"><?php echo $this->translate('Temperature')?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time"></td>
+                        <td class="icon"></td>
+                        <td class="forecast"></td>
+                        <td class="wind"></td>
+                        <td class="rain"></td>
+                        <td class="humidity"></td>
+                        <td class="temp"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<?php endforeach;?>
+<script type="text/javascript">
+$('.weatherHeader').click( function () {
+	var header = $(this);
+	var content = $(this).next();
+	if($(this).data('loaded') != true) {
+	    loadWeatherData(header, content);
+	    $(this).data('loaded', true);
+	}
+	content.stop().slideToggle();
+})
+function loadWeatherData(elem, weatherContainer) {
+	var url = '/weather/ajax/detailedForecast/' + elem.data('weatherUrl');
+	weatherContainer.find('.loading').css('display', 'block');
+	$.ajax({
+		url: url,
+		dataType: "json",
+		type: "GET",
+		success: function(data) {
+			var forecast = data.forecast;
+			var n = forecast.length;
+			for(i = 0; i < n; i++) {
+				var weatherData = $(weatherContainer.find('.weatherData').get(0)).clone().appendTo(weatherContainer);
+				weatherData.find('.day').html(forecast[i].day);
+				var forecastRows = forecast[i].forecast;
+				var nn = forecastRows.length;
+				for(j = 0; j < nn; j++) {
+					var weatherRow = $(weatherData.find('tbody > tr').get(0)).clone().appendTo(weatherData.find('tbody'));
+					weatherRow.find('.time').html(forecastRows[j].time);
+					weatherRow.find('.icon').html('<img src="' + forecastRows[j].icon + '" />');
+					weatherRow.find('.forecast').html(forecastRows[j].forecast);
+					weatherRow.find('.wind').html(forecastRows[j].wind);
+					weatherRow.find('.rain').html(forecastRows[j].rain);
+					weatherRow.find('.humidity').html(forecastRows[j].humidity);
+					weatherRow.find('.temp').html(forecastRows[j].temp + '&deg;C');
+				}
+				$(weatherData.find('tbody > tr').get(0)).remove();
+				weatherData.css('display', 'block');
+			}
+			$(weatherContainer.find('.weatherData').get(0)).remove();
+			weatherContainer.find('.loading').css('display', 'none');
+		}
+	});
+}
+</script>

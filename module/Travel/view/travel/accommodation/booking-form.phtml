@@ -1,0 +1,19 @@
+<?php $this->bookingForm->setAttribute('action', $this->action)?>
+<?php $this->bookingForm->prepare()?>
+<?php echo $this->form()->openTag($this->bookingForm)?>
+<div class="control-group">
+    <label for="commenceDate"><?php echo $this->translate('Commencing')?></label>
+    <div class="controls">
+        <?php echo $this->formrow($this->bookingForm->get('commencing')->setAttribute('class', 'span2 hasDatepick'))?>
+    </div>
+</div>
+<label for="nightsSelect"><?php echo $this->translate('Nights')?></label>
+<?php echo $this->formselect($this->bookingForm->get('nights')->setAttribute('class', 'span2'))?>
+<label for="adultsSelect"><?php echo $this->translate('adults')?></label>
+<?php echo $this->formselect($this->bookingForm->get('adults')->setAttribute('class', 'span2'))?>
+<label for="childrenSelect"><?php echo $this->translate('children')?></label>
+<?php echo $this->formselect($this->bookingForm->get('children')->setAttribute('class', 'span2'))?>
+<div class="form-action">
+    <?php echo $this->formsubmit($this->bookingForm->get('submit-bookingForm'))?>
+</div>
+<?php echo $this->form()->closeTag($this->bookingForm)?>

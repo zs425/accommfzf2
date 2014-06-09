@@ -1,0 +1,12 @@
+<?php
+if ($products->category == 'accommodation') {
+    if (isset($this->individualSearch)) {
+        echo $this->partial('layout/viewaccommenhanced', array('product_info' => $products, 'bookingForm' => $this->bookingForm, 'individualSearch' => $this->individualSearch));
+    }
+    else {
+        echo $this->partial('layout/viewaccommenhanced', array('product_info' => $products, 'bookingForm' => $this->bookingForm));
+    }
+}
+else if ($products->category == 'attractions') {
+    echo $this->partial('layout/viewattract', array('product_info' => $products));
+}

@@ -1,0 +1,198 @@
+<!-- RIBBON -->
+<div id="ribbon">
+    <span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+    <!-- breadcrumb -->
+    <ol class="breadcrumb">
+        <li>Admin</li><li>Menus</li>
+    </ol>
+    <!-- end breadcrumb -->
+
+    <!-- You can also add more buttons to the
+    ribbon for further usability
+
+    Example below:
+
+    <span class="ribbon-button-alignment pull-right">
+    <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+    <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+    <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+    </span> -->
+
+</div>
+<!-- MAIN CONTENT -->
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa--building fa-fw "></i> 
+                    Menus 
+                <span>> 
+                    Menu List
+                </span>
+            </h1>
+        </div>    
+    </div>
+    
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+    
+        <!-- row -->
+        <div class="row">
+    
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+                    <!-- widget options:
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+    
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
+    
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                        <h2>Menus &nbsp;&nbsp;&nbsp;</h2>
+                        <a class="btn btn-primary" href="<?php echo $this->url('zfcadmin/menus', array('action' => 'addMenu'))?>"><?php echo $this->translate('Add New')?></a>
+                    </header>
+    
+                    <!-- widget div-->
+                    <div>
+    
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+    
+                        </div>
+                        <!-- end widget edit box -->
+                        
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <table class="table smart-form table-bordered has-tickbox">
+                                <thead>
+                                    <tr>
+                                        <th><?php echo $this->translate('Name')?></th>
+                                        <th><?php echo $this->translate('Description')?></th>
+                                        <th><?php echo $this->translate('Items/Add')?></th>
+                                        <th><?php echo $this->translate('Actions')?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->menus as $menu): ?>
+                                    <tr>
+                                        <td><?php echo $menu['label']?></td>
+                                        <td><?php echo $menu['menu_desc']?></td>
+                                        <td>
+                                            <a href="<?php echo $this->url('zfcadmin/menus', array('action' => 'viewItems', 'id' => $menu['menu_id']));?>" class="btn btn-mini"><i class="fa fa-edit"></i></a>/
+                                            <a href="<?php echo $this->url('zfcadmin/menus', array('action' => 'addItem', 'id' => $menu['menu_id']));?>" class="btn btn-mini"><i class="fa fa-plus"></i></a>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo $this->url('zfcadmin/menus', array('action' => 'editMenu', 'id' => $menu['menu_id']));?>" class="btn btn-mini"><i class="fa fa-edit"></i></a>
+                                            <?php if($menu["menu_id"] > 2){?>
+                                            <a href="#deleteModal-<?php echo $menu['menu_id']?>" class="delete-btn btn btn-mini"><i class="fa fa-times"></i></a>
+                                            <?php }?>
+                                        </td>
+                                    </tr>
+                                    <?php echo $this->partial('shared/modal/link-confirmation', array(
+                                        'id'            => 'deleteModal-' . $menu['menu_id'],
+                                        'title'         => $this->translate('Action confirmation'),
+                                        'body'          => $this->translate('You are about to delete a menu, continue?'),
+                                        'confirmLabel'  => $this->translate('Delete menu'),
+                                        'url'           => $this->url('zfcadmin/menus', array('action' => 'deleteMenu', 'id' => $menu['menu_id'])),
+                                    )) ?>
+                                    <?php endforeach;?>
+                                </tbody>
+                                
+                            </table>    
+                        </div>
+                        <!-- end widget content -->
+    
+                    </div>
+                    <!-- end widget div -->
+    
+                </div>
+                <!-- end widget -->
+    
+    
+            </article>
+            <!-- WIDGET END -->
+    
+    
+        </div>
+    
+        <!-- end row -->
+    
+    </section>
+    
+    <div class="bulkDelete-modal" title="Delete Website"  style="display:none;">
+        <p><?php echo $this->translate('Performing action on menu, continue?')?></p>
+    </div>
+    
+    <!-- end widget grid -->
+    
+    <script type="text/javascript">
+        
+        $('a.delete-btn').click(function() {
+            $($(this).attr("href")).dialog('open');
+            return false;
+        });
+        
+        $('.confirm-modal').dialog({
+            autoOpen : false,
+            width : 400,
+            resizable : false,
+            modal : true,
+            title : "Confirm Delete?",
+            buttons : [{
+                html : "<i class='fa fa-trash-o'></i>&nbsp; Delete menu",
+                "class" : "btn btn-danger",
+                click : function() {
+                    window.location.href=$(this).attr("attr");                
+                }
+            }, {
+                html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+                "class" : "btn btn-default",
+                click : function() {
+                    $(this).dialog("close");
+                }
+            }]
+        });
+        
+        $('#bulkDelete').click(function() {
+            $('.bulkDelete-modal').dialog('open');
+            return false;
+        });
+        
+        $('.bulkDelete-modal').dialog({
+            autoOpen : false,
+            width : 400,
+            resizable : false,
+            modal : true,
+            title : "<?php echo $this->translate('Action confirmation')?>",
+            buttons : [{
+                html : "<i class='fa fa-warning'></i>&nbsp; <?php echo $this->translate('Continue')?>",
+                "class" : "btn btn-danger",
+                click : function() {
+                    $('#pagesActionsForm').submit();                
+                }
+            }, {
+                html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+                "class" : "btn btn-default",
+                click : function() {
+                    $(this).dialog("close");
+                }
+            }]
+        });
+    
+        // PAGE RELATED SCRIPTS
+    
+    </script>
+</div>

@@ -1,0 +1,297 @@
+<!-- RIBBON -->
+<div id="ribbon">
+    <span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+    <!-- breadcrumb -->
+    <ol class="breadcrumb">
+        <li>Admin</li><li>Menus</li>
+    </ol>
+    <!-- end breadcrumb -->
+
+    <!-- You can also add more buttons to the
+    ribbon for further usability
+
+    Example below:
+
+    <span class="ribbon-button-alignment pull-right">
+    <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+    <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+    <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+    </span> -->
+
+</div>
+<!-- MAIN CONTENT -->
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa--building fa-fw "></i> 
+                    Menus 
+                <span>> 
+                    Menu Itmes
+                </span>
+            </h1>
+        </div>    
+    </div>
+    <div class="alert alert-success fade out" style="display:none;">
+        <i class="fa-fw fa fa-check"></i>
+        <strong>Success</strong> Menu item order saved.
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+    
+        <!-- row -->
+        <div class="row">
+    
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+                    <!-- widget options:
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+    
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
+    
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                        <h2><?php echo $this->menu["menu_title"];?>&nbsp;Menu&nbsp;&nbsp;&nbsp;</h2>
+                        <a class="btn btn-primary" href="<?php echo $this->url('zfcadmin/menus', array('action' => 'addItem', 'id'=>$this->menu["menu_id"]))?>"><?php echo $this->translate('Add Menu Item')?></a>
+                    </header>
+    
+                    <!-- widget div-->
+                    <div>
+    
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+    
+                        </div>
+                        <!-- end widget edit box -->
+                        
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <table class="table smart-form table-bordered has-tickbox data">
+                                <thead>
+                                    <tr>
+                                        <th><?php echo $this->translate('Order')?></th>
+                                        <th><?php echo $this->translate('Label')?></th>
+                                        <th><?php echo $this->translate('URI')?></th>
+                                        <th><?php echo $this->translate('Visibility')?></th>
+                                        <th><?php echo $this->translate('Actions')?></th>
+                                    </tr>
+                                </thead>
+                                <?php foreach($this->menuItems as $menuitem): ?>
+                                <tbody id="listItem_<?php echo $menuitem["menuitem_id"];?>" itemid="<?php echo $menuitem["menuitem_id"];?>">
+                                    <tr>
+                                        <td class="handle"><i class="fa fa-lg fa-move"></i></td>
+                                        <td><?php echo $menuitem['menuitem_label']?></td>
+                                        <td><?php echo $menuitem['menuitem_uri']?></td>
+                                        <td>
+                                            <label class="toggle">
+                                                <input type="checkbox" name="checkbox-toggle" dataid="<?php echo $menuitem["menuitem_id"];?>" <?php if ($menuitem['menuitem_visible'] == "0"){ echo 'checked="checked"';}?>>
+                                                <i data-swchon-text="Show" data-swchoff-text="Hide"></i>
+                                            </label>
+                                            <!--a href="<?php echo $this->url('zfcadmin/menus', array('action' => 'hideItem', 'id' => $menuitem['menuitem_id']));?>">Hide</a>
+                                            <a href="<?php echo $this->url('zfcadmin/menus', array('action' => 'showItem', 'id' => $menuitem['menuitem_id']));?>">Show</a-->
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo $this->url('zfcadmin/menus', array('action' => 'editItem', 'id' => $menuitem['menuitem_id']));?>" class="btn btn-mini"><i class="fa fa-edit"></i></a>
+                                            <a href="#deleteModal-<?php echo $menuitem['menuitem_id']?>" class="delete-btn btn btn-mini"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php echo $this->partial('shared/modal/link-confirmation', array(
+                                        'id'            => 'deleteModal-' . $menuitem['menuitem_id'],
+                                        'title'         => $this->translate('Action confirmation'),
+                                        'body'          => $this->translate('You are about to delete a menu, continue?'),
+                                        'confirmLabel'  => $this->translate('Delete menu'),
+                                        'url'           => $this->url('zfcadmin/menus', array('action' => 'deleteItem', 'id' => $menuitem['menuitem_id'])),
+                                    )) ?>
+                                    <?php if (isset($menuitem['children'])){
+                                        foreach ($menuitem['children'] as $childitem){
+                                    ?>
+                                    <tr class="child" id="listItem_<?php echo $childitem["menuitem_id"];?>" itemid="<?php echo $childitem["menuitem_id"];?>">
+                                        <td class="childhandle"><i class="fa fa-lg fa-move"></i></td>
+                                        <td><?php echo $childitem['menuitem_label']?>(<?php echo $childitem['menuitem_type']?>)</td>
+                                        <td><?php echo $childitem['menuitem_uri']?></td>
+                                        <td>
+                                            <label class="toggle">
+                                                <input type="checkbox" name="checkbox-toggle" dataid="<?php echo $childitem["menuitem_id"];?>" <?php if ($childitem['menuitem_visible'] == "0"){ echo 'checked="checked"';}?>>
+                                                <i data-swchon-text="Show" data-swchoff-text="Hide"></i>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo $this->url('zfcadmin/menus', array('action' => 'editItem', 'id' => $childitem['menuitem_id']));?>" class="btn btn-mini"><i class="fa fa-edit"></i></a>
+                                            <a href="#deleteModal-<?php echo $childitem['menuitem_id']?>" class="delete-btn btn btn-mini"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php echo $this->partial('shared/modal/link-confirmation', array(
+                                        'id'            => 'deleteModal-' . $childitem['menuitem_id'],
+                                        'title'         => $this->translate('Action confirmation'),
+                                        'body'          => $this->translate('You are about to delete a menu, continue?'),
+                                        'confirmLabel'  => $this->translate('Delete menu'),
+                                        'url'           => $this->url('zfcadmin/menus', array('action' => 'deleteItem', 'id' => $childitem['menuitem_id'])),
+                                    )) ?>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                                <?php endforeach;?>
+                                
+                            </table>    
+                        </div>
+                        <!-- end widget content -->
+    
+                    </div>
+                    <!-- end widget div -->
+    
+                </div>
+                <!-- end widget -->
+    
+    
+            </article>
+            <!-- WIDGET END -->
+    
+    
+        </div>
+    
+        <!-- end row -->
+    
+    </section>
+    
+    <div class="bulkDelete-modal" title="Delete Website"  style="display:none;">
+        <p><?php echo $this->translate('Performing action on menu, continue?')?></p>
+    </div>
+    
+    <!-- end widget grid -->
+    
+    <script type="text/javascript">
+        
+        $('a.delete-btn').click(function() {
+            $($(this).attr("href")).dialog('open');
+            return false;
+        });
+        
+        $('.confirm-modal').dialog({
+            autoOpen : false,
+            width : 400,
+            resizable : false,
+            modal : true,
+            title : "Confirm Delete?",
+            buttons : [{
+                html : "<i class='fa fa-trash-o'></i>&nbsp; Delete menu",
+                "class" : "btn btn-danger",
+                click : function() {
+                    window.location.href=$(this).attr("attr");                
+                }
+            }, {
+                html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+                "class" : "btn btn-default",
+                click : function() {
+                    $(this).dialog("close");
+                }
+            }]
+        });
+        
+        $('#bulkDelete').click(function() {
+            $('.bulkDelete-modal').dialog('open');
+            return false;
+        });
+        
+        $('.bulkDelete-modal').dialog({
+            autoOpen : false,
+            width : 400,
+            resizable : false,
+            modal : true,
+            title : "<?php echo $this->translate('Action confirmation')?>",
+            buttons : [{
+                html : "<i class='fa fa-warning'></i>&nbsp; <?php echo $this->translate('Continue')?>",
+                "class" : "btn btn-danger",
+                click : function() {
+                    $('#pagesActionsForm').submit();                
+                }
+            }, {
+                html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+                "class" : "btn btn-default",
+                click : function() {
+                    $(this).dialog("close");
+                }
+            }]
+        });
+
+        $('.data').sortable({
+            handle : '.handle',
+            items: 'tbody',
+            update : function () {
+                var itemsList = new Array();
+                $('.data tbody').each(function(inx){
+                    itemsList[inx] = $(this).attr('itemid');
+                });
+                console.log(itemsList);
+                $.ajax({
+                    url : "<?php echo $this->url('zfcadmin/menus', array('action'=>'setMenuOrder'))?>",
+                    type : "POST",
+                    data : {menuid : <?php echo $this->menu["menu_id"];?>, parentid : '0', itemsOrder : itemsList},
+                    success : function(data){
+                        $(".alert-success").show().addClass("in");
+                        setTimeout(function(){
+                            $(".alert-success").removeClass('in').fadeOut(500).hide(500);
+                        },1500);
+                    }
+                });
+            }
+        });
+        $('.data tbody').sortable({
+            handle : '.childhandle',
+            items: 'tr.child',
+            update : function () {
+                var itemsList = new Array();
+                $(this).find('tr.child').each(function(inx){
+                    itemsList[inx] = $(this).attr('itemid');
+                });
+                console.log(itemsList);
+                var parentid = $(this).attr('itemid');
+                $.ajax({
+                    url : "<?php echo $this->url('zfcadmin/menus', array('action'=>'setMenuOrder'))?>",
+                    type : "POST",
+                    data : {itemsOrder : itemsList},
+                    success : function(data){
+                        $(".alert-success").show().addClass("in");
+                        setTimeout(function(){
+                            $(".alert-success").removeClass('in').fadeOut(500).hide(500);
+                        },1500);
+                    }
+                });
+            }
+        });
+        
+        $(".toggle input").change(function(){
+            if ($(this).is(":checked")){
+                act = "hide";
+            }else{
+                act = "show";
+            }
+            
+            itemid = $(this).attr('dataid');
+            
+            $.ajax({
+                url : "<?php echo $this->url('zfcadmin/menus', array('action'=>'toggleVisible'))?>",
+                type : "POST",
+                data : { action : act, id : itemid},
+                success : function(data){}
+            });
+        });
+    
+        // PAGE RELATED SCRIPTS
+    
+    </script>
+</div>

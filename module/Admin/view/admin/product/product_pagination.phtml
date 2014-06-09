@@ -1,0 +1,26 @@
+<?php if ($this->pageCount): ?>
+    <div class="text-center">
+		<ul class="pagination pagination-sm">
+            <li <?php echo!isset($this->previous) ? 'class="disabled"' : ''; ?>>
+                <a href="javascript:void(0);" id="pager_first" data_page="<?php echo $this->first; ?>">&laquo;</a>
+            </li>
+            <li <?php echo!isset($this->previous) ? 'class="disabled"' : ''; ?>>
+                <a href="javascript:void(0);" id="pager_previous" data_page="<?php echo $this->previous; ?>"><i class="fa fa-angle-left"></i></a>
+            </li>
+
+            <!-- Numbered page links -->
+            <?php foreach ($this->pagesInRange as $page): ?>
+                <li <?php echo $page == $this->current ? 'class="active"' : ''; ?>><a href="javascript:void(0);" id="pager_<?php echo $page;?>" data_page="<?php echo $page; ?>">
+                        <?php echo $page; ?>
+                    </a></li>
+            <?php endforeach; ?>
+
+            <!-- Next page link -->
+            <li <?php echo!isset($this->next) ? 'class="disabled"' : ''; ?>>
+                <a href="javascript:void(0);" id="pager_next" data_page="<?php echo $this->next; ?>"><i class="fa fa-angle-right"></i></a>
+            <!-- Last page link -->
+            <li <?php echo!isset($this->next) ? 'class="disabled"' : ''; ?>>
+                <a href="javascript:void(0);" id="pager_last" data_page="<?php echo $this->last; ?>">&raquo;</a></li>
+        </ul>
+    </div>   
+<?php endif; ?>

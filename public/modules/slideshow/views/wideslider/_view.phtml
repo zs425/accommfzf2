@@ -1,0 +1,61 @@
+<?php
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = $this->cssWidth;
+$cssHeight = $this->cssHeight;
+$delay = $this->delay;
+
+$jsImgArray = array();
+foreach ($images as $img)
+	$jsImgArray[] = '"/uploads/slideshow/slideshow-'.$slideshow['slideshow_id'].'/originals/'.$img['image_path'].'"';
+?>
+<link type="text/css" href="/modules/slideshow/scripts/css/wideslider_2.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/wideslider_2.js"></script>
+<style>
+	#wideslider .slide-img {max-width:<?php echo $slideshow['slideshow_width']; ?>px}
+	div[id*="slideshow-"] .blockContent{width:<?php echo $cssWidth; ?>}
+	#wideslider .slide-img{height:<?php echo $cssHeight; ?>}
+</style>
+<div class="slides_container">
+	<div id="wideslider">
+	 <?///uploads/slideshow/slideshow-<?=$slideshow->slideshow_id.'/originals/?>
+	    <div class="slide-img" style="background-image:url(<?='uploads/slideshow/slideshow-' . $slideshow['slideshow_id']. '/originals/' . $images[0]['image_path']?>)"></div>
+	    <?
+	    	$i = -1;
+	        foreach ($images as $img):
+	            $i++;?><?
+	            if(isset($img['discription'])):?>
+	            	<div class="slide-caption slide_<?=($i)?>" <?=($i==0)?'style="display:block"':''?>><?=$img['discription']?></div>
+				<?endif;?>
+	    <?  endforeach;?>
+			
+		
+	    <div class="slide-pag">
+	    	<?
+	    	$bullets = array();
+	        $bullets[] = '<img alt="0" class="bullet_0 widebullet" src="/modules/slideshow/scripts/images/wide_bullets_2_selected.png" />';
+	        for($i=1;$i<count($images);$i++)
+	        	$bullets[] = '<img alt="'.$i.'" class="bullet_'.$i.' widebullet" src="/modules/slideshow/scripts/images/wide_bullets_2.png" />';
+			?>
+	    	<nobr>
+	    		<?//<img alt="0" class="wideprev" src="/modules/slideshow/scripts/images/wide_prev.png" />?>
+	    		<?=implode('', $bullets)?>
+	    		<?//<img alt="0" class="widenext" src="/modules/slideshow/scripts/images/wide_next.png" />?>
+	    	</nobr>
+	    </div>
+	                
+		<?/*<br class="clear" />*/?>
+	</div>
+</div>
+    
+<script>
+	$(document).ready(function(){
+		var slides = [<?php echo implode(',', $jsImgArray); ?>];
+        var sliderInterval = setInterval('slideAutoSwitch([<?php echo implode(',', $jsImgArray); ?>])', <?php echo $delay; ?> );
+        $('.slide-pag img').click(function(){
+    		clearInterval(sliderInterval);
+    		slideSwitch(slides, $(this).attr('alt'));
+    	}); 
+	});
+</script>

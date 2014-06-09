@@ -1,0 +1,47 @@
+<?
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = $this->cssWidth;
+$cssHeight = $this->cssHeight;
+        	
+	// options
+    switch ($slideshow['slideshow_effect']) {
+    	case 'wave':
+        case 'zipper':
+        case 'curtain':
+        	$options['effect'] = $slideshow['slideshow_effect'];
+        	break;
+	}
+
+	$options['navigation'] = intval($slideshow['slideshow_navigation']);
+    $options['delay'] = ($slideshow['slideshow_delay'] > 0)?intval($slideshow['slideshow_delay']):3000;
+    $options = Zend\Json\Json::encode($options);
+    // calculate width and set in pixels
+    $cssWidth = (strstr($cssWidth, 'px'))?str_replace('px', '', $cssWidth):"$('#slider').parent().width()";
+    $cssHeight = (strstr($cssHeight, 'px'))?str_replace('px', '', $cssHeight):$cssHeight = "$('#slider').parent().height()";
+    // add width and height to options
+    $options = substr($options, 0, -1).",width:$cssWidth,height:$cssHeight}";
+?>
+<link type="text/css" href="/modules/slideshow/scripts/css/aviaslider.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/jqFancyTransitions.1.8.min.js"></script>
+
+<style>
+	.ace-slider {min-height:100px;width:<?php echo $cssWidth; ?>; height:<?php echo $cssHeight; ?> ;overflow:hidden;}
+	.ft-prev, .ft-next { background-color: #000; padding: 0 10px;color:#fff } 
+	.ft-button-ft-active { color: #FF8011; }
+	.block .ft-title {width:100%; -webkit-border-radius: 0; border-radius: 0;padding:2px;}
+</style>
+<div class="slides_container">
+	<div id="slider" class="ace-slider">
+		<?foreach ($images as $img):?>
+	    	<img src="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/originals/'.$img['image_path']?>" width="<?=$cssWidth?>" <?= ($img['discription'])?'alt="' . $img['discription'] . '"':''?> />
+		<?endforeach;?>    
+	    <div class="clear"></div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		$('#slider').jqFancyTransitions(<?php echo $options; ?>);
+	});
+</script>

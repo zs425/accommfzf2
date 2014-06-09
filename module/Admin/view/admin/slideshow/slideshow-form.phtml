@@ -1,0 +1,230 @@
+
+<!-- widget grid -->
+<section id="widget-grid" class="">
+
+<?php $this->slideshowForm->setAttribute('action', $this->action)?>
+<?php $this->slideshowForm->prepare();?>
+<?php echo $this->form()->openTag($this->slideshowForm)?>
+
+
+	<!-- START ROW -->
+
+	<div class="row">
+
+		<!-- NEW COL START -->
+		<article class="col-sm-12 col-md-12 col-lg-6 ">
+
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-custombutton="false">
+				<!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2><?php echo $this->translate('General')?></h2>
+
+				</header>
+
+				<!-- widget div-->
+				<div>
+
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+
+					</div>
+					<!-- end widget edit box -->
+
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						<div class="smart-form">
+							<fieldset>
+								<section>
+									<label class="label"><?php echo $this->translate('Slideshow Name')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->slideshowForm->get('slideshow_name')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->slideshowForm->get('slideshow_name')->setAttribute('class', 'input-sm'))?>
+									</label>
+								</section>
+								
+								<section>
+									<label class="label"><?php echo $this->translate('Type')?></label>
+									<label class="select">
+										<?php echo $this->formselect($this->slideshowForm->get('slideshow_script')->setAttribute('class', 'input-sm'))?>
+										 <i></i> 
+									</label>									
+								</section>
+								
+								<section>
+									<label class="label"><?php echo $this->translate('Effect')?></label>
+									<label class="select">
+										<?php echo $this->formselect($this->slideshowForm->get('slideshow_effect')->setAttribute('class', 'input-sm'))?>
+										 <i></i> 
+									</label>									
+								</section>
+
+								<section>
+									<label class="label"><?php echo $this->translate('Width')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->slideshowForm->get('slideshow_width')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->slideshowForm->get('slideshow_width')->setAttribute('class', 'input-sm'))?>
+									</label>
+								</section>
+
+								<section>
+									<label class="label"><?php echo $this->translate('Height')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->slideshowForm->get('slideshow_height')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->slideshowForm->get('slideshow_height')->setAttribute('class', 'input-sm'))?>
+									</label>
+								</section>
+								
+								<section>
+									<label class="label"><?php echo $this->translate('Thumbnail Width')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->slideshowForm->get('thumbnail_width')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->slideshowForm->get('thumbnail_width')->setAttribute('class', 'input-sm'))?>
+									</label>
+								</section>
+
+								<section>
+									<label class="label"><?php echo $this->translate('Thumbnail Height')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->slideshowForm->get('thumbnail_height')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->slideshowForm->get('thumbnail_height')->setAttribute('class', 'input-sm'))?>
+									</label>
+								</section>
+								
+								<section>
+									<label class="label"><?php echo $this->translate('Delay')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->slideshowForm->get('slideshow_delay')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->slideshowForm->get('slideshow_delay')->setAttribute('class', 'input-sm'))?>
+									</label>
+									<div class="note">
+										<?php echo $this->translate('Milliseconds eg. 5000 for 5 sec.')?>
+									</div>
+								</section>
+								
+								<section>
+									<label class="label"><?php echo $this->translate('Navigation Buttons')?></label>
+									<label class="checkbox">
+										<?php echo $this->formrow($this->slideshowForm->get('slideshow_navigation'))?>
+										<i></i> </label>
+								</section>
+								
+								<section>
+									<label class="label"><?php echo $this->translate('Slideshow URI')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->slideshowForm->get('slideshow_uri')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->slideshowForm->get('slideshow_uri')->setAttribute('class', 'input-sm'))?>
+									</label>									
+								</section>
+							</fieldset>
+							<footer>
+								<?php echo $this->formsubmit($this->slideshowForm->get('submit-slideshowForm')->setAttribute('class', 'btn btn-primary'))?>															
+							</footer>
+						</div>
+						
+					</div>
+					<!-- end widget content -->
+	
+				</div>
+				<!-- end widget div -->
+	
+			</div>
+			<!-- end widget -->
+	
+		</article>
+		<!-- END COL -->
+		
+		<!-- NEW COL START -->
+		<article class="col-sm-12 col-md-12 col-lg-6 ">
+
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-custombutton="false">
+				<!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-eye"></i> </span>
+					<h2><?php echo $this->translate('Description')?></h2>
+
+				</header>
+
+				<!-- widget div-->
+				<div>
+
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+
+					</div>
+					<!-- end widget edit box -->
+
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						<div class="smart-form">
+							<fieldset>
+								<div id="guidelines"></div>
+							</fieldset>
+						</div>
+						
+					</div>
+					<!-- end widget content -->
+	
+				</div>
+				<!-- end widget div -->
+	
+			</div>
+			<!-- end widget -->
+	
+		</article>
+		<!-- END COL -->
+	
+	</div>
+<?php echo $this->form()->closeTag($this->slideshowForm); ?>
+<!-- END ROW -->
+</section>
+
+<script type="text/javascript" charset="utf-8">
+	
+	$(function() {
+		$("#slideshow_effect").remoteChained("#slideshow_script", "/admin/modules/slideshow/json-select-options", {
+            success: function(){
+            	$('#slideshow_effect').val('random');
+            }
+        });
+	});	
+
+	$('#slideshow_script').change(function() {
+		var type = this.value;
+		var guidelines = $('#guidelines');
+
+		$.ajax({
+			url: '/admin/modules/slideshow/guidelines',
+			type: 'get',
+			data: {slideshow_type : type},
+			beforeSend: function(){
+				guidelines.html('<div class="ajax-loader"><img src="/modules/slideshow/images/ajax-loader.gif"/></div>');
+			},
+			success: function(data) {
+				guidelines.html(data);
+			}
+		});
+
+	});
+</script>

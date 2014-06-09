@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="span8">
+        <div class="well">
+            <h3><?php echo $this->translate('Book And Check Availability Now'); ?></h3>
+            <?php if ($this->individualSearch['results']['rates']): ?>
+                <table class="table table-striped table-bordered search-results-table">
+                    <tr class="datesRow">
+                        <td></td>
+                        <?php foreach ($this->individualSearch['results']['dates'] as $d): // list dates, highlight weekend?>
+                            <th<?= (in_array(substr($d, 0, 3), array('Sat', 'Sun'))) ? ' class="weekend"' : '' ?>><?= $d ?></th>
+                        <?php endforeach; ?>
+                        <td></td>
+                    </tr>
+                    <?php foreach ($this->individualSearch['results']['rates'] as $roomId => $room): ?>
+                        <tr>
+                            <td><?= $room->name ?> <!-- <?=$roomId?> --><br/><span><?= $room->max ?></span></td>
+                            <?php
+                            $available = true;
+                            // rates loop
+                            $config = $this->getConfig();
+                            for ($i = 0; $i < $config['v3']['max-dates']; $i++):
+                                // highlight weekend and selected nights
+                                $weekend  = (in_array(substr($this->individualSearch['results']['dates'][$i], 0, 3), array('Sat', 'Sun'))) ? 'weekend ' : '';
+                                $selected = ($i < $this->individualSearch['params']['nights']) ? 'selected' : '';
+                                $date     = date('Y/m/d', strtotime($this->individualSearch['params']['commencing']) + ($i * 3600 * 24));
+                                if (!isset($room->rates[1][$date])) {
+                                    ?>
+                                    <td width="40" class="<?= $weekend . $selected ?>"><span> - </span></td>
+                                <?php
+                                }
+                                else {
+                                    ?>
+                                    <td width="40" class="<?= $weekend . $selected ?>">
+                                        <?= ($room->rates[1][$date]['StartTimes'][0]['TP'] > 0) ? '$' . $room->rates[1][$date]['StartTimes'][0]['TP'] : '<span>N/A</span>' ?></td>
+                                <?php } ?>
+                            <?php endfor; ?>
+                            <td>
+                                <?php
+                                $date = date('Y/m/d', strtotime($this->individualSearch['params']['commencing']));
+                                $total = isset($room->rates[$this->individualSearch['params']['nights']][$date]['StartTimes'][0]['TP']) ? $room->rates[$this->individualSearch['params']['nights']][$date]['StartTimes'][0]['TP'] : 0;
+                                if ($total > 0):
+                                    // $url = 'https://www.au.v3travel.com/CABS2/BookingServices/BookNow.aspx?';
+                                    $url = 'http://www.au.v3travel.com/CABS2/DiscoveryServices/ProviderAvailability.aspx?';
+                                    $url .= 'exl_dn=' . $config['keys']['v3'];
+                                    $url .= '&exl_psn=' . $this->product->product_source_id;
+                                    $url .= '&date=' . date('Y/m/d', strtotime($this->individualSearch['params']['commencing']));
+                                    $url .= '&nights=' . $this->individualSearch['params']['nights'];
+                                    $url .= '&category=1';
+                                    $url .= '&adults=' . $this->individualSearch['params']['adults'];
+                                    $url .= '&children=' . $this->individualSearch['params']['children'];
+                                    ?>
+                                    <a class="btn btn-success" href="<?= $url ?>" rel="external"
+                                       title='v3-<?= $this->product->product_name ?>'
+                                       target="_blank"><?php echo $this->translate('Book for') ?> $<?php echo $total ?></a>
+                                <?php else: ?>
+                                    <span class="small" title="please adjust dates">N/A</span>
+                                <?endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+                <div class="pull-left">
+                    <div class="legend-selected pull-left"></div>
+                    <p class="legend pull-left">&nbsp;- <?php echo $this->translate('Selected Nights') ?></p><br/>
+
+                    <div class="legend-weekend pull-left"></div>
+                    <p class="legend pull-left">&nbsp;- <?php echo $this->translate('Weekends') ?></p>
+                    <?php if ($this->individualSearch['results']['minNightsWarning']): ?>
+                        <img class="pull-left" src="/themes/bootstrap/view/assets/img/warning.png" alt="warning" width="16"/><p
+                            class="pull-left">&nbsp;- <?php echo $this->translate('min 2 nights stay') ?></p>
+                    <?php endif; ?>
+                </div>
+                <div class="prodSource atdw pull-right">v3travel</div>
+                <br class="clear"/>
+            <?php else: ?>
+                <br class="clear"/>
+                <h3 style="text-align:center"><?php echo $this->translate('Sorry, there are no rooms available for the dates you have selected...') ?></h3>
+            <?endif; ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+.cycle_container{
+    float:right;
+    background:url(/modules/slideshow/scripts/images/cycle_bg.png) no-repeat;
+    width:455px;
+    height:291px;
+    margin-top:22px;
+    margin-right:25px;
+    position:relative;
+    
+}
+.slider_shadow{
+    background:url(/modules/slideshow/scripts/images/cycle_shadow.png) no-repeat;
+    width:431px;
+    height:267px;
+    overflow:hidden;
+    position:absolute;
+    z-index:10;
+    left:12px;
+    top:8px;
+}
+.slider_image{
+    margin:auto;
+    margin-top:-7px;
+    overflow:hidden;
+    margin-left:12px;
+    display:inline-block;
+    z-index:1;
+}
+.pre_button {
+    background:url(/modules/slideshow/scripts/images/cycle_prev.png) no-repeat;
+    width:44px;
+    height:44px;
+    position:absolute;
+    left:-13px;
+    top:120px;
+    z-index:20;
+}
+
+.next_button {
+    background:url(/modules/slideshow/scripts/images/cycle_next.png) no-repeat;
+    width:44px;
+    height:44px;
+    position:absolute;
+    right:-20px;
+    top:120px;
+    z-index:20;
+}

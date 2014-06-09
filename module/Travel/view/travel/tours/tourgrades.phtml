@@ -1,0 +1,70 @@
+<div class="container">
+<br>
+<div class="row">
+	<div class="span12">
+	    <div class="page-header">
+	        <h1><?php echo $this->product->title; ?>
+	            <small>- <?php echo $this->destination->destinationName; ?></small>
+	            <a style="float:right;" href="<?php echo $this->product->webURL;?>" class="btn btn-primary"><?php echo $this->translate('Book now');?></a>
+	        </h1>
+	    </div>
+	</div>
+	<div class="span3">
+	    <?php echo $this->form()->openTag($this->toursForm);?>
+	    <ul class="nav nav-tabs nav-stacked" style="background:white; font-size:11px; ">
+	        <li class="active" style="font-size:12px; font-weight:bold;">
+	            <a href="#"><?php echo $this->translate('Check Availability') ?></a>
+	            <div class="control-group">
+	                <label for="commenceMonth"><?php echo $this->translate('Date')?></label>
+	                <div class="controls">
+	                    <?php echo $this->formrow($this->toursForm->get('commenceMonth')->setAttribute('style', 'width:100px'))?>
+	                    <?php echo $this->formrow($this->toursForm->get('commenceDate')->setAttribute('class', 'span1'))?>
+	                </div>
+	            </div>
+	            <?php foreach($this->product->ageBands as $key=>$band){?>
+	                <label for="ageSelect"><?php echo $this->translate($band->description)."(".$this->translate("Age")." : ".$band->ageFrom." to ".$band->ageTo.")"?></label>
+	                <?php echo $this->formselect($this->toursForm->get('ageBand['.$band->bandId.']')->setAttribute('class', 'span2'))?>
+	            <?php }?>
+	            <div class="form-action">
+	                <?php echo $this->formsubmit($this->toursForm->get('submit-bookingForm'))?>
+	            </div>
+	        </li>
+	    </ul>
+	    <?php echo $this->form()->closeTag($this->toursForm);?>
+	</div>
+	<div class="span9">
+	    <div class="well">
+	            <table class="table">
+	                <?php foreach ($this->tourgrades as $tour) {?>
+	                <?php if ($tour->available){?>
+	                <tr>
+	                    <td style="font-size:17px;"><strong><?php echo $tour->gradeTitle;?></strong></td>
+	                    <td><p><strong>Departs <?php echo $tour->gradeDepartureTime;?></strong></p>
+	                        <p><?php echo $tour->gradeDescription; ?></p>
+	                    </td>
+	                    <td><?php echo $tour->retailPriceFormatted; ?></td>
+	                </tr>
+	                <?php }
+	                }?>
+	            </table>
+	    </div>
+	</div>
+</div>
+<!-- End Slider/Search Block -->
+<script>
+    $(document).ready(function(){
+        var productId = '<?php echo $this->product->code;?>';
+        $( "#commenceMonth" ).change(function(){
+            $.ajax({
+                url:'<?php echo $this->url('tours', array("action"=>"getDates"));?>',
+                data : {productId : productId, month : $(this).val()},
+                method : "post",
+                success : function(data){
+                    console.log(data);
+                    $("#commenceDate").html(data);
+                }
+            });
+        });
+    });
+</script>
+</div> <!-- /container -->

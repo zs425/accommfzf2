@@ -1,0 +1,3 @@
+<?php foreach ($this->products as $product): ?>
+    <?php echo $this->partial('layout/listbasic', array('categoryurl' => $this->categoryurl, 'url' => $this->urlFilter($product->product_id . "-" . $product->product_name), 'product_name' => $product->product_name, 'product_shortdesc' => $product->product_shortdesc, 'product_image' => $product->product_photo, 'product_id' => $product->product_id, 'product_source_id' => $product->product_source_id, 'product_lowrate' => $product->product_lowrate, 'product'=> $product)); ?>
+<?php endforeach; ?>

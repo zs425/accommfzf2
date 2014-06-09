@@ -1,0 +1,216 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en-us">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <?php echo $this->headTitle('Metro Theme - Accommodation Admin')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    							->appendName('MobileOptimized', '320')
+    							->appendName('HandheldFriendly', 'True') ?>
+    
+    <?php echo $this->headLink()->appendStylesheet($this->basePath() . '/admin-assets/css/bootstrap.min.css')
+								->appendStylesheet($this->basePath() . '/admin-assets/css/font-awesome.min.css')
+								->appendStylesheet($this->basePath() . '/admin-assets/css/smartadmin-production.css')
+								->appendStylesheet($this->basePath() . '/admin-assets/css/smartadmin-skins.css')
+								->appendStylesheet($this->basePath() . '/admin-assets/css/demo.css')
+								->headLink(array('rel' => 'shortcut icon', 'href' => 'img/favicon/favicon.ico', 'type' => 'image/x-icon'))
+								->appendStylesheet("http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700")
+								->appendStylesheet($this->basePath() . '/admin-assets/css/custom.css'); ?>
+	
+	<?php echo $this->headScript()->appendFile($this->basePath() . '/admin-assets/js/libs/jquery-2.0.2.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/libs/jquery-ui-1.10.3.min.js')							
+    							  ->appendFile($this->basePath() . '/admin-assets/js/bootstrap/bootstrap.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/notification/SmartNotification.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/smartwidgets/jarvis.widget.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/sparkline/jquery.sparkline.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/jquery-validate/jquery.validate.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/masked-input/jquery.maskedinput.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/select2/select2.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/msie-fix/jquery.mb.browser.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/smartclick/smartclick.js')
+								  ->appendFile($this->basePath() . '/bootstrap-editor/scripts/innovaeditor.js')
+                                  ->appendFile($this->basePath() . '/bootstrap-editor/scripts/innovamanager.js')
+								  ->appendFile($this->basePath() . '/modules/slideshow/scripts/jquery.chained.remote.js')
+                                  ->appendFile($this->basePath() . '/admin-assets/js/plugin/jquery-nestable/jquery.nestable.js')
+								  //->appendFile($this->basePath() . '/admin-assets/js/demo.js')
+								  //->appendFile($this->basePath() . '/admin-assets/js/app.js'); ?>
+</head>
+<body class="">
+	<!-- HEADER -->
+	<header id="header">
+		<div id="logo-group">
+			<span id="logo" class="logo">
+				<a href="<?php echo $this->url('zfcadmin')?>" class="brand">Barossa Valley Accommodation</a>
+			</span>			
+		</div>		
+		
+		<!-- pulled right: nav area -->
+		<div class="pull-right">
+			<!-- collapse menu button -->
+			<div id="hide-menu" class="btn-header pull-right">
+				<span>
+					<a href="javascript:void(0);" title="Collapse Menu"><i class="fa fa-reorder"></i></a>
+				</span>
+			</div>
+			<!-- end collapse menu -->
+			
+			<!-- logout button -->
+			<div id="logout" class="btn-header transparent pull-right">
+				<span>
+					<a href="<?php echo $this->url('zfcadmin/logout')?>" title="Sign Out"><i class="fa fa-sign-out"></i></a>
+				</span>
+			</div>
+			<!-- end logout button -->
+						
+		</div>
+		<!-- end pulled right: nav area -->
+		
+	</header>
+	<!-- END HEADER -->
+	
+	<!-- Left panel : Navigation area -->
+	<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+	<aside id="left-panel">
+		
+		<!-- User info -->
+		<div class="login-info">
+			<span>
+				<!-- User image size is adjusted inside CSS, it should stay as it -->
+				<img src="/admin-assets/images/user.jpg" alt="" class="online"/>
+				<a href="javascript:void(0);"><?php echo $this->loggedUser()->getUsername() ?></a>				
+			</span>
+		</div>
+		<!-- end user info -->
+		
+		<!-- NAVIGATION : This navigation is also responsive 
+			 
+			 To make this navigation dynamic please make sure to link the node 
+			 (the reference to the nav > ul) after page load. Or the navigation 
+			 will not initialize.
+		-->
+		<nav>
+			<!-- NOTE: Notice the gaps after each icon usage <i></i>.. 
+				 Please note that these links work a bit different than
+				 traditional hre="" links. See documentation for details.
+				-->
+			
+			<ul>
+				<li class="<?php if($this->thisRoute() == 'zfcadmin/dashboard') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/dashboard')?>" title="<?php echo $this->translate('Dashboard')?>"><i class="fa fa-lg fa-fw fa-home"></i>  <span class="menu-item-parent"><?php echo $this->translate('Dashboard')?></span></a></li>
+				<li class="<?php if(strpos($this->thisRoute(), 'zfcadmin/centraldb') !== false) echo 'open active';?>"><a href="#"><i class="fa fa-lg fa-fw fa-calendar-o"></i>  <span class="menu-item-parent"><?php echo $this->translate('Central DB')?></span></a>
+					<ul>
+						<li class=""><a href="javascript:void(0);"><?php echo $this->translate('BAO Products'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('BAO Destinations'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('Merging'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('Import CSV'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('Settings'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('Information'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('Console'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('Debug'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('Unmatched Products'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/centraldb/geonames/default' && $this->action == 'import') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/centraldb/geonames/default', array('action' => 'import'))?>"><?php echo $this->translate('New Destinations'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/centraldb/manualmatchdestination') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/centraldb/manualmatchdestination')?>"><?php echo $this->translate('Manual Match Destinations'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/centraldb/viewdestination') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/centraldb/viewdestination')?>"><?php echo $this->translate('View Destinations'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/centraldb/gethotelinformation/default' && $this->action == 'import') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/centraldb/gethotelinformation/default', array('action' => 'import'))?>"><?php echo $this->translate('New Hotels'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/centraldb/site/default') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/centraldb/site/default', array('action' => 'listWebsites'))?>"><?php echo $this->translate('Sites'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('Subscribers'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('New Areas'); ?></a></li>
+					</ul>
+				</li>
+<?php /*				<li class="<?php if(strpos($this->thisRoute(), 'zfcadmin/bao') !== false) echo 'open active';?>"><a href="#"><i class="fa fa-lg fa-fw fa-building"></i>  <span class="menu-item-parent"><?php echo $this->translate('BAO')?></span></a>
+				 	<ul style="display: <?php echo (strpos($this->thisRoute(), 'zfcadmin/bao') !== false) ? 'block' : 'none'?>;">
+						<li class="<?php if($this->thisRoute() == 'zfcadmin/bao/site/default') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/bao/site/default', array('action' => 'listWebsites'))?>"><?php echo $this->translate('Sites'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('Subscribers'); ?></a></li>
+	                    <li class=""><a href="javascript:void(0);"><?php echo $this->translate('New Areas'); ?></a></li>
+				 	</ul>
+</li> */ ?>
+				<li class="<?php if(strpos($this->thisRoute(), 'zfcadmin/content') !== false) echo 'open active';?>"><a href="#"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i>  <span class="menu-item-parent"><?php echo $this->translate('Content')?></span></a>
+				 	<ul style="display: <?php echo (strpos($this->thisRoute(), 'zfcadmin/content') !== false) ? 'block' : 'none'?>;">
+	                 	<li class="<?php if($this->thisRoute() == 'zfcadmin/content') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/content')?>"><?php echo $this->translate('Pages'); ?></a></li>
+	                	<li class="<?php if($this->thisRoute() == 'zfcadmin/content/default' && $this->action == 'addPage') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/content/default', array('action' => 'addPage'))?>"><?php echo $this->translate('Add Page'); ?></a></li>
+	                	<li class="<?php if($this->thisRoute() == 'zfcadmin/content/alias') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/content/alias')?>"><?php echo $this->translate('URL Aliases') ?></a></li>
+				 	</ul>
+				</li>
+                <li class="<?php if(strpos($this->thisRoute(), 'zfcadmin/menus') !== false) echo 'open active';?>"><a href="<?php echo $this->url('zfcadmin/menus')?>"><i class="fa fa-lg fa-fw fa-external-link"></i>  <span class="menu-item-parent"><?php echo $this->translate('Menu')?></span></a>
+                </li>
+				<li class="<?php if(strpos($this->thisRoute(), 'zfcadmin/localdata') !== false) echo 'open active';?>"><a href="#"><i class="fa fa-lg fa-fw fa-desktop"></i>  <span class="menu-item-parent"><?php echo $this->translate('Local Data')?></span></a>
+					<ul style="display: <?php echo (strpos($this->thisRoute(), 'zfcadmin/localdata') !== false) ? 'block' : 'none'?>;">
+						<li class="<?php if($this->thisRoute() == 'zfcadmin/localdata/product') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/localdata/product')?>"><?php echo $this->translate('Products'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/localdata/destination') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/localdata/destination')?>"><?php echo $this->translate('Destinations'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/localdata/information') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/localdata/information')?>"><?php echo $this->translate('Information'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/localdata/orphanproduct') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/localdata/orphanproduct')?>"><?php echo $this->translate('Check Orphan Products'); ?></a></li>
+					</ul>
+				</li>
+				<li class="<?php if(strpos($this->thisRoute(), 'zfcadmin/module') !== false) echo 'open active';?>"><a href="#"><i class="fa fa-lg fa-fw fa-folder-open"></i>  <span class="menu-item-parent"><?php echo $this->translate('modules')?></span></a>
+					<ul style="display: <?php echo (strpos($this->thisRoute(), 'zfcadmin/modules') !== false) ? 'block' : 'none'?>;">
+						<li class="<?php if($this->thisRoute() == 'zfcadmin/modules' && $this->action == 'listModules') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/modules')?>"><?php echo $this->translate('Modules'); ?></a></li>
+                    	<li class="<?php if($this->thisRoute() == 'zfcadmin/modules/slideshow') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/modules/slideshow')?>"><?php echo $this->translate('Slideshows'); ?></a></li>
+					</ul>
+				</li>	
+				<li class="<?php if(strpos($this->thisRoute(), 'zfcadmin/settings') !== false) echo 'open active';?>"><a href="#"><i class="fa fa-lg fa-fw fa-windows"></i>  <span class="menu-item-parent"><?php echo $this->translate('Settings')?></span></a>
+					<ul style="display: <?php echo (strpos($this->thisRoute(), 'zfcadmin/settings') !== false) ? 'block' : 'none'?>;">
+						<li class="<?php if($this->thisRoute() == 'zfcadmin/settings/options') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/settings/options')?>"><?php echo $this->translate('Options'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/settings/site') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/settings/site')?>"><?php echo $this->translate('Site'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/settings/providers') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/settings/providers')?>"><?php echo $this->translate('Providers'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/settings/themes') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/settings/themes')?>"><?php echo $this->translate('Themes'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/settings/status') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/settings/status')?>"><?php echo $this->translate('Status'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/settings/seo') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/settings/seo')?>"><?php echo $this->translate('SEO'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/settings/blog') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/settings/blog')?>"><?php echo $this->translate('Blog'); ?></a></li>
+	                    <li class="<?php if($this->thisRoute() == 'zfcadmin/settings/services') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/settings/services')?>"><?php echo $this->translate('Services'); ?></a></li>
+					</ul>
+				</li>
+<?php /*				<li class="<?php if(strpos($this->thisRoute(), 'zfcadmin/geonames') !== false) echo 'open active';?>"><a href="#"><i class="fa fa-lg fa-fw fa-windows"></i>  <span class="menu-item-parent"><?php echo $this->translate('Geonames')?></span></a>
+					<ul style="display: <?php echo (strpos($this->thisRoute(), 'zfcadmin/geonames') !== false) ? 'block' : 'none'?>;">
+						<li class="<?php if($this->thisRoute() == 'zfcadmin/geonames/default' && $this->action == 'listDestinations') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/geonames/default', array('action' => 'listDestinations'))?>"><?php echo $this->translate('Destinations'); ?></a></li>
+						<li class="<?php if($this->thisRoute() == 'zfcadmin/geonames/default' && $this->action == 'import') echo 'active';?>"><a href="<?php echo $this->url('zfcadmin/geonames/default', array('action' => 'import'))?>"><?php echo $this->translate('Import'); ?></a></li>	                    	                    
+					</ul>
+				</li> */ ?>				
+			</ul>
+		</nav>
+		<span class="minifyme">
+			<i class="fa fa-arrow-circle-left hit"></i>
+		</span>
+
+		
+	</aside>
+	<!-- END NAVIGATION -->
+
+	<!-- MAIN PANEL -->
+	<div id="main" role="main">
+		
+		<?php echo $this->content ?>			
+				
+	</div>
+	<!-- END MAIN PANEL -->
+	
+	<script type="text/javascript" src="<?php echo $this->basePath(); ?>/admin-assets/js/demo.js"></script>
+	<script type="text/javascript" src="<?php echo $this->basePath(); ?>/admin-assets/js/app.js"></script>
+	
+	<script>
+		$(document).ready(function() {
+			// DO NOT REMOVE : GLOBAL FUNCTIONS!
+			pageSetUp();				
+		});
+
+	</script>
+	
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+	
+</body>      
+</html>

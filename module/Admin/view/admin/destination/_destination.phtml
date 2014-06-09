@@ -1,0 +1,37 @@
+<tr <?=($this->baodestination_disabled)?'style="background-color:#eee"':''?>>
+    <td><label class="checkbox">		                                	
+    	<input type="checkbox" class="checkbox" name="id[]" value="<?=$this->baodestination_id?>" />
+    	<i></i> </label></td>
+    <td><?=($this->baodestination_disabled)?'<strike>':'<strong>'?>
+            <?=$this->baodestination_name?>
+        <?=($this->baodestination_disabled)?'</strike>':'</strong>'?></td>
+    <td><?=$this->baodestination_state?></td>
+    <td><?=$this->baodestination_region?></td>
+    <td><?=$this->baodestination_type?></td>
+    <td><?=$this->baodestination_source?></td>
+    <td></td>
+    <td></td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>
+        <i class="fa fa-eye"></i> 
+        <?if ($this->baodestination_searchdisabled == '0') :?>
+            <a href="<?=$this->url('zfcadmin/localdata/destination', array('action'=>'hide', 'id'=>$this->baodestination_id))?>" title="Click to make this item hidden" class="btn btn-mini">Hide</a>
+        <?else:?>
+           <a href="<?=$this->url('zfcadmin/localdata/destination', array('action'=>'show', 'id'=>$this->baodestination_id))?>" title="Click to make this item visible" class="btn btn-mini">Show</a>
+        <?endif;?>
+    </td>
+    <td>
+    	<a href="<?=$this->url('zfcadmin/localdata/destination', array('action'=>'edit', 'id'=>$this->baodestination_id))?>" title="Edit" class="btn btn-mini"><i class="fa fa-edit"></i></a> 
+        <a href="#deleteModal-<?php echo $this->baodestination_id; ?>"  title="Delete" class="delete-btn btn btn-mini"><i class="fa fa-times"></i></a>        
+    </td>
+</tr>
+
+<?php echo $this->partial('shared/modal/link-confirmation', array(
+        	'id'            => 'deleteModal-' . $this->baodestination_id,
+        	'title'         => $this->translate('Action confirmation'),
+        	'body'          => $this->translate('You are about to delete destination, continue?'),
+        	'confirmLabel'  => $this->translate('Delete destination'),
+        	'url'           => $this->url('zfcadmin/localdata/destination', array('action'=>'delete', 'id'=>$this->baodestination_id)),
+    	)) ?>

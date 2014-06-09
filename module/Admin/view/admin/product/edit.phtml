@@ -1,0 +1,307 @@
+<!-- RIBBON -->
+<div id="ribbon">
+
+	<span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+	<!-- breadcrumb -->
+	<ol class="breadcrumb">
+		<li>Admin</li><li>Local Data</li><li>Products</li>
+	</ol>
+	<!-- end breadcrumb -->
+
+	<!-- You can also add more buttons to the
+	ribbon for further usability
+
+	Example below:
+
+	<span class="ribbon-button-alignment pull-right">
+	<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+	<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+	<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+	</span> -->
+
+</div>
+<!-- MAIN CONTENT -->
+<div id="content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+			<h1 class="page-title txt-color-blueDark">
+				<i class="fa fa-edit fa-fw "></i> 
+					Local Data 
+				<span>> 
+					Products>Edit Product
+				</span>
+			</h1>
+		</div>
+	</div>
+	
+	<!-- widget grid -->
+	<section id="widget-grid" class="">
+	
+		<!-- START ROW -->
+	
+		<div class="row">
+	
+			<!-- NEW COL START -->
+			<div class="col-sm-12 col-md-12 col-lg-12 ">
+	
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-custombutton="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+						<h2><?php echo $this->translate('Product')?></h2>
+	
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+	
+						<!-- widget content -->
+						<div class="widget-body no-padding">
+							<?php $this->productEditForm->prepare(); ?>
+							<?php echo $this->form()->openTag($this->productEditForm);?>
+							<div class="smart-form">
+								
+								<div class="row">
+	
+									<!-- NEW COL START -->
+									<div class="col col-6">
+										<fieldset>
+											<section>
+												<label class="label"><?php echo $this->translate('Product Name')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productName')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productName')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+											
+											<section>
+												<label class="label"><?php echo $this->translate('Short Description')?></label>
+												<label class="textarea">
+													<?php echo $this->formrow($this->productEditForm->get('productShortdesc')->setAttribute('class', 'custom-scroll input-sm')->setAttribute('rows', '5'))?>										
+												</label>									
+											</section>
+											
+											<section>
+												<label class="label"><?php echo $this->translate('Description')?></label>
+												<label class="textarea">
+													<?php echo $this->formrow($this->productEditForm->get('productDescription')->setAttribute('class', 'custom-scroll input-sm')->setAttribute('rows', '5'))?>										
+												</label>									
+											</section>
+											
+											<section>
+												<label class="label"><?php echo $this->translate('Photo')?></label>
+                                                <div class="row" style="margin: 0 0">
+                                                    <div class="col-md-3">
+                                                        <img src="<?php echo $this->productPhoto; ?>" style="width:100%;"/>
+                                                    </div>
+                                                    <div class="col-md-8 col-md-offset-1">
+                                                        <label for="file" class="input input-file <?php echo ($this->formElementErrors($this->productEditForm->get('productPhotoNew')))?"state-error":""; ?>">
+                                                            <div class="button">
+                                                                <?php echo $this->formElement($this->productEditForm->get('productPhotoNew')->setAttribute('onchange', 'this.parentNode.nextSibling.value = this.value'))?>Browse
+                                                            </div><input type="text" placeholder="Include product image" readonly="" class="input-sm">
+                                                            <?php echo $this->formElementErrors($this->productEditForm->get('productPhotoNew')); ?>                                                
+                                                        </label>
+                                                    </div>
+                                                </div>
+											</section>
+											
+											<section>
+												<label class="label"><?php echo $this->translate('Star Rating')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productStarRating')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productStarRating')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+											
+											<section>
+												<label class="label"><?php echo $this->translate('Low Rate')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productLowrate')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productLowrate')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+											
+											<section>
+												<label class="label"><?php echo $this->translate('High Rate')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productHighrate')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productHighrate')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+											
+											<section>
+												<label class="label"><?php echo $this->translate('Rate Basis')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productRateBasis')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productRateBasis')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+											
+											<?php echo $this->formrow($this->productEditForm->get('productPhoto'))?>
+		                        			<?php echo $this->formrow($this->productEditForm->get('productId'))?>
+		                        			
+										</fieldset>
+									</div>
+									<!-- end NEW COL -->
+									
+									<!-- NEW COL START -->
+									<div class="col col-6">
+										<fieldset>
+											<section>
+												<label class="label"><?php echo $this->translate('Country')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productCountry')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productCountry')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+											
+											<section>
+												<label class="label"><?php echo $this->translate('State')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productState')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productState')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+													
+											<section>
+												<label class="label"><?php echo $this->translate('Region')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productRegion')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productRegion')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+													
+											<section>
+												<label class="label"><?php echo $this->translate('City')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productCity')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productCity')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+													
+											<section>
+												<label class="label"><?php echo $this->translate('Address')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productAddress')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productAddress')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+													
+											<section>
+												<label class="label"><?php echo $this->translate('Phone')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productPhone')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productPhone')->setAttribute('class', 'input-sm'))?>
+												</label>																	
+											</section>
+													     													
+											<section>
+												<label class="label"><?php echo $this->translate('Email')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productEmail')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productEmail')->setAttribute('class', 'input-sm'))?>
+												</label>																
+											</section>
+													     													
+											<section>
+												<label class="label"><?php echo $this->translate('Website')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productWebsite')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productWebsite')->setAttribute('class', 'input-sm'))?>
+												</label>																
+											</section>
+													     													
+											<section>
+												<label class="label"><?php echo $this->translate('Latitude')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productLat')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productLat')->setAttribute('class', 'input-sm'))?>
+												</label>																
+											</section>
+													     													
+											<section>
+												<label class="label"><?php echo $this->translate('Longitude')?></label>
+												<label class="input <?php echo ($this->formElementErrors($this->productEditForm->get('productLon')))?"state-error":""; ?>">
+													<?php echo $this->formrow($this->productEditForm->get('productLon')->setAttribute('class', 'input-sm'))?>
+												</label>																
+											</section>
+											                  			
+										</fieldset>
+									</div>
+									<!-- end NEW COL -->
+								</div>
+							
+								<footer>
+									<?php echo $this->formsubmit($this->productEditForm->get('submitbtn')->setAttribute('class', 'btn btn-primary'))?>
+								</footer>
+							</div>
+							<?php echo $this->form()->closeTag($this->productEditForm); ?>
+						</div>
+						<!-- end widget content -->
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+				
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+						<h2>
+							<?php echo $this->translate('Product Change Log'); ?>
+						</h2>
+						
+					</header>
+				
+					<!-- widget div-->
+					<div>
+				
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+				
+						</div>
+						<!-- end widget edit box -->
+				
+						<!-- widget content -->
+						<div class="widget-body">
+							<?php echo (isset($this->productChangeLog) && (count($this->productChangeLog) > 0))?$this->partialLoop('Admin\product\_productChangeLog.phtml', $this->productChangeLog):''?>
+						</div>
+						<!-- end widget content -->
+				
+					</div>
+					<!-- end widget div -->
+				
+				</div>
+				<!-- end widget -->
+				
+			</div>
+			<!-- END COL -->
+		
+		</div>
+		
+		<!-- END ROW -->
+	</section>
+</div>
+

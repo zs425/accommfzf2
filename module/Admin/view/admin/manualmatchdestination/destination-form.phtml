@@ -1,0 +1,29 @@
+<?php 
+   	$this->destinationForm->prepare();
+	$this->destinationForm->setAttribute('action', $this->action);
+	echo $this->form()->openTag($this->destinationForm);
+?>
+
+<div class="smart-form">	
+	<fieldset>
+		
+		<section>
+			<label class="label"><?php echo $this->translate("Destination name")?></label>
+			<label class="input <?php echo ($this->formElementErrors($this->destinationForm->get('name')))?"state-error":""; ?>">
+				<?php echo $this->formrow($this->destinationForm->get('name')->setAttribute('class', 'input-sm'));?>												
+			</label>
+		</section>
+		<section>
+			<label class="label"><?php echo $this->translate("Parent id")?></label>
+			<label class="input <?php echo ($this->formElementErrors($this->destinationForm->get('parentId')))?"state-error":""; ?>">
+				<?php echo $this->formrow($this->destinationForm->get('parentId')->setAttribute('class', 'input-sm'));?>												
+			</label>
+			<div class="note">Only a number.</div>
+		</section>
+				
+	</fieldset>
+	<footer>
+		<?php echo $this->formButton()->render($this->destinationForm->get('save')->setAttribute('class', 'btn btn-primary'), 'Save'); ?>
+	</footer>
+</div>
+<?php echo $this->form()->closeTag($this->destinationForm) ?>

@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.hotelbeds.com/wsdl/2005/06" xmlns:intf="http://www.hotelbeds.com/wsdl/2005/06" xmlns:tns1="http://axis.frontend.hydra.hotelbeds.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.hotelbeds.com/wsdl/2005/06">
+	<wsdl:types>
+		<schema targetNamespace="http://axis.frontend.hydra.hotelbeds.com" xmlns="http://www.w3.org/2001/XMLSchema">
+			<element name="cancelProtectionAdd" type="xsd:anyType"/>
+			<element name="cancelProtectionRemove" type="xsd:anyType"/>
+			<element name="getCarCountryList" type="xsd:anyType"/>
+			<element name="getCarInfoSet" type="xsd:anyType"/>
+			<element name="getCarValuedAvail" type="xsd:anyType"/>
+			<element name="getCountryList" type="xsd:anyType"/>
+			<element name="getDestinationGroupList" type="xsd:anyType"/>
+			<element name="getHotelBoardGroupList" type="xsd:anyType"/>
+			<element name="getHotelBoardList" type="xsd:anyType"/>
+			<element name="getHotelCategoryGroupList" type="xsd:anyType"/>
+			<element name="getHotelCategoryList" type="xsd:anyType"/>
+			<element name="getHotelCountryList" type="xsd:anyType"/>
+			<element name="getHotelDetail" type="xsd:anyType"/>
+			<element name="getHotelList" type="xsd:anyType"/>
+			<element name="getHotelRoomTypeGroupList" type="xsd:anyType"/>
+			<element name="getHotelValuedAvail" type="xsd:anyType"/>
+			<element name="getIncomingOfficeDetail" type="xsd:anyType"/>
+			<element name="getIncomingOfficeList" type="xsd:anyType"/>
+			<element name="getInsuranceValuedAvail" type="xsd:anyType"/>
+			<element name="purchaseCancel" type="xsd:anyType"/>
+			<element name="purchaseConfirm" type="xsd:anyType"/>
+			<element name="purchaseFlush" type="xsd:anyType"/>
+			<element name="getPurchaseDetail" type="xsd:anyType"/>
+			<element name="getPurchaseList" type="xsd:anyType"/>
+			<element name="serviceAdd" type="xsd:anyType"/>
+			<element name="serviceRemove" type="xsd:anyType"/>
+			<element name="getTicketAvail" type="xsd:anyType"/>
+			<element name="getTicketClassificationList" type="xsd:anyType"/>
+			<element name="getTicketCountryList" type="xsd:anyType"/>
+			<element name="getTicketDetail" type="xsd:anyType"/>
+			<element name="getTicketValuation" type="xsd:anyType"/>
+			<element name="getTransferCountryList" type="xsd:anyType"/>
+			<element name="getTransferValuedAvail" type="xsd:anyType"/>
+			<element name="getZoneGroupList" type="xsd:anyType"/>
+		</schema>
+		<schema targetNamespace="http://www.hotelbeds.com/wsdl/2005/06" xmlns="http://www.w3.org/2001/XMLSchema">
+			<element name="cancelProtectionAddReturn" type="xsd:anyType"/>
+			<element name="cancelProtectionRemoveReturn" type="xsd:anyType"/>
+			<element name="getCarCountryListReturn" type="xsd:anyType"/>
+			<element name="getCarInfoSetReturn" type="xsd:anyType"/>
+			<element name="getCarValuedAvailReturn" type="xsd:anyType"/>
+			<element name="getCountryListReturn" type="xsd:anyType"/>
+			<element name="getDestinationGroupListReturn" type="xsd:anyType"/>
+			<element name="getHotelBoardGroupListReturn" type="xsd:anyType"/>
+			<element name="getHotelBoardListReturn" type="xsd:anyType"/>
+			<element name="getHotelCategoryGroupListReturn" type="xsd:anyType"/>
+			<element name="getHotelCategoryListReturn" type="xsd:anyType"/>
+			<element name="getHotelCountryListReturn" type="xsd:anyType"/>
+			<element name="getHotelDetailReturn" type="xsd:anyType"/>
+			<element name="getHotelListReturn" type="xsd:anyType"/>
+			<element name="getHotelRoomTypeGroupListReturn" type="xsd:anyType"/>
+			<element name="getHotelValuedAvailReturn" type="xsd:anyType"/>
+			<element name="getIncomingOfficeDetailReturn" type="xsd:anyType"/>
+			<element name="getIncomingOfficeListReturn" type="xsd:anyType"/>
+			<element name="getInsuranceValuedAvailReturn" type="xsd:anyType"/>
+			<element name="purchaseCancelReturn" type="xsd:anyType"/>
+			<element name="purchaseConfirmReturn" type="xsd:anyType"/>
+			<element name="purchaseFlushReturn" type="xsd:anyType"/>
+			<element name="getPurchaseDetailReturn" type="xsd:anyType"/>
+			<element name="getPurchaseListReturn" type="xsd:anyType"/>
+			<element name="serviceAddReturn" type="xsd:anyType"/>
+			<element name="serviceRemoveReturn" type="xsd:anyType"/>
+			<element name="getTicketAvailReturn" type="xsd:anyType"/>
+			<element name="getTicketClassificationListReturn" type="xsd:anyType"/>
+			<element name="getTicketCountryListReturn" type="xsd:anyType"/>
+			<element name="getTicketDetailReturn" type="xsd:anyType"/>
+			<element name="getTicketValuationReturn" type="xsd:anyType"/>
+			<element name="getTransferCountryListReturn" type="xsd:anyType"/>
+			<element name="getTransferValuedAvailReturn" type="xsd:anyType"/>
+			<element name="getZoneGroupListReturn" type="xsd:anyType"/>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="getTicketValuationResponse">
+		<wsdl:part name="getTicketValuationReturn" element="impl:getTicketValuationReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getTicketClassificationListRequest">
+		<wsdl:part name="part" element="tns1:getTicketClassificationList"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelValuedAvailRequest">
+		<wsdl:part name="part" element="tns1:getHotelValuedAvail"/>
+	</wsdl:message>
+	<wsdl:message name="purchaseConfirmResponse">
+		<wsdl:part name="purchaseConfirmReturn" element="impl:purchaseConfirmReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getPurchaseListResponse">
+		<wsdl:part name="getPurchaseListReturn" element="impl:getPurchaseListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelValuedAvailResponse">
+		<wsdl:part name="getHotelValuedAvailReturn" element="impl:getHotelValuedAvailReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getPurchaseDetailResponse">
+		<wsdl:part name="getPurchaseDetailReturn" element="impl:getPurchaseDetailReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getPurchaseDetailRequest">
+		<wsdl:part name="part" element="tns1:getPurchaseDetail"/>
+	</wsdl:message>
+	<wsdl:message name="getTicketValuationRequest">
+		<wsdl:part name="part" element="tns1:getTicketValuation"/>
+	</wsdl:message>
+	<wsdl:message name="getCountryListRequest">
+		<wsdl:part name="part" element="tns1:getCountryList"/>
+	</wsdl:message>
+	<wsdl:message name="serviceRemoveRequest">
+		<wsdl:part name="part" element="tns1:serviceRemove"/>
+	</wsdl:message>
+	<wsdl:message name="getTransferValuedAvailRequest">
+		<wsdl:part name="part" element="tns1:getTransferValuedAvail"/>
+	</wsdl:message>
+	<wsdl:message name="getTicketCountryListResponse">
+		<wsdl:part name="getTicketCountryListReturn" element="impl:getTicketCountryListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelCategoryListRequest">
+		<wsdl:part name="part" element="tns1:getHotelCategoryList"/>
+	</wsdl:message>
+	<wsdl:message name="getZoneGroupListResponse">
+		<wsdl:part name="getZoneGroupListReturn" element="impl:getZoneGroupListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getIncomingOfficeDetailResponse">
+		<wsdl:part name="getIncomingOfficeDetailReturn" element="impl:getIncomingOfficeDetailReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelListRequest">
+		<wsdl:part name="part" element="tns1:getHotelList"/>
+	</wsdl:message>
+	<wsdl:message name="getIncomingOfficeDetailRequest">
+		<wsdl:part name="part" element="tns1:getIncomingOfficeDetail"/>
+	</wsdl:message>
+	<wsdl:message name="getTransferValuedAvailResponse">
+		<wsdl:part name="getTransferValuedAvailReturn" element="impl:getTransferValuedAvailReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getTicketAvailRequest">
+		<wsdl:part name="part" element="tns1:getTicketAvail"/>
+	</wsdl:message>
+	<wsdl:message name="getIncomingOfficeListRequest">
+		<wsdl:part name="part" element="tns1:getIncomingOfficeList"/>
+	</wsdl:message>
+	<wsdl:message name="cancelProtectionRemoveRequest">
+		<wsdl:part name="part" element="tns1:cancelProtectionRemove"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelListResponse">
+		<wsdl:part name="getHotelListReturn" element="impl:getHotelListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getTicketAvailResponse">
+		<wsdl:part name="getTicketAvailReturn" element="impl:getTicketAvailReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getInsuranceValuedAvailRequest">
+		<wsdl:part name="part" element="tns1:getInsuranceValuedAvail"/>
+	</wsdl:message>
+	<wsdl:message name="getCarValuedAvailRequest">
+		<wsdl:part name="part" element="tns1:getCarValuedAvail"/>
+	</wsdl:message>
+	<wsdl:message name="getTicketCountryListRequest">
+		<wsdl:part name="part" element="tns1:getTicketCountryList"/>
+	</wsdl:message>
+	<wsdl:message name="getPurchaseListRequest">
+		<wsdl:part name="part" element="tns1:getPurchaseList"/>
+	</wsdl:message>
+	<wsdl:message name="getDestinationGroupListResponse">
+		<wsdl:part name="getDestinationGroupListReturn" element="impl:getDestinationGroupListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelRoomTypeGroupListRequest">
+		<wsdl:part name="part" element="tns1:getHotelRoomTypeGroupList"/>
+	</wsdl:message>
+	<wsdl:message name="purchaseCancelRequest">
+		<wsdl:part name="part" element="tns1:purchaseCancel"/>
+	</wsdl:message>
+	<wsdl:message name="purchaseFlushResponse">
+		<wsdl:part name="purchaseFlushReturn" element="impl:purchaseFlushReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getIncomingOfficeListResponse">
+		<wsdl:part name="getIncomingOfficeListReturn" element="impl:getIncomingOfficeListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelCategoryListResponse">
+		<wsdl:part name="getHotelCategoryListReturn" element="impl:getHotelCategoryListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="cancelProtectionRemoveResponse">
+		<wsdl:part name="cancelProtectionRemoveReturn" element="impl:cancelProtectionRemoveReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelRoomTypeGroupListResponse">
+		<wsdl:part name="getHotelRoomTypeGroupListReturn" element="impl:getHotelRoomTypeGroupListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelBoardGroupListResponse">
+		<wsdl:part name="getHotelBoardGroupListReturn" element="impl:getHotelBoardGroupListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getTransferCountryListRequest">
+		<wsdl:part name="part" element="tns1:getTransferCountryList"/>
+	</wsdl:message>
+	<wsdl:message name="purchaseCancelResponse">
+		<wsdl:part name="purchaseCancelReturn" element="impl:purchaseCancelReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelCountryListResponse">
+		<wsdl:part name="getHotelCountryListReturn" element="impl:getHotelCountryListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getCarValuedAvailResponse">
+		<wsdl:part name="getCarValuedAvailReturn" element="impl:getCarValuedAvailReturn"/>
+	</wsdl:message>
+	<wsdl:message name="serviceAddRequest">
+		<wsdl:part name="part" element="tns1:serviceAdd"/>
+	</wsdl:message>
+	<wsdl:message name="cancelProtectionAddResponse">
+		<wsdl:part name="cancelProtectionAddReturn" element="impl:cancelProtectionAddReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getCarInfoSetRequest">
+		<wsdl:part name="part" element="tns1:getCarInfoSet"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelBoardGroupListRequest">
+		<wsdl:part name="part" element="tns1:getHotelBoardGroupList"/>
+	</wsdl:message>
+	<wsdl:message name="cancelProtectionAddRequest">
+		<wsdl:part name="part" element="tns1:cancelProtectionAdd"/>
+	</wsdl:message>
+	<wsdl:message name="getCarCountryListRequest">
+		<wsdl:part name="part" element="tns1:getCarCountryList"/>
+	</wsdl:message>
+	<wsdl:message name="getZoneGroupListRequest">
+		<wsdl:part name="part" element="tns1:getZoneGroupList"/>
+	</wsdl:message>
+	<wsdl:message name="serviceRemoveResponse">
+		<wsdl:part name="serviceRemoveReturn" element="impl:serviceRemoveReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getCountryListResponse">
+		<wsdl:part name="getCountryListReturn" element="impl:getCountryListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelCountryListRequest">
+		<wsdl:part name="part" element="tns1:getHotelCountryList"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelDetailResponse">
+		<wsdl:part name="getHotelDetailReturn" element="impl:getHotelDetailReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getTransferCountryListResponse">
+		<wsdl:part name="getTransferCountryListReturn" element="impl:getTransferCountryListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getTicketDetailResponse">
+		<wsdl:part name="getTicketDetailReturn" element="impl:getTicketDetailReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelBoardListResponse">
+		<wsdl:part name="getHotelBoardListReturn" element="impl:getHotelBoardListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelCategoryGroupListResponse">
+		<wsdl:part name="getHotelCategoryGroupListReturn" element="impl:getHotelCategoryGroupListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getCarInfoSetResponse">
+		<wsdl:part name="getCarInfoSetReturn" element="impl:getCarInfoSetReturn"/>
+	</wsdl:message>
+	<wsdl:message name="purchaseConfirmRequest">
+		<wsdl:part name="part" element="tns1:purchaseConfirm"/>
+	</wsdl:message>
+	<wsdl:message name="getTicketDetailRequest">
+		<wsdl:part name="part" element="tns1:getTicketDetail"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelBoardListRequest">
+		<wsdl:part name="part" element="tns1:getHotelBoardList"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelCategoryGroupListRequest">
+		<wsdl:part name="part" element="tns1:getHotelCategoryGroupList"/>
+	</wsdl:message>
+	<wsdl:message name="purchaseFlushRequest">
+		<wsdl:part name="part" element="tns1:purchaseFlush"/>
+	</wsdl:message>
+	<wsdl:message name="getDestinationGroupListRequest">
+		<wsdl:part name="part" element="tns1:getDestinationGroupList"/>
+	</wsdl:message>
+	<wsdl:message name="serviceAddResponse">
+		<wsdl:part name="serviceAddReturn" element="impl:serviceAddReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getCarCountryListResponse">
+		<wsdl:part name="getCarCountryListReturn" element="impl:getCarCountryListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getTicketClassificationListResponse">
+		<wsdl:part name="getTicketClassificationListReturn" element="impl:getTicketClassificationListReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getHotelDetailRequest">
+		<wsdl:part name="part" element="tns1:getHotelDetail"/>
+	</wsdl:message>
+	<wsdl:message name="getInsuranceValuedAvailResponse">
+		<wsdl:part name="getInsuranceValuedAvailReturn" element="impl:getInsuranceValuedAvailReturn"/>
+	</wsdl:message>
+	<wsdl:portType name="FrontendService">
+		<wsdl:operation name="cancelProtectionAdd">
+			<wsdl:input name="cancelProtectionAddRequest" message="impl:cancelProtectionAddRequest"/>
+			<wsdl:output name="cancelProtectionAddResponse" message="impl:cancelProtectionAddResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="cancelProtectionRemove">
+			<wsdl:input name="cancelProtectionRemoveRequest" message="impl:cancelProtectionRemoveRequest"/>
+			<wsdl:output name="cancelProtectionRemoveResponse" message="impl:cancelProtectionRemoveResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getCarCountryList">
+			<wsdl:input name="getCarCountryListRequest" message="impl:getCarCountryListRequest"/>
+			<wsdl:output name="getCarCountryListResponse" message="impl:getCarCountryListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getCarInfoSet">
+			<wsdl:input name="getCarInfoSetRequest" message="impl:getCarInfoSetRequest"/>
+			<wsdl:output name="getCarInfoSetResponse" message="impl:getCarInfoSetResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getCarValuedAvail">
+			<wsdl:input name="getCarValuedAvailRequest" message="impl:getCarValuedAvailRequest"/>
+			<wsdl:output name="getCarValuedAvailResponse" message="impl:getCarValuedAvailResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getCountryList">
+			<wsdl:input name="getCountryListRequest" message="impl:getCountryListRequest"/>
+			<wsdl:output name="getCountryListResponse" message="impl:getCountryListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getDestinationGroupList">
+			<wsdl:input name="getDestinationGroupListRequest" message="impl:getDestinationGroupListRequest"/>
+			<wsdl:output name="getDestinationGroupListResponse" message="impl:getDestinationGroupListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelBoardGroupList">
+			<wsdl:input name="getHotelBoardGroupListRequest" message="impl:getHotelBoardGroupListRequest"/>
+			<wsdl:output name="getHotelBoardGroupListResponse" message="impl:getHotelBoardGroupListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelBoardList">
+			<wsdl:input name="getHotelBoardListRequest" message="impl:getHotelBoardListRequest"/>
+			<wsdl:output name="getHotelBoardListResponse" message="impl:getHotelBoardListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelCategoryGroupList">
+			<wsdl:input name="getHotelCategoryGroupListRequest" message="impl:getHotelCategoryGroupListRequest"/>
+			<wsdl:output name="getHotelCategoryGroupListResponse" message="impl:getHotelCategoryGroupListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelCategoryList">
+			<wsdl:input name="getHotelCategoryListRequest" message="impl:getHotelCategoryListRequest"/>
+			<wsdl:output name="getHotelCategoryListResponse" message="impl:getHotelCategoryListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelCountryList">
+			<wsdl:input name="getHotelCountryListRequest" message="impl:getHotelCountryListRequest"/>
+			<wsdl:output name="getHotelCountryListResponse" message="impl:getHotelCountryListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelDetail">
+			<wsdl:input name="getHotelDetailRequest" message="impl:getHotelDetailRequest"/>
+			<wsdl:output name="getHotelDetailResponse" message="impl:getHotelDetailResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelList">
+			<wsdl:input name="getHotelListRequest" message="impl:getHotelListRequest"/>
+			<wsdl:output name="getHotelListResponse" message="impl:getHotelListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelRoomTypeGroupList">
+			<wsdl:input name="getHotelRoomTypeGroupListRequest" message="impl:getHotelRoomTypeGroupListRequest"/>
+			<wsdl:output name="getHotelRoomTypeGroupListResponse" message="impl:getHotelRoomTypeGroupListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelValuedAvail">
+			<wsdl:input name="getHotelValuedAvailRequest" message="impl:getHotelValuedAvailRequest"/>
+			<wsdl:output name="getHotelValuedAvailResponse" message="impl:getHotelValuedAvailResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getIncomingOfficeDetail">
+			<wsdl:input name="getIncomingOfficeDetailRequest" message="impl:getIncomingOfficeDetailRequest"/>
+			<wsdl:output name="getIncomingOfficeDetailResponse" message="impl:getIncomingOfficeDetailResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getIncomingOfficeList">
+			<wsdl:input name="getIncomingOfficeListRequest" message="impl:getIncomingOfficeListRequest"/>
+			<wsdl:output name="getIncomingOfficeListResponse" message="impl:getIncomingOfficeListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getInsuranceValuedAvail">
+			<wsdl:input name="getInsuranceValuedAvailRequest" message="impl:getInsuranceValuedAvailRequest"/>
+			<wsdl:output name="getInsuranceValuedAvailResponse" message="impl:getInsuranceValuedAvailResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="purchaseCancel">
+			<wsdl:input name="purchaseCancelRequest" message="impl:purchaseCancelRequest"/>
+			<wsdl:output name="purchaseCancelResponse" message="impl:purchaseCancelResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="purchaseConfirm">
+			<wsdl:input name="purchaseConfirmRequest" message="impl:purchaseConfirmRequest"/>
+			<wsdl:output name="purchaseConfirmResponse" message="impl:purchaseConfirmResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="purchaseFlush">
+			<wsdl:input name="purchaseFlushRequest" message="impl:purchaseFlushRequest"/>
+			<wsdl:output name="purchaseFlushResponse" message="impl:purchaseFlushResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPurchaseDetail">
+			<wsdl:input name="getPurchaseDetailRequest" message="impl:getPurchaseDetailRequest"/>
+			<wsdl:output name="getPurchaseDetailResponse" message="impl:getPurchaseDetailResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPurchaseList">
+			<wsdl:input name="getPurchaseListRequest" message="impl:getPurchaseListRequest"/>
+			<wsdl:output name="getPurchaseListResponse" message="impl:getPurchaseListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="serviceAdd">
+			<wsdl:input name="serviceAddRequest" message="impl:serviceAddRequest"/>
+			<wsdl:output name="serviceAddResponse" message="impl:serviceAddResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="serviceRemove">
+			<wsdl:input name="serviceRemoveRequest" message="impl:serviceRemoveRequest"/>
+			<wsdl:output name="serviceRemoveResponse" message="impl:serviceRemoveResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketAvail">
+			<wsdl:input name="getTicketAvailRequest" message="impl:getTicketAvailRequest"/>
+			<wsdl:output name="getTicketAvailResponse" message="impl:getTicketAvailResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketClassificationList">
+			<wsdl:input name="getTicketClassificationListRequest" message="impl:getTicketClassificationListRequest"/>
+			<wsdl:output name="getTicketClassificationListResponse" message="impl:getTicketClassificationListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketCountryList">
+			<wsdl:input name="getTicketCountryListRequest" message="impl:getTicketCountryListRequest"/>
+			<wsdl:output name="getTicketCountryListResponse" message="impl:getTicketCountryListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketDetail">
+			<wsdl:input name="getTicketDetailRequest" message="impl:getTicketDetailRequest"/>
+			<wsdl:output name="getTicketDetailResponse" message="impl:getTicketDetailResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketValuation">
+			<wsdl:input name="getTicketValuationRequest" message="impl:getTicketValuationRequest"/>
+			<wsdl:output name="getTicketValuationResponse" message="impl:getTicketValuationResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getTransferCountryList">
+			<wsdl:input name="getTransferCountryListRequest" message="impl:getTransferCountryListRequest"/>
+			<wsdl:output name="getTransferCountryListResponse" message="impl:getTransferCountryListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getTransferValuedAvail">
+			<wsdl:input name="getTransferValuedAvailRequest" message="impl:getTransferValuedAvailRequest"/>
+			<wsdl:output name="getTransferValuedAvailResponse" message="impl:getTransferValuedAvailResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getZoneGroupList">
+			<wsdl:input name="getZoneGroupListRequest" message="impl:getZoneGroupListRequest"/>
+			<wsdl:output name="getZoneGroupListResponse" message="impl:getZoneGroupListResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="FrontendServiceSoapBinding" type="impl:FrontendService">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="cancelProtectionAdd">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="cancelProtectionRemove">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCarCountryList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCarInfoSet">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCarValuedAvail">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCountryList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDestinationGroupList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelBoardGroupList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelBoardList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelCategoryGroupList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelCategoryList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelCountryList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelDetail">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelRoomTypeGroupList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getHotelValuedAvail">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getIncomingOfficeDetail">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getIncomingOfficeList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getInsuranceValuedAvail">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="purchaseCancel">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="purchaseConfirm">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="purchaseFlush">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPurchaseDetail">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPurchaseList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="serviceAdd">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="serviceRemove">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketAvail">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketClassificationList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketCountryList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketDetail">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTicketValuation">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTransferCountryList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTransferValuedAvail">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getZoneGroupList">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="FrontendServiceService">
+		<wsdl:port name="FrontendService" binding="impl:FrontendServiceSoapBinding">
+			<wsdlsoap:address location="http://212.170.239.71/appservices/ws/FrontendService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

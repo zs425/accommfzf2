@@ -1,0 +1,64 @@
+<div id="tree">
+	<ul id="treeData" style="display: none;">
+		<?php if(count($this->destinations)): ?>
+			<?php foreach($this->destinations as $destination): ?>
+				<li id="<?php echo $destination['id']; ?>"><?php echo $destination['name']; ?>
+				<?php if($destination['children']): ?>
+					<ul>
+						<li>temp node
+					</ul>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		<?php endif; ?>									
+	</ul>
+</div>
+
+<script>
+	$(function(){
+		$("#tree").dynatree({
+			 onActivate: function(node) {
+				// A DynaTreeNode object is passed to the activation handler
+				// Note: we also get this event, if persistence is on, and the page is reloaded.
+				
+				//show information modal.
+				id = node.data.key;
+				
+				$.ajax({
+					type: "POST",
+					url: "<?php echo $this->url('zfcadmin/centraldb/viewdestination/default', array('action' => 'getInformation')); ?>",
+					data: "&id=" + id,
+				}).done(function(html) {
+					$('#myModal').html(html);
+					$('#myModal').modal();
+				});
+						
+				return false;
+			},
+			onQueryExpand: function(flag, node) {
+				if(flag) {
+					node.removeChildren();
+					$.ajax({
+						type: "POST",
+						url:"<?php echo $this->url('zfcadmin/centraldb/viewdestination/default', array('action' => 'getChildren')); ?>",
+						data: "id=" + node.data.key,
+						dataType: "json"
+					}).done(function(data) {
+						for(index in data) {
+							destination = data[index];
+							console.log(destination);
+							childeNode = node.addChild({title: destination.name, key: destination.id});
+							if(destination.children != null) {
+								childeNode.addChild({title: "temp node"});
+							}
+						}
+					});					
+				}				
+			},
+			onExpand: function(flag, node) {
+
+			},
+			persist: false,
+			// using default options
+		});
+	});
+</script>

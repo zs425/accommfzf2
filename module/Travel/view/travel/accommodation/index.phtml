@@ -1,0 +1,59 @@
+<div class="accom-header">
+	<div class="search-form-wrapper">
+	<?php echo $this->partial('layout/searchform', array(
+					'searchForm'	=> $this->searchForm,
+				));?>
+	</div>			
+<?php if ($this->countRoute): ?>
+    <div class="well accommodation-area-well">
+        <h3><?php echo $title; ?></h3><br/>
+        <ul>
+            <?php foreach ($this->accommodationCounts as $count): ?>
+                <li <?php if (isset($this->destination) && $this->destination == $count['baodestination']->getBaodestinationUrl()) {
+                    echo 'class="active"';
+                } ?>>
+                <?php
+                	if ($this->classification){
+                		$url = $this->url($this->countRoute, 
+                					array(
+                						'classification' 	=> $this->atdwClassifications($this->classification->attr_code), 
+                						'location3' 		=> $count['baodestination']->getBaodestinationUrl()));
+                	} else {
+                		$url = $this->url($this->countRoute, 
+                					array('location3' 		=> $count['baodestination']->getBaodestinationUrl()));
+                	}
+                	
+                ?>
+                
+                    <a href="<?php echo $url ?>"><?php echo $count['baodestination']->getBaodestinationName() ?>
+                        <span style="color: #0088cc">(<?php echo $count['count'] ?>)</span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+<?php endif; ?>
+	<div class="clear"></div>
+</div>
+			
+<?php $route = "accommview"; ?>
+    <ul class="breadcrumb">
+        <?php $breadcrumbCount = count($this->breadcrumbs) ?>
+        <?php foreach ($this->breadcrumbs as $i => $crumb): ?>
+            <?php if ($i != ($breadcrumbCount - 1) && array_key_exists('route', $crumb)): ?>
+            	<li><a href="<?php echo $this->url($crumb['route'], $crumb['parameters']) ?>"><?php echo $crumb['label'] ?></a> <span
+                        class="divider">/</span></li>
+            <?php else: ?>
+                <li class="active"><?php echo $crumb['label'] ?></li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+
+
+    <ul class="unstyled product-list">
+    	<?php echo $this->partial('layout/product-list', array('products' => $products, 'categoryurl' => $this->categoryurl)); ?>        
+    </ul>
+    <?php echo $this->paginationControl($products, 'Sliding', 'paginator-slide', array('uri' => $this->uri)); ?>
+<? //php echo "<div class='alert alert-success'><a href='/{$category}/{$product->product_id}-{$product->product_name}'>{$product->product_name}</a></div>";?>
+

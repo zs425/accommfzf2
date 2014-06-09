@@ -1,0 +1,334 @@
+<?php $this->actionsForm->setAttribute('action', $this->url('zfcadmin/localdata/orphanproduct')); ?>
+<?php $this->actionsForm->prepare(); ?>
+<?php $this->searchForm->setAttribute('action', $this->url('zfcadmin/localdata/orphanproduct'))->setAttribute('class', 'smart-form'); ?>
+<?php $this->searchForm->prepare(); ?>
+
+<!-- RIBBON -->
+<div id="ribbon">
+
+	<span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+	<!-- breadcrumb -->
+	<ol class="breadcrumb">
+		<li>Admin</li><li>Local Data</li><li>Products</li>
+	</ol>
+	<!-- end breadcrumb -->
+
+	<!-- You can also add more buttons to the
+	ribbon for further usability
+
+	Example below:
+
+	<span class="ribbon-button-alignment pull-right">
+	<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+	<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+	<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+	</span> -->
+
+</div>
+<!-- MAIN CONTENT -->
+<div id="content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+			<h1 class="page-title txt-color-blueDark">
+				<i class="fa fa--building fa-fw "></i> 
+					Local Data
+				<span>> 
+					Products > Product List
+				</span>
+			</h1>
+		</div>	
+	</div>
+	
+	<!-- widget grid -->
+	<section id="widget-grid" class="">
+	
+		<!-- row -->
+		<div class="row">
+			
+			<!-- NEW COL START -->
+			<article class="col-sm-12 col-md-12 col-lg-12">
+	
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-custombutton="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-search"></i> </span>
+						<h2><?php echo $this->translate('Search Products')?>  </h2>
+	
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+	
+						<!-- widget content -->
+						<div class="widget-body no-padding">
+	
+							<?php echo $this->form()->openTag($this->searchForm);?>
+								
+								<fieldset>
+									<div class="row">
+										<section class="col col-4">
+											<label class="label"><?php echo $this->translate('Destination')?></label>
+											<label class="input">
+												<?php echo $this->formrow($this->searchForm->get('destination')->setAttribute('class', 'input-sm'));?>												
+											</label>
+										</section>
+		
+										<section class="col col-4">
+											<label class="label"><?php echo $this->translate('Category')?></label>
+											<label class="select">
+												<?php echo $this->formselect($this->searchForm->get('category')->setAttribute('class', 'input-sm'))?>
+												 <i></i> 
+											</label>											
+										</section>
+										
+										<section class="col col-4">
+											<label class="label"><?php echo $this->translate('Data provider')?></label>
+											<label class="select">
+												<?php echo $this->formselect($this->searchForm->get('source')->setAttribute('class', 'input-sm'))?>
+												 <i></i> 
+											</label>										
+										</section>
+									</div>
+									
+									<div class="row">
+										<section class="col col-4">
+											<label class="label"><?php echo $this->translate('Keyword')?></label>
+											<label class="input">
+												<?php echo $this->formrow($this->searchForm->get('keyword')->setAttribute('class', 'input-sm'));?>												
+											</label>
+										</section>
+		
+										<section class="col col-4">
+											<label class="label"><?php echo $this->translate('Or enter Bao id')?></label>
+											<label class="input">
+												<?php echo $this->formrow($this->searchForm->get('bao_id')->setAttribute('class', 'input-sm'));?>												
+											</label>
+										</section>
+										
+										<section class="col col-4">
+											<label class="label"><?php echo $this->translate('Order by')?></label>
+											<label class="select">
+												<?php echo $this->formselect($this->searchForm->get('order')->setAttribute('class', 'input-sm'))?>
+												 <i></i> 
+											</label>
+										</section>
+									</div>
+								</fieldset>
+								
+								<fieldset>
+									<section>
+										<label class="label"><?php echo $this->searchForm->get('deleted')->getLabel(); ?></label>
+										<div class="inline-group">
+											<?php $radios = $this->searchForm->get('deleted')->getValueOptions(); ?>
+											<?php foreach($radios as $key => $val): ?>
+												<label class="radio">
+													<input type="radio" name="deleted" value="<?php echo $key; ?>" <?php echo ($this->searchForm->get('deleted')->getValue() == $key)?'checked="checked"':''; ?>>
+													<i></i><?php echo $val; ?>
+												</label>
+											<?php endforeach; ?>
+										</div>
+									</section>
+								</fieldset>
+								
+								<footer>									
+									<?php echo $this->formsubmit($this->searchForm->get('search')->setAttribute('class', 'btn btn-primary'));?>
+								</footer>
+							<?php echo $this->form()->closeTag($this->searchForm);?>
+						</div>
+						<!-- end widget content -->
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+				
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" >
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+						<h2><?php echo $this->translate('Search Results')?>  </h2>
+	
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+	
+						<!-- widget content -->
+						<div class="widget-body ">
+							<?php echo $this->form()->openTag($this->actionsForm);?>
+							<table class="table table-bordered table-striped table-hover has-tickbox smart-form">
+								<thead>
+									<tr>
+										<th><label class="checkbox">
+											<input type="checkbox" id="maincheck" class="checkall"/>
+											<i></i> </label></th>
+			                            <th><?php echo $this->translate('Product Name')?></th>
+			                            <th><?php echo $this->translate('State')?></th>
+			                            <th><?php echo $this->translate('Region')?></th>
+			                            <th><?php echo $this->translate('City')?></th>
+			                            <th><?php echo $this->translate('Category')?></th>
+			                            <th><?php echo $this->translate('Source')?></th>          
+			                            <th><?php echo $this->translate('Actions')?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php echo (isset($this->items))?$this->partialLoop('Admin\product\_product.phtml', $this->items):''?>									
+								</tbody>
+							</table>
+							<?php 
+			                    if(isset($this->items)){
+			                    	echo '<div class="paginator-container">';
+			                        echo $this->paginationControl($this->items, 'Sliding', 'product-paginator', array("route"=>'zfcadmin/localdata/orphanproduct'));
+			                        echo '</div>';
+			                    }
+			                ?>
+			                
+			                <div class="row smart-form action-div">
+								<div class="form-group">
+									<label class="select">
+										<?php echo $this->formselect($this->actionsForm->get('multiact'))?><i></i>
+									</label>
+								</div>
+								<!--<input type="button" id="bulkDelete" data-toggle="modal" role="button" class="btn btn-default" value="<?php echo $this->translate('Submit')?>" />-->
+								<?php echo $this->formsubmit($this->actionsForm->get('submitbtn')->setAttribute('class', 'btn btn-default')->setAttribute('id', 'bulkDelete'))?>
+								<?php echo $this->formhidden($this->actionsForm->get('destination'))?>
+	                            <?php echo $this->formhidden($this->actionsForm->get('category'))?>
+	                            <?php echo $this->formhidden($this->actionsForm->get('source'))?>
+	                            <?php echo $this->formhidden($this->actionsForm->get('keyword'))?>
+	                            <?php echo $this->formhidden($this->actionsForm->get('bao_id'))?>
+	                            <?php echo $this->formhidden($this->actionsForm->get('order'))?>
+	                            <?php echo $this->formhidden($this->actionsForm->get('deleted'))?>
+	                            <?php echo $this->formhidden($this->actionsForm->get('baodestination_id'))?>	
+							</div>
+							<?php echo $this->form()->closeTag($this->actionsForm);?>									                
+						</div>
+						<!-- end widget content -->
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+			</article>
+			<!-- END COL -->
+			
+		</div>				
+		<!-- END ROW-->
+	
+	</section>
+	<!-- end widget grid -->
+
+	<div class="bulkDelete-modal" title="Delete Website"  style="display:none;">
+		<p><?php echo $this->translate('Performing action on one or more products, continue?')?></p>
+	</div>
+</div>
+<!-- END MAIN CONTENT -->
+
+<script>
+	$(document).ready(function(){
+		$('.pagination li:not(".disabled, .active") a').click(function(){
+			page = $(this).attr('data_page');
+			$('#productsearchform').attr('action', $('#productsearchform').attr('action') + '/page/' + page);
+			$('#productsearchform').submit();
+		});
+	});
+	
+	$('.checkall').on('click', function () {
+        $(this).closest('table').find(':checkbox').prop('checked', this.checked);
+    });
+    
+	$('a.delete-btn').click(function() {
+		$($(this).attr("href")).dialog('open');
+		return false;
+	});
+	
+	$('.confirm-modal').dialog({
+		autoOpen : false,
+		width : 400,
+		resizable : false,
+		modal : true,
+		title : "Confirm Delete?",
+		buttons : [{
+			html : "<i class='fa fa-trash-o'></i>&nbsp; Delete product",
+			"class" : "btn btn-danger",
+			click : function() {
+				window.location.href=$(this).attr("attr");				
+			}
+		}, {
+			html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+			"class" : "btn btn-default",
+			click : function() {
+				$(this).dialog("close");
+			}
+		}]
+	});
+	
+	$('#bulkDelete').click(function() {
+		$('.bulkDelete-modal').dialog('open');
+		return false;
+	});
+	
+	$('.bulkDelete-modal').dialog({
+		autoOpen : false,
+		width : 400,
+		resizable : false,
+		modal : true,
+		title : "<?php echo $this->translate('Action confirmation')?>",
+		buttons : [{
+			html : "<i class='fa fa-warning'></i>&nbsp; <?php echo $this->translate('Continue')?>",
+			"class" : "btn btn-danger",
+			click : function() {
+				$(this).dialog("close");
+				$('#productactionsform').submit();				
+			}
+		}, {
+			html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+			"class" : "btn btn-default",
+			click : function() {
+				$(this).dialog("close");
+			}
+		}]
+	});
+</script>

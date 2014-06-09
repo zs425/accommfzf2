@@ -1,0 +1,47 @@
+<?php if($this->searchForm): ?>
+	<div class="span4 search-form-div">
+		<div class="wellside">
+			<h4><i style="padding-right:10px; margin-top:3px" class="icon-search"></i>Search Accommodation</h4>
+			<hr>
+			<div>
+				<?php echo $this->form()->openTag($this->searchForm)?>
+	    			<div class="idealform">
+	                	<ul>
+							<?php $this->searchForm->setAttribute('action', $this->url('home'))?>
+							<?php $this->searchForm->prepare()?>
+							<li>
+								<label for="commenceDate" class="optional"><?php echo $this->translate('Date')?></label>
+								<?php $commenceDate = $this->searchForm->get('commencing')?>
+								<?php $commenceDate->setAttribute('class', 'span2 hasDatepick')?>
+								<?php echo $this->formRow($commenceDate)?>
+							</li>
+							<li>
+								<label for="guestsSelect" class="optional"><?php echo $this->translate('Guests')?></label>
+								<?php $guestsSelect = $this->searchForm->get('guests')?>
+								<?php $guestsSelect->setAttribute('class', 'span2')?>
+								<?php echo $this->formSelect($guestsSelect)?>
+							</li>
+							<li>
+								<label for="nightsSelect" class="optional"><?php echo $this->translate('Nights')?></label>
+								<?php $nightsSelect = $this->searchForm->get('nights')?>
+								<?php $nightsSelect->setAttribute('class', 'span2')?>
+								<?php echo $this->formSelect($nightsSelect)?>
+							</li>
+							<li>
+								<label for="areaSelect" class="optional"><?php echo $this->translate('Area')?></label>
+								<?php $areaSelect = $this->searchForm->get('area')?>
+								<?php $areaSelect->setAttribute('class', 'span2')?>
+								<?php echo $this->formSelect($areaSelect)?>
+							</li>
+						</ul>
+					</div>
+					<div class="searchbuttonwrapper">
+						<?php $searchSubmit = $this->searchForm->get('submit-searchForm')?>
+						<?php $searchSubmit->setAttribute('class', 'btn btn-success')?>
+						<?php echo $this->formSubmit($searchSubmit)?>
+					</div>
+				</div>
+			<?php echo $this->form()->closeTag($this->searchForm)?>
+		</div>
+	</div>
+<?php endif; ?>

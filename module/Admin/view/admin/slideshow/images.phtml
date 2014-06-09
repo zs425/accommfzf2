@@ -1,0 +1,473 @@
+<?php
+$this->headLink()
+        ->appendStylesheet('/externals/jcrop/css/jquery.Jcrop.min.css');
+?>
+
+
+
+
+<style type="text/css">
+    .preview img {
+        max-width: 150px;
+    }
+    
+    
+	#modal-crop.modal{
+		overflow-y: auto;
+		bottom:auto;
+	}
+</style>
+
+
+<!-- Bootstrap CSS Toolkit styles -->
+
+<!-- Bootstrap CSS fixes for IE6 -->
+<!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
+<!-- Bootstrap Image Gallery styles -->
+<link rel="stylesheet" href="/modules/slideshow/dragdropupload/css/bootstrap-image-gallery.min.css">
+
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="/modules/slideshow/dragdropupload/css/jquery.fileupload-ui.css">
+
+<link rel="stylesheet" href="/modules/slideshow/dialog/jquery-ui-1.8.21.custom.css">
+
+<link rel="stylesheet" type="text/css" media="screen" href="/modules/slideshow/elfinder/css/elfinder.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/modules/slideshow/elfinder/css/theme.css">
+<link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+
+<!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
+<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+<script type="text/javascript">
+
+  
+function callUpdateBtn(id)
+{
+  
+  
+    var title= $("#title-"+id).val();
+    var desc = $("#desc-"+id).val();
+    var link =$("#link-"+id).val();
+    var linktext =  $("#linktext-"+id).val();        
+
+	var dataString = 'image_id='+id+'&title='+ title + '&desc=' + desc + '&link=' + link + '&linktext='+linktext ;
+		
+	$.ajax({
+      type: "POST",
+      url: '/admin/modules/slideshow/add-image-info',
+      data: dataString,
+      success: function(data) {
+      	if(data == "success")
+           alert("Updated Successfully!!");
+           $('#box'+id).css({'display': "none"});
+        },
+      error: function(){ alert("Update Error");}  
+     });
+    return false;
+	
+
+}
+
+function displayBox(id)
+{
+   
+	var displaycss = $('#'+id).css('display');
+
+
+    if(displaycss == "none") $('#'+id).css({'display': "block"});
+    else $('#'+id).css({'display': "none"});
+
+}
+
+function sendFile(path) {
+   
+    $('#fileManagerFrame').dialog('close');
+    $('#loading').show();
+    $.getImageData({
+        url: '<?php echo $this->serverUrl() ?>/' + path,
+        server: '<?php echo $this->serverUrl() ?>/admin/modules/slideshow/get-image-data?callback=?',
+        success: function (img) {
+            var canvas = document.createElement('canvas');
+            if (canvas.getContext && canvas.toBlob) {
+                canvas.width = $(img).attr('width');
+                canvas.height = $(img).attr('height');
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                canvas.toBlob(function (blob) {
+                    $('#loading').hide();
+                    $('#fileupload').fileupload('add', {
+                        files: [blob]
+                    });
+                });
+            }
+        }
+    });
+}
+
+var fileManagerDialog = false;
+$(function(){
+    $('#fileManagerOpen').click(function(){
+        if (fileManagerDialog) {
+            $('#fileManagerFrame').dialog('open');
+        } else {
+            var elf = $('#fileManagerFrame').elfinder({
+                url : '/modules/slideshow/elfinder/php/connector.php',
+                onlyMimes: ["image"],
+                resizable: false,
+                commandsOptions: {
+                    getfile: {
+                        onlyURL: false,
+                        multiple: false,
+                        folders: false
+                    }
+                },
+                getFileCallback: function(file){
+                    sendFile(file.path);
+                }
+            }).elfinder('instance');			
+            $('#fileManagerFrame').dialog({
+                title: 'File manager',
+                height: 450,
+                width: 730,
+                resizable: false,
+                modal: true,
+                autoOpen: true
+            });
+            fileManagerDialog = true;
+        }
+    });
+});
+</script>
+
+<!-- RIBBON -->
+<div id="ribbon">
+
+	<span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+	<!-- breadcrumb -->
+	<ol class="breadcrumb">
+		<li>Admin</li><li>Modules</li><li>Slideshow</li>
+	</ol>
+	<!-- end breadcrumb -->
+
+	<!-- You can also add more buttons to the
+	ribbon for further usability
+
+	Example below:
+
+	<span class="ribbon-button-alignment pull-right">
+	<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+	<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+	<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+	</span> -->
+
+</div>
+<!-- MAIN CONTENT -->
+<div id="content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+			<h1 class="page-title txt-color-blueDark">
+				<i class="fa fa--building fa-fw "></i> 
+					Modules 
+				<span>> 
+					Slideshow > Images
+				</span>
+			</h1>
+		</div>	
+	</div>
+	
+	<!-- widget grid -->
+	<section id="widget-grid" class="">
+	
+		<!-- row -->
+		<div class="row">
+	
+			<!-- NEW WIDGET START -->
+			<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div id="fileManagerFrame" style="display: none; width: 700px; height: 400px;"></div>
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+						<h2><?php echo $this->slideshow['slideshow_name'] ?>&nbsp;&nbsp;&nbsp;</h2>
+						<a href="/admin/modules/slideshow/editSlideshow/<?php echo $this->slideshow['slideshow_id'] ?>" class="btn btn-primary">Edit Slidehow</a>
+            			<a href="/admin/modules/slideshow" class="btn btn-primary">Back To Slideshow List</a>
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+						
+						<!-- widget content -->
+						<div class="widget-body content">
+							<div id="loading" style="display: none;"></div>
+							<form id="fileupload" action="<?php echo $this->url('zfcadmin/modules/slideshow/default', array('action' => 'addSlideshowImages'))?>" method="POST" enctype="multipart/form-data">
+								<!-- Redirect browsers with JavaScript disabled to the origin page -->
+						        <noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>
+						        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+						        
+						        <div class="row fileupload-buttonbar">
+						            <div class="col-lg-7">
+						                <!-- The fileinput-button span is used to style the file input field as button -->
+						                <span class="btn btn-success fileinput-button">
+						                    <i class="glyphicon glyphicon-plus"></i>
+						                    <span>Add files...</span>
+						                    <input type="file" name="files[]" multiple>
+						                </span>
+						                <button type="submit" class="btn btn-primary start">
+						                    <i class="glyphicon glyphicon-upload"></i>
+						                    <span>Start upload</span>
+						                </button>
+						                <button type="reset" class="btn btn-warning cancel">
+						                    <i class="glyphicon glyphicon-ban-circle"></i>
+						                    <span>Cancel upload</span>
+						                </button>
+						                <button type="button" class="btn btn-danger delete">
+						                    <i class="glyphicon glyphicon-trash"></i>
+						                    <span>Delete</span>
+						                </button>
+						                <div class="smart-form" style="display: inline-block;">
+						                	<div class="inline-group">
+								                <label class="checkbox"  style="display: inline-block;">
+								                	<input type="checkbox" class="toggle">
+								                	<i></i>
+								                </label>
+							                </div>
+						                </div>
+						                <!-- The global file processing state -->
+						                <span class="fileupload-process"></span>
+						            </div>
+						            <!-- The global progress state -->
+						            <div class="col-lg-5 fileupload-progress fade">
+						                <!-- The global progress bar -->
+						                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+						                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+						                </div>
+						                <!-- The extended global progress state -->
+						                <div class="progress-extended">&nbsp;</div>
+						            </div>
+						        </div>
+						        <!-- The table listing the files available for upload/download -->
+						        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+						        
+							</form>								
+							
+						</div>
+						<!-- end widget content -->							
+						
+		
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+	
+	
+			</article>
+			<!-- WIDGET END -->
+	
+	
+		</div>
+	
+		<!-- end row -->
+	
+	</section>
+</div>
+
+
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-crop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Image Crop</h4>
+			</div>
+			<div class="modal-body">
+
+				
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="crop-save" onclick="crop.crop(); return false;">
+		            <i class="fa fa-resize-small"></i>
+		            Crop
+		        </a>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">
+		            Close
+		        </button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- <td class="name"><span>{%=file.name%}</span></td>-->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <p class="name">{%=file.name%}</p>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnail_url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnail_url%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnail_url?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+        	<a href="javascript:void(0);" class="btn crop-button btn-success" id="cropbtn{%=file.id%}" onclick="crop.open($(this), '{%=file.url%}', '{%=file.thumbnail_url%}', {%=file.width%}, {%=file.height%}); return false;">
+            	<i class="icon-resize-small"></i>
+            	<span>Crop</span>
+          	</a>
+			
+            {% if (file.delete_url) { %}
+                <button class="btn btn-danger delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+                <div class="smart-form" style="display: inline-block;">
+                	<div class="inline-group">
+		                <label class="checkbox"  style="display: inline-block;">
+		                	<input type="checkbox" name="delete" value="1" class="toggle">
+		                	<i></i>
+		                </label>
+	                </div>
+                </div>
+                
+            {% } else { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+            <a class="btn btn-info" href="javascript:displayBox('box{%=file.id%}')" style="border-bottom-right-radius: 4px;border-top-right-radius: 4px;"> 
+          		Additional information
+			</a>
+        </td>
+    </tr>
+    <tr style="border:0px" >
+		<td colspan="5" style="padding:0px;border:0px">
+		   <table  width="100%" id='box{%=file.id%}' style="display:none;border:0px" ><tr>
+		      <td><input id="title-{%=file.id%}" type="text" name="title" value="{%=file.title%}" class="form-control" placeholder="Title"></td>
+		      <td><textarea id="desc-{%=file.id%}" name="discription" class="form-control" placeholder="Description">{%=file.desc%}</textarea></td>
+		      <td><input id="link-{%=file.id%}" type="text" name="title" value="{%=file.link%}" class="form-control" placeholder="Link"></td>
+		      <td><input id="linktext-{%=file.id%}" type="text" name="linktext" value="{%=file.linktext%}" class="form-control" placeholder="Link Text"></td>
+		      <td><input id="updatebtn{%=file.id%}" class="updatebtn btn btn-default" onclick="callUpdateBtn('{%=file.id%}');" name="updatebtn{%=file.id%}" type="button" value="Update"/></td>     
+		   </tr></table>
+		</td>
+	</tr>
+{% } %}
+</script>
+
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/modules/slideshow/jquery-file-upload/js/widget/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<!-- blueimp Gallery script -->
+<script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/modules/slideshow/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/modules/slideshow/jquery-file-upload/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="/modules/slideshow/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/modules/slideshow/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="/modules/slideshow/jquery-file-upload/js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="/modules/slideshow/jquery-file-upload/js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="/modules/slideshow/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="/modules/slideshow/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
+<!-- The main application script -->
+<script src="/modules/slideshow/jquery-file-upload/js/main.js"></script>
+<script type="text/javascript" src="/externals/jcrop/js/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="/externals/jcrop/js/jquery.color.js"></script>
+<script type="text/javascript" src="/admin-assets/js/crop.js"></script>

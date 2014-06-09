@@ -1,0 +1,123 @@
+<div class="tour-container">
+    <div class="span12">
+        <br/>
+        <h1>Browse Tours</h1>
+    </div>
+    <div class="search-form-wrapper">
+        <div class="span4 search-form-div">
+            <!--<div class="wellside">
+                <h4><i style="padding-right:10px; margin-top:3px" class="icon-search"></i>Search Tours</h4>
+                <hr>
+                <div>
+                    <?php //echo $this->form()->openTag($this->searchForm)?>
+                        <div class="idealform">
+                            <ul>
+                                <?php //$this->searchForm->setAttribute('action', $this->url('home'))?>
+                                <?php //$this->searchForm->prepare()?>
+                                <li>
+                                    <label for="commencing" class="optional"><?php echo $this->translate('Date')?></label>
+                                    <?php //$commencing = $this->searchForm->get('commencing')?>
+                                    <?php //$commencing->setAttribute('class', 'span2')?>
+                                    <?php //echo $this->formRow($commencing)?>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="searchbuttonwrapper">
+                            <?php //$searchSubmit = $this->searchForm->get('submit-searchForm')?>
+                            <?php //$searchSubmit->setAttribute('class', 'btn btn-success')?>
+                            <?php //echo $this->formSubmit($searchSubmit)?>
+                        </div>
+                    </div>
+                <?php //echo $this->form()->closeTag($this->searchForm)?>
+            </div>-->
+            <div class="categories panel-group wellside" id="accordion">
+                <?php //echo $this->form()->openTag($this->categoryForm)?>
+                <ul class="nav">
+                <?php foreach($this->categories as $cat){?> 
+                    <li id="cat_<?php echo $cat->id;?>" class="panel">
+                        <div class="panel-heading">
+                        <h4><a data-toggle="collapse" data-parent="#accordion" href="#collapse_<?php echo $cat->id;?>"><?php echo $cat->groupName;?></a></h4>
+                        </div>
+                        <?php if (isset($cat->subcategories)){?>
+                        <div class="panel-collapse collapse <?php if ($cat->id == $this->rootCat){echo "in";}?>" id="collapse_<?php echo $cat->id;?>">
+                        <ul class="subCat unstyled">
+                        <?php foreach($cat->subcategories as $subCat){ ?>
+                            <li class="subCat <?php if(($cat->id == $this->rootCat) && ($subCat->subcategoryId == $this->subCat)){echo "selected";}?>" id="cat_<?php echo $subCat->categoryId;?>_<?php echo $subCat->subcategoryId;?>">
+                                <a href="<?php echo $this->url("tours", array("action"=>"category", "id"=>$subCat->categoryId."_".$subCat->subcategoryId));?>"><?php echo $subCat->subcategoryName;?></a> 
+                            </li>
+                        <?php }?>
+                        </ul>
+                        </div>
+                        <?php }?>
+                    </li>
+                <?php } ?>
+                </ul>
+                <?php //echo $this->formRow($this->categoryForm->get("commencing"));?>
+                <?php //echo $this->form()->closeTag($this->categoryForm)?>
+            </div>
+        </div>
+    </div>            
+    <div class="span8">
+        <?php $route = "accommview"; ?>
+            <!--ul class="breadcrumb">
+                <?php $breadcrumbCount = count($this->breadcrumbs) ?> 
+                <?php foreach ($this->breadcrumbs as $i => $crumb): ?>
+                    <?php if ($i != ($breadcrumbCount - 1) && array_key_exists('route', $crumb)): ?>
+                        <li><a href="<?php echo $this->url($crumb['route'], $crumb['parameters']) ?>"><?php echo $crumb['label'] ?></a> <span
+                                class="divider">/</span></li>
+                    <?php else: ?>
+                        <li class="active"><?php echo $crumb['label'] ?></li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul-->
+
+
+            <ul class="unstyled product-list">
+            <?php //var_dump($this->products);?>
+                <?php echo $this->partialLoop('layout/viatorproduct-list', $this->products); ?>        
+            </ul>
+            <?php echo $this->paginationControl($this->products, 'Sliding', 'viatorpaginator-slide', array("uri"=>$this->uri, "area"=>$this->area, "keyword"=>$this->keyword, "category"=>$this->category)); ?>
+        <? //php echo "<div class='alert alert-success'><a href='/{$category}/{$product->product_id}-{$product->product_name}'>{$product->product_name}</a></div>";?>
+    </div>
+<?php /*if ($this->countRoute): ?>
+    <div class="well accommodation-area-well">
+        <h3><?php echo $title; ?></h3><br/>
+        <ul>
+            <?php foreach ($this->accommodationCounts as $count): ?>
+                <li <?php if (isset($this->destination) && $this->destination == $count['baodestination']->getBaodestinationUrl()) {
+                    echo 'class="active"';
+                } ?>>
+                <?php
+                    if ($this->classification){
+                        $url = $this->url($this->countRoute, 
+                                    array(
+                                        'classification'     => $this->atdwClassifications($this->classification->attr_code), 
+                                        'location3'         => $count['baodestination']->getBaodestinationUrl()));
+                    } else {
+                        $url = $this->url($this->countRoute, 
+                                    array('location3'         => $count['baodestination']->getBaodestinationUrl()));
+                    }
+                    
+                ?>
+                
+                    <a href="<?php echo $url ?>"><?php echo $count['baodestination']->getBaodestinationName() ?>
+                        <span style="color: #0088cc">(<?php echo $count['count'] ?>)</span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+<?php endif; */?>
+    <div class="clear"></div>
+</div>
+
+<script>
+$(document).ready(function(){
+    /*$('li.subCat a').click(function(e){
+        e.preventDefault();
+        $("#toursCategoryForm").attr('action', $(this).attr('href'));
+        $('#toursCategoryForm').submit();
+    });*/
+});
+</script>

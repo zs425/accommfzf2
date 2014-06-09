@@ -1,0 +1,36 @@
+<div class="row-fluid">
+    <div class="span3">              
+        <div class="widget wblue">
+            <div class="widget-head">
+                <div class="pull-left"><?php echo $this->translate('Add alias')?></div>
+                <div class="widget-icons pull-right">
+                    <a href="javascript:void(0);" class="wminimize"><i class="icon-chevron-up"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="widget-content">
+                <?php $this->aliasForm->setAttribute('action', $this->url('zfcadmin/content/alias/edit', array('id' => $this->aliasId))); ?>
+                <?php $this->aliasForm->prepare(); ?>
+                <?php echo $this->form()->openTag($this->aliasForm) ?>
+                    <div class="control-group">
+                        <label class="control-label" for="aliasPath"><?php echo $this->translate('Existing system path')?></label>
+                        <div class="controls">
+                            <?php echo $this->formRow($this->aliasForm->get('alias_system')) ?>
+                            <span class="help-block">eg. /content/3</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="aliasRoute"><?php echo $this->translate('Route')?></label>
+                        <div class="controls">
+                            <?php echo $this->formRow($this->aliasForm->get('alias_route')) ?>
+                            <span class="help-block">eg. /services; /services/web-design</span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <?php echo $this->formsubmit($this->aliasForm->get('submit-aliasForm'))?>
+                    </div>
+              <?php echo $this->form()->closeTag($this->aliasForm) ?>
+            </div>
+        </div>
+    </div>
+</div>

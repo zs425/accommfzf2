@@ -1,0 +1,44 @@
+<? /* base dimensions are 1250 and 467 */
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = ($this->cssWidth > 1147 ) ? intval($this->cssWidth) : 1147;
+$cssHeight = ($this->cssHeight > 327 ) ? intval($this->cssHeight) : 327;
+
+$delay = $this->delay;
+$title = $this->title;
+$discription = $this->discription;
+$link = $this->link;
+$linktext = $this->linktext;
+
+$timeout = ($slideshow['slideshow_delay'] > 0) ? intval($slideshow['slideshow_delay']) : 3000;
+$nav = ($slideshow['slideshow_navigation']) ? ",prev: '#slider_next',next: '#slider_prev'" : '';
+//$effects = array('scrollUp', 'scrollDown', 'scrollLeft', 'scrollRight', 'scrollHorz', 'scrollVert', 'shuffle',
+//        	 'slideX', 'slideY', 'toss', 'turnUp', 'turnDown', 'turnLeft', 'turnRight', 'uncover', 'growX');
+//$fx = (in_array($slideshow->slideshow_effect, $effects))?$slideshow->slideshow_effect:'growX';
+
+// $this->headStyle('.pre_button, .next_button{top:' . (((str_replace('px', '', $cssHeight))/2)- 22) . 'px}');
+?>
+<div class="slides_container">
+    <? foreach ($images as $img): ?>
+	<div class="slide">
+        <img src="/uploads/slideshow/slideshow-<?= $slideshow['slideshow_id'] . '/originals/' . $img['image_path'] ?>" width="<?= $cssWidth ?>" title="<?= $img['discription'] ?>" />
+		<div class="slide_text bottom right">
+            <?php if (trim($img['title']) != "" || trim($img['discription']) != "" || (trim($img['link']) != "" && trim($img['linktext']) != "")) : ?><div class="slide_title"><strong><?= $img['title']?></strong></div>
+			<p class="subtitle"><?= $img['discription']?></p><? endif;?>
+		</div>
+	</div>
+	<? endforeach;?>
+</div>
+<a href="#" class="prev">Prev</a><a href="#" class="next">Next</a>
+<div class="slider_pagination_wrap">
+	<div class="slider_pagination_inner" style="width: 1250px;">
+		<ul class="slider_pagination">
+            <? $count = (int) 0;?>
+            <? foreach ($images as $img): ?>
+			<li><a href="#<?=$count?>"><?= $img['title']?></a></li>
+            <? $count++;endforeach?>
+
+		</ul>
+	</div>
+</div>

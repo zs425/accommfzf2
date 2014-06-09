@@ -1,0 +1,84 @@
+StateCode|StateName|CountryCode|CountryName
+AA|Armed Forces Americas|US|United States
+AB|Alberta|CA|Canada
+AC|Australian Capital|AU|Australia
+AE|Armed Forces|US|United States
+AK|Alaska|US|United States
+AL|Alabama|US|United States
+AP|Armed Forces Pacific|US|United States
+AR|Arkansas|US|United States
+AS|American Samoa|US|United States
+AZ|Arizona|US|United States
+BC|British Columbia|CA|Canada
+CA|California|US|United States
+CO|Colorado|US|United States
+CT|Connecticut|US|United States
+DC|District of Columbia|US|United States
+DE|Delaware|US|United States
+FL|Florida|US|United States
+FM|Federated States of Micronesia|US|United States
+GA|Georgia|US|United States
+GU|Guam|US|United States
+HI|Hawaii|US|United States
+IA|Iowa|US|United States
+ID|Idaho|US|United States
+IL|Illinois|US|United States
+IN|Indiana|US|United States
+KS|Kansas|US|United States
+KY|Kentucky|US|United States
+LA|Louisiana|US|United States
+MA|Massachusetts|US|United States
+MB|Manitoba|CA|Canada
+MD|Maryland|US|United States
+ME|Maine|US|United States
+MH|Marshall Islands|US|United States
+MI|Michigan|US|United States
+MN|Minnesota|US|United States
+MO|Missouri|US|United States
+MP|Northern Mariana Islands|US|United States
+MS|Mississippi|US|United States
+MT|Montana|US|United States
+NB|New Brunswick|CA|Canada
+NC|North Carolina|US|United States
+ND|North Dakota|US|United States
+NE|Nebraska|US|United States
+NF|Newfoundland|CA|Canada
+NH|New Hampshire|US|United States
+NJ|New Jersey|US|United States
+NM|New Mexico|US|United States
+NO|Northern Territory|AU|Australia
+NS|Nova Scotia|CA|Canada
+NT|Northwest Territory|CA|Canada
+NU|NUNAVUT|CA|Canada
+NV|Nevada|US|United States
+NW|New South Wales|AU|Australia
+NY|New York|US|United States
+OH|Ohio|US|United States
+OK|Oklahoma|US|United States
+ON|Ontario|CA|Canada
+OR|Oregon|US|United States
+PA|Pennsylvania|US|United States
+PE|Prince Edward Island|CA|Canada
+PQ|Quebec|CA|Canada
+PR|Puerto Rico|US|United States
+QL|Queensland|AU|Australia
+RI|Rhode Island|US|United States
+SA|South Australia|AU|Australia
+SC|South Carolina|US|United States
+SD|South Dakota|US|United States
+SK|Saskatchewan|CA|Canada
+SP|St. Pierre & Miguelon|FR|France
+TN|Tennessee|US|United States
+TS|Tasmania|AU|Australia
+TX|Texas|US|United States
+UT|Utah|US|United States
+VA|Virginia|US|United States
+VC|Victoria|AU|Australia
+VI|Virgin Islands|US|United States
+VT|Vermont|US|United States
+WA|Washington|US|United States
+WI|Wisconsin|US|United States
+WT|Western Australia|AU|Australia
+WV|West Virginia|US|United States
+WY|Wyoming|US|United States
+YU|Yukon Territory|CA|Canada

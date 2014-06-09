@@ -1,0 +1,97 @@
+<div class="container">
+<br>
+<div class="row">
+<div class="span9">
+    <div class="well">
+        <div class="container">
+            <div class="row">
+                <div class="span8">
+                    <div class="page-header">
+                        <h2><?php echo $this->term; ?>
+                            <small>- <?php echo $this->location; ?></small>
+                        </h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="span8">
+                        <div class="well">
+                            <h3>
+                                <?php echo $this->translate('Business List'); ?>
+                            </h3>
+							<ul class="unstyled result-list">
+								<?php echo $this->partialLoop('layout/yelp-list', $this->result); ?>
+							</ul>
+							<?php echo $this->paginationControl($this->result, 'Sliding', 'yelppaginator-slide', array("uri"=>"yelp", "term"=> $this->term, "location"=> $this->location)); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+ 
+<div class="span3">
+	<div class="wellside">
+		<?php echo $this->form()->openTag($this->form);?>
+		<div class="idealform">
+		    <ul class="nav nav-tabs nav-stacked" style="font-size:11px; ">
+		        <li class="active" style="font-size:12px; font-weight:bold;">
+		            <h3><?php echo $this->translate('Yelp Search') ?></h3>
+		            <div class="control-group">
+		                <label for="term"><?php echo $this->translate('Category')?></label>
+		                <div class="controls">
+		                    <?php echo $this->formrow($this->form->get('term'));?>
+		                </div>
+		                <label for="location"><?php echo $this->translate('Location')?></label>
+		                <div class="controls">
+		                    <?php echo $this->formrow($this->form->get('location'));?>
+		                </div>
+		            </div> 
+		            <div class="form-action">
+		                <?php echo $this->formsubmit($this->form->get('submit-searchForm'))?>
+		            </div>
+		        </li>
+		    </ul>
+	    </div>
+	    <?php echo $this->form()->closeTag($this->form);?>
+	    <ul class="nav nav-tabs nav-stacked">
+	        <li>
+	            <div id="propertyMap"></div>
+	        </li>
+	    </ul>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+    google.maps.visualRefresh = true;
+    var propertyLocation = new google.maps.LatLng(<?php echo $this->region->latitude?>, <?php echo $this->region->longitude?>);
+    var map;
+    var marker;
+    function initialize() {
+        var mapOptions = {
+            zoom: 17,
+            center: propertyLocation,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('propertyMap'), mapOptions);
+
+        marker = new google.maps.Marker({
+            map: map,
+            title: '<?php echo $this->term." ".$this->location; ?>',
+            position: propertyLocation
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<!-- End Slider/Search Block -->
+
+</div> <!-- /container -->

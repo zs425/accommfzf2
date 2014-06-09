@@ -1,0 +1,93 @@
+<div class="padding-10">
+	<table class="table table-bordered table-striped table-hover has-tickbox smart-form">
+		<thead>
+			<tr>
+				<th><label class="radio">
+						<input type="radio" name="roamfeeId" value="0">
+						<i></i>
+					</label></th>
+                <th><?php echo $this->translate('Roamfree Id')?></th>
+                <th><?php echo $this->translate('Roamfree Name')?></th>                
+                <th><?php echo $this->translate('Live Hotels')?></th>
+                <th><?php echo $this->translate('Roamfree Parent')?></th>
+                <th><?php echo $this->translate('Level')?></th>
+                <th><?php echo $this->translate('Destination Id')?></th>          
+                <!--<th><?php echo $this->translate('Info')?></th>-->
+			</tr>
+		</thead>
+		<tbody>
+			<?php if(isset($this->items)): ?>
+				<?php foreach($this->items as $item): ?>
+					<?php $roamfreeDestination = $item->getByArray(); ?>
+					<tr>
+						<td><label class="radio">
+								<input type="radio" name="roamfeeId" value="<?=$roamfreeDestination['roamfreeId']?>">
+								<i></i>
+							</label></td>				                                	
+						<td><a href="javascript:void(0);" class="info-btn" id="<?=$roamfreeDestination['roamfreeId']?>" type="roamfree"><?=$roamfreeDestination['roamfreeId']?></a></td>
+						<td><strong><?=$roamfreeDestination['roamfreeName']?></strong></td>					    
+					    <td><?=$roamfreeDestination['liveHotels']?></td>
+					    <td>
+					    	<?php if(isset($roamfreeDestination['roamfreeParent'])): ?>
+					    		<a href="javascript:void(0);" class="info-btn" id="<?=$roamfreeDestination['roamfreeParent']?>" type="roamfree"><?=$roamfreeDestination['roamfreeParent']?></a>
+					    	<?php endif; ?>
+					    </td>
+					    <td><?=$roamfreeDestination['level']?></td>
+					    <td>
+					    	<?php if(isset($roamfreeDestination['destinationId'])): ?>
+					    		<a href="javascript:void(0);" class="info-btn" id="<?=$roamfreeDestination['destinationId']?>" type="destination"><?=$roamfreeDestination['destinationId']?></a>
+					    	<?php endif; ?>
+					    </td>
+					    <!--<td>
+					    	<a href="<?=$this->url('zfcadmin/localdata/product', array('action'=>'info', 'id'=>$roamfreeDestination['roamfreeId']))?>" title="Info" class="btn btn-mini"><i class="fa fa-info-circle"></i></a>
+					    </td>-->
+					</tr>
+				<?php endforeach; ?>
+			<?php endif; ?>		
+		</tbody>
+	</table>
+	<?php 
+        if(isset($this->items)){
+        	echo '<div class="paginator-container">';
+            echo $this->paginationControl($this->items, 'Sliding', 'product-paginator', array("route"=>'zfcadmin/centraldb/manualmatchdestinations/searchRoamfreeDestination'));
+            echo '</div>';
+        }
+    ?>
+</div>
+
+
+<script>
+	$('#wid-id-0 a.info-btn').click(function() {
+		type = $(this).attr('type');
+		id = $(this).attr('id');
+		
+		$.ajax({
+			type: "POST",
+			url: "<?php echo $this->url('zfcadmin/centraldb/manualmatchdestination/default', array('action' => 'getInformation')); ?>",
+			data: "type=" + type + "&id=" + id,
+		}).done(function(html) {
+			$('#myModal').html(html);
+			$('#myModal').modal();
+		});
+				
+		return false;
+	});
+	
+	$('#wid-id-0 .paginator-container a').click(function(){
+		page = $(this).attr('data_page');
+		$('#wid-id-0 .widget-body').addClass('widget-body-ajax-loading');
+		$.ajax({
+			type: "POST",
+			url: $('#roamfreedestinationsearchform').attr('action'),
+			data: $('#roamfreedestinationsearchform').serialize() + "&page=" + page,
+		}).done(function(html) {
+			$('.roamfree-destination-content').html(html);
+			$('#wid-id-0 .widget-body').removeClass('widget-body-ajax-loading');
+		});
+		return false;
+	});
+	
+	$('.manual-match-btn').off("click", matchDestinations);
+	$('.manual-match-btn').on("click", matchDestinations);
+	
+</script>

@@ -1,0 +1,234 @@
+<!-- RIBBON -->
+<div id="ribbon">
+
+	<span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+	<!-- breadcrumb -->
+	<ol class="breadcrumb">
+		<li>Admin</li><li>Content</li><li>Pages</li>
+	</ol>
+	<!-- end breadcrumb -->
+
+	<!-- You can also add more buttons to the
+	ribbon for further usability
+
+	Example below:
+
+	<span class="ribbon-button-alignment pull-right">
+	<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+	<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+	<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+	</span> -->
+
+</div>
+<!-- MAIN CONTENT -->
+<div id="content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+			<h1 class="page-title txt-color-blueDark">
+				<i class="fa fa--building fa-fw "></i> 
+					Content 
+				<span>> 
+					Pages > Page List
+				</span>
+			</h1>
+		</div>	
+	</div>
+	
+	<!-- widget grid -->
+	<section id="widget-grid" class="">
+	
+		<!-- row -->
+		<div class="row">
+	
+			<!-- NEW WIDGET START -->
+			<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+						<h2>Pages &nbsp;&nbsp;&nbsp;</h2>
+						<a class="btn btn-primary" href="<?php echo $this->url('zfcadmin/content/default', array('action' => 'addPage'))?>"><?php echo $this->translate('Add New')?></a>
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+						
+						<div>
+							<?php echo $this->form()->openTag($this->searchForm->setAttribute('class', "navbar-form"))?>
+								<div class="form-group">
+									<?php echo $this->formrow($this->searchForm->get('search')->setAttribute("class", "form-control"))?>
+								</div>
+								<?php echo $this->formButton()->render($this->searchForm->get('submit-searchForm')->setAttribute("class", "btn btn-default"), 'Submit'); ?>							
+							<?php echo $this->form()->closeTag($this->searchForm)?>
+						</div>
+						
+						<?php $this->pagesActionsForm->setAttribute('action', $this->url('zfcadmin/content'))->setAttribute('class', "smart-form navbar-form"); ?>
+						<?php $this->pagesActionsForm->prepare(); ?>
+						<?php $this->searchForm->setAttribute('action', $this->url('zfcadmin/content')); ?>
+						<?php $this->searchForm->prepare(); ?>
+						<?php echo $this->form()->openTag($this->pagesActionsForm)?>
+						<!-- widget content -->
+						<div class="widget-body">
+							<table class="table smart-form table-bordered has-tickbox">
+								<thead>
+									<tr>
+										<th><label class="checkbox">
+											<input type="checkbox" class="checkall">
+											<i></i> </label></th>
+			                            <th><?php echo $this->translate('Created')?></th>
+			                            <th><?php echo $this->translate('Title')?></th>
+			                            <th><?php echo $this->translate('Url')?></th>
+			                            <th><?php echo $this->translate('Type')?></th>
+			                            <th><?php echo $this->translate('User')?></th>
+			                            <th><?php echo $this->translate('Status')?></th>
+			                            <th><?php echo $this->translate('Actions')?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach($this->pageList as $page): ?>
+	                            	<tr>
+		                                <td><label class="checkbox">
+		                                	<input value="<?php echo $page['content_id']?>" name="pages[]" type="checkbox">
+		                                	<i></i> </label></td>
+		                                <td><?php echo date('d/m/Y g:i A', $page['content_created'])?></td>
+		                                <td><?php echo $page['content_title']?></td>
+		                                <td><?php echo $page['url']?> <a target="_blank" href="<?php echo $page['url'] ?>"><i class="fa fa-share"></i></a></td>
+		                                <td><?php echo $page['content_type']?></td>
+		                                <td><?php echo $page['username']?></td>
+		                                <td><span class="label <?php echo $page['content_status'] == 'published' ? 'label-success' : 'label-important' ?>"><?php echo $page['content_status']?></span></td>
+		                                <td>
+		                                    <a href="<?php echo $this->url('zfcadmin/content/default', array('action' => 'editPage', 'id' => $page['content_id']));?>" class="btn btn-mini"><i class="fa fa-edit"></i></a>
+		                                    <a href="#deleteModal-<?php echo $page['content_id']?>" class="delete-btn btn btn-mini"><i class="fa fa-times"></i></a>
+		                                </td>
+		                            </tr>
+		                            <?php echo $this->partial('shared/modal/link-confirmation', array(
+		                                'id'            => 'deleteModal-' . $page['content_id'],
+		                                'title'         => $this->translate('Action confirmation'),
+		                                'body'          => $this->translate('You are about to delete a page, continue?'),
+		                                'confirmLabel'  => $this->translate('Delete page'),
+		                                'url'           => $this->url('zfcadmin/content/default', array('action' => 'delete', 'id' => $page['content_id'])),
+		                            )) ?>
+			                        <?php endforeach;?>
+								</tbody>
+								
+							</table>	
+							<div class="row action-div">
+								<div class="form-group">
+									<label class="select">
+										<?php echo $this->formselect($this->pagesActionsForm->get('action'))?><i></i>
+									</label>
+								</div>
+								<input type="button" id="bulkDelete" data-toggle="modal" role="button" class="btn btn-default" value="<?php echo $this->translate('Submit')?>" />	
+							</div>
+												
+						</div>
+						<!-- end widget content -->
+						
+						<?php echo $this->form()->closeTag($this->pagesActionsForm)?>
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+	
+	
+			</article>
+			<!-- WIDGET END -->
+	
+	
+		</div>
+	
+		<!-- end row -->
+	
+	</section>
+	
+	<div class="bulkDelete-modal" title="Delete Website"  style="display:none;">
+		<p><?php echo $this->translate('Performing action on one or more pages, continue?')?></p>
+	</div>
+	
+	<!-- end widget grid -->
+	
+	<script type="text/javascript">
+	 	$('.checkall').on('click', function () {
+	        $(this).closest('table').find(':checkbox').prop('checked', this.checked);
+	    });
+	    
+		$('a.delete-btn').click(function() {
+			$($(this).attr("href")).dialog('open');
+			return false;
+		});
+		
+		$('.confirm-modal').dialog({
+			autoOpen : false,
+			width : 400,
+			resizable : false,
+			modal : true,
+			title : "Confirm Delete?",
+			buttons : [{
+				html : "<i class='fa fa-trash-o'></i>&nbsp; Delete page",
+				"class" : "btn btn-danger",
+				click : function() {
+					window.location.href=$(this).attr("attr");				
+				}
+			}, {
+				html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+				"class" : "btn btn-default",
+				click : function() {
+					$(this).dialog("close");
+				}
+			}]
+		});
+		
+		$('#bulkDelete').click(function() {
+			$('.bulkDelete-modal').dialog('open');
+			return false;
+		});
+		
+		$('.bulkDelete-modal').dialog({
+			autoOpen : false,
+			width : 400,
+			resizable : false,
+			modal : true,
+			title : "<?php echo $this->translate('Action confirmation')?>",
+			buttons : [{
+				html : "<i class='fa fa-warning'></i>&nbsp; <?php echo $this->translate('Continue')?>",
+				"class" : "btn btn-danger",
+				click : function() {
+					$('#pagesActionsForm').submit();				
+				}
+			}, {
+				html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+				"class" : "btn btn-default",
+				click : function() {
+					$(this).dialog("close");
+				}
+			}]
+		});
+	
+		// PAGE RELATED SCRIPTS
+	
+	</script>
+</div>

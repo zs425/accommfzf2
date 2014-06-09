@@ -1,0 +1,15 @@
+<tr>
+    <td><img src="<?php echo $this->thumb;?>" width="100px;"/></td>
+    <td><strong><?php echo $this->name?></strong></td>
+    <td><i><?php echo $this->description?></i></td>
+    <td>
+      <?if(!$this->selected):?>
+        <form action="" method="POST">
+        <input type="hidden" name="theme" value="<?php echo $this->dirname?>" />
+        <input type="submit" value="Select" class="btn btn-success"/>
+        </form>
+      <?else:?>
+          <strong>Current</strong>
+      <?endif;?>
+    </td>
+</tr>

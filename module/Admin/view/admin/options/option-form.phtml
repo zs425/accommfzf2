@@ -1,0 +1,83 @@
+<!-- NEW COL START -->
+<article class="col-sm-12 col-md-12 col-lg-4">
+
+	<!-- Widget ID (each widget will need unique ID)-->
+	<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+		<!-- widget options:
+		usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+		data-widget-colorbutton="false"
+		data-widget-editbutton="false"
+		data-widget-togglebutton="false"
+		data-widget-deletebutton="false"
+		data-widget-fullscreenbutton="false"
+		data-widget-custombutton="false"
+		data-widget-collapsed="true"
+		data-widget-sortable="false"
+
+		-->
+		<header>
+			<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+			<h2>New Option </h2>
+
+		</header>
+
+		<!-- widget div-->
+		<div>
+			
+			<!-- widget edit box -->
+			<div class="jarviswidget-editbox">
+				<!-- This area used as dropdown edit box -->
+
+			</div>
+			<!-- end widget edit box -->
+
+			<!-- widget content -->
+			<div class="widget-body no-padding">
+				<?php 
+				   	$this->optionForm->prepare();
+					$this->optionForm->setAttribute('action', $this->action);
+					echo $this->form()->openTag($this->optionForm);
+				?>
+				
+				<div class="smart-form">
+					
+					<fieldset>
+						<section>
+							<label class="label"><?php echo $this->translate("Option name")?></label>
+							<label class="input <?php echo ($this->formElementErrors($this->optionForm->get('optionName')))?"state-error":""; ?>">
+								<?php echo $this->formRow($this->optionForm->get("optionName")->setAttribute('class', 'input-sm')) ?>
+							</label>							
+						</section>
+						
+						<section>
+							<label class="label"><?php echo $this->translate("Option value")?></label>
+							<label class="input <?php echo ($this->formElementErrors($this->optionForm->get('optionValue')))?"state-error":""; ?>">
+								<?php echo $this->formRow($this->optionForm->get("optionValue")->setAttribute('class', 'input-sm')) ?>								 
+							</label>							
+						</section>
+						
+						<section>
+							<label class="label"><?php echo $this->translate("Option category")?></label>
+							<label class="input <?php echo ($this->formElementErrors($this->optionForm->get('optionCategory')))?"state-error":""; ?>">
+								<?php echo $this->formRow($this->optionForm->get("optionCategory")->setAttribute('class', 'input-sm')) ?>
+							</label>							
+						</section>
+					</fieldset>
+					<footer>
+						<?php echo $this->formButton()->render($this->optionForm->get('submit-optionForm'), 'Save'); ?>	
+						
+					</footer>
+				</div>
+				<?php echo $this->form()->closeTag($this->optionForm) ?>
+			</div>
+			<!-- end widget content -->
+
+		</div>
+		<!-- end widget div -->
+
+	</div>
+	<!-- end widget -->
+
+</article>
+<!-- END COL -->

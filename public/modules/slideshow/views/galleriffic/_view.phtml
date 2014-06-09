@@ -1,0 +1,105 @@
+<?php
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = $this->cssWidth;
+$cssHeight = $this->cssHeight;
+$delay = $this->delay;
+($this->thumbnail_width > 0)? $thumbwidth = $this->thumbnail_width: $thumbwidth = '90';
+$newwidth = ((str_replace('px', '', $cssWidth))- $thumbwidth);
+?>
+<link type="text/css" href="/modules/slideshow/scripts/css/galleriffic-2.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/jquery.galleriffic.js"></script>
+<script type="text/javascript" src="/modules/slideshow/scripts/jquery.opacityrollover.js"></script>
+<style>
+	div.slideshow a.advance-link,div.loader{width: <?php echo $newwidth; ?>px; height: <?php echo $cssHeight; ?>;}
+	.slideshow-container{width: <?php echo $newwidth; ?>px;}
+	.caption-container{width: <?php echo $newwidth; ?>px; bottom: 20px; position:absolute;}
+</style>
+<div class="slides_container">
+	<div id="page">
+		<div id="container_1">
+			<div id="gallery" class="content">
+				
+				<div class="slideshow-container">
+					<div id="loading" class="loader"></div>
+					<div id="slideshow" class="slideshow"></div>
+	                <div id="caption" class="caption-container" style="width: <?=$newwidth?>px"></div>
+				</div>
+				
+			</div>
+	
+			<div id="thumbs" class="slideshownavigation">
+				<ul class="thumbs noscript">
+				<?foreach ($images as $img):?>
+					<li>
+						<a class="thumb" href="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/originals/'.$img['image_path']; ?>" title="Title #0">
+							<img src="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/thumb/'.$img['image_path']; ?>" <?= ($img['discription'])?'alt="' . $img['discription'] . ' thumbnail"':'thumbnail'?> <?= ($img['discription'])?'title="' . $img['discription'] . '"':''?> />
+						</a>
+						<div class="caption" style="width: <?=$newwidth?>px;">
+							
+							
+							<!--<div class="image-title">Title #0</div>-->
+							<? if($img['discription']): ?><div class="image-desc"><?= $img['discription']; ?></div><? endif;?>
+						</div>
+					</li>
+				<?endforeach;?>
+				</ul>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+</div>
+  
+<script>
+	$(document).ready(function(){
+		$('div.slideshownavigation').css({'width' : '<?php echo $thumbwidth; ?>px', 'float' : 'left'});
+		$('div.content').css('display', 'block');
+
+		var onMouseOutOpacity = 0.67;
+
+		$('#thumbs ul.thumbs li').opacityrollover({
+		mouseOutOpacity:   onMouseOutOpacity,
+		mouseOverOpacity:  1.0,
+		fadeSpeed:         'fast',
+		exemptionSelector: '.selected'
+		});
+
+		$('#thumbs').galleriffic({
+		delay:                     <?php echo $delay; ?>,
+		numThumbs:                 4,
+		preloadAhead:              10,
+		enableTopPager:            true,
+		enableBottomPager:         true,
+		maxPagesToShow:            7,
+		imageContainerSel:         '#slideshow',
+		controlsContainerSel:      '#controls',
+		captionContainerSel:       '#caption',
+		loadingContainerSel:       '#loading',
+		renderSSControls:          true,
+		renderNavControls:         true,
+		playLinkText:              'Play Slideshow',
+		pauseLinkText:             'Pause Slideshow',
+		prevLinkText:              '&lsaquo; Previous Photo',
+		nextLinkText:              'Next Photo &rsaquo;',
+		nextPageLinkText:          'Next &rsaquo;',
+		prevPageLinkText:          '&lsaquo; Prev',
+		enableHistory:             false,
+		autoStart:                 false,
+		syncTransitions:           true,
+		defaultTransitionDuration: 900,
+		onSlideChange:             function(prevIndex, nextIndex) {
+				// 'this' refers to the gallery, which is an extension of $('#thumbs')
+				this.find('ul.thumbs').children()
+					.eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+					.eq(nextIndex).fadeTo('fast', 1.0);
+			},
+			onPageTransitionOut: function(callback) {
+				this.fadeTo('fast', 0.0, callback);
+			},
+			onPageTransitionIn:        function() {
+				this.fadeTo('fast', 1.0);
+			}
+		});
+	});
+</script>

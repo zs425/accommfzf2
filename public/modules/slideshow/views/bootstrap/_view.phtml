@@ -1,0 +1,78 @@
+<?
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = ($this->cssWidth > 1147 ) ? intval($this->cssWidth) : 1147;
+$cssHeight = ($this->cssHeight > 327 ) ? intval($this->cssHeight) : 327;
+
+$delay = $this->delay;
+$title = $this->title;
+$discription = $this->discription;
+$link = $this->link;
+$linktext = $this->linktext;
+
+$timeout = ($slideshow['slideshow_delay'] > 0) ? intval($slideshow['slideshow_delay']) : 3000;
+$nav = ($slideshow['slideshow_navigation']) ? ",prev: '#slider_next',next: '#slider_prev'" : '';
+//$effects = array('scrollUp', 'scrollDown', 'scrollLeft', 'scrollRight', 'scrollHorz', 'scrollVert', 'shuffle', 
+//        	 'slideX', 'slideY', 'toss', 'turnUp', 'turnDown', 'turnLeft', 'turnRight', 'uncover', 'growX');
+//$fx = (in_array($slideshow->slideshow_effect, $effects))?$slideshow->slideshow_effect:'growX';
+
+// $this->headStyle('.pre_button, .next_button{top:' . (((str_replace('px', '', $cssHeight))/2)- 22) . 'px}');
+?>
+
+<link type="text/css" href="/modules/slideshow/scripts/css/bootstrapHero.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/jcarousel.js"></script>
+<div class="slides_container">
+	<div class="row animated fadeInDown">
+	    <div class="span12" style="height:<?= $cssHeight ?>px; width:<?= $cssWidth ?>px">
+	        <div id="myCarousel" class="carousel slide">
+	            <!-- carousel items -->
+	            <div class="carousel-inner">
+	                <!-- slide -->
+	                <? foreach ($images as $img): ?>
+	                    <div id="slider12" class="item slide">
+	                        <div class="row">
+	                            <?php if (trim($img['title']) != "" || trim($img['desc']) != "" || (trim($img['link']) != "" && trim($img['linktext']) != "")) : ?>
+	                                <div class="span6 animated fadeInDownBig" >
+	                                <?php else : ?>                                
+	
+	                                    <div class="span6 animated fadeInDownBig">
+	                                    <?php endif; ?>
+	
+	                                    <img src="/uploads/slideshow/slideshow-<?= $slideshow['slideshow_id'] . '/originals/' . $img['image_path'] ?>" width="<?= $cssWidth ?>" title="<?= $img['discription'] ?>" />
+	
+	
+	                                </div>
+	                                   
+	                                <?php if (trim($img['title']) != "" || trim($img['desc']) != "" || (trim($img['link']) != "" && trim($img['linktext']) != "")) : ?>
+	                                <div class="span4  animated fadeInUpBig">
+	                                    <?php if (trim($img['title']) != ""): ?>
+	                                        <h2 class="heroslidertitle"> <?= $img['title'] ?>        </h2>
+	                                    <?php endif;
+	                                    if (trim($img['desc']) != ""): ?>
+	                                        <p><?= $img['desc'] ?> </p>
+	                                        <?php
+	                                    endif;
+	                                    if (trim($img['link']) != "" && trim($img['linktext']) != ""):
+	                                        ?>
+	                                        <a href="<?= $img['link'] ?>" class="btn btn-success btn-large">
+	                                        <?= $img['linktext'] ?>
+	                                        </a>
+	                                <?php endif; ?>
+	                                </div>
+						    <?php endif; ?>
+	                        </div>
+	                    </div>
+	            <? endforeach; ?>
+	            </div>
+				<? if ($slideshow['slideshow_navigation']): ?>
+	                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+				<? endif; ?>
+	        </div>                        
+	    </div> 
+	</div>
+</div>
+<script>
+	$('#slider12').addClass('item slide active');
+</script>

@@ -1,0 +1,104 @@
+header #logo-group .logo{
+	width: 230px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+header .user-info{
+	padding:7px 0;
+}
+
+.smart-form .col-md-offset-1 {
+	margin-left: 8.333333333333332%;
+}
+
+.show-grid {
+	margin-bottom: 15px;
+}
+
+.navbar-form{
+	padding:0;
+}
+
+.smart-form.navbar-form .table>thead>tr>th, .smart-form.navbar-form .table>thead>tr>td, .smart-form.navbar-form .table>tbody>tr>td{
+	color: rgb(51, 51, 51);	
+}
+
+.smart-form.navbar-form *, .smart-form.navbar-form :after, .smart-form.navbar-form :before{
+	box-sizing: border-box;
+}
+
+.smart-form.navbar-form .table>tbody>tr>td .label{
+	padding: .2em .6em .3em;
+	font-size: 10px;
+	font-weight: bold;
+	height: auto;
+	width: auto;
+	color: rgb(255, 255, 255);
+	display:inline;	
+}
+
+.smart-form.navbar-form .table>tbody>tr>td a.btn{
+	padding: 6px 12px;
+}
+
+.table.has-tickbox>thead>tr>th:first, .table.has-tickbox>tbody>tr>td:first{
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.smart-form.navbar-form .table.has-tickbox label.checkbox{
+	width:18px;
+}
+
+.smart-form.navbar-form .table.has-tickbox label.checkbox i{
+	width: 19px;
+	height:19px;
+}
+
+div.row.action-div{
+	margin: 9px 0;
+}
+
+div.row.action-div label.select{
+	width: 174px;
+}
+
+div.row.action-div .btn-default{
+	padding: 6px 12px;	
+}
+
+div.information-content > .row{
+	margin: 10px 10px 0 10px;
+}
+
+div.information-content > .row span{
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	margin-right: 10px;
+	text-align: right;
+	width: 70px;
+	font-style: italic;
+}
+
+div.information-content > .row a {
+	color: #666;
+	display: block;
+	line-height: 32px;
+	text-decoration: none;
+	border-bottom: 1px solid #ebebeb;
+}
+
+/* Added by Kirill table order child style */
+table.smart-form tr.child td:first-child{
+    padding-left:30px;
+}
+
+table.smart-form tr td:first-child i{
+    cursor:pointer;
+}
+
+.widget-body-ajax-loading::before{
+	content:url(../images/ajax-loader.gif);
+}

@@ -1,0 +1,36 @@
+<?
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = $this->cssWidth;
+$cssHeight = $this->cssHeight;
+$delay = $this->delay;
+
+$nav = ($slideshow['slideshow_navigation'])?",slideControlls: 'items'":'';
+$fx = (in_array($slideshow['slideshow_effect'], array('slide', 'fade', 'drop')))?$slideshow['slideshow_effect']:'fade';
+
+?>
+<link type="text/css" href="/modules/slideshow/scripts/css/aviaslider.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/jquery.aviaSlider.js"></script>
+<style>
+	.aviaslider {width: <?php echo $cssWidth; ?>; height: <?php echo $cssHeight; ?>}
+</style>
+<div class="slides_container">
+	<ul class='aviaslider'>
+		<?foreach ($images as $img):?>
+		<li><a><img src="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/originals/'.$img['image_path']?>" width="<?=$cssWidth?>" <?= ($img['description'])?'alt="' . $img['description'] . '"':''?> /></a></li>
+	    <?endforeach;?>
+	</ul>
+</div>
+<script>
+	$(document).ready(function(){
+		$('.aviaslider').aviaSlider({
+			transition:'<?php echo $fx; ?>',
+			display: 'all',
+			transitionOrder: ['diagonaltop', 'diagonalbottom','topleft', 'bottomright', 'random'],
+			animationSpeed: 500
+			<?php echo $nav; ?>
+		});	
+	});
+	
+</script>

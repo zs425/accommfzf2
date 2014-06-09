@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Roamfree - Heavy Traffic</title>
+<style>
+	body { background:#FF6600; padding:20px; margin:0; text-align:center; font-family:Tahoma, Arial, Helvetica, sans-serif; color: #FFF; font-size:13px; }
+	.centred { height:120px; position:absolute; left:50%; top:50%; width:32em; margin:-65px -16em 0 ; }
+</style>
+</head>
+
+<body><DIV class=centred>
+<P><A title="Link to roamfree.com" href="http://www.roamfree.com/">Roamfree.com</A> is currently experiencing a very high volume of traffic.</P>
+<P>We apologise for the inconvenience, please <A title="Try again." href="http://www.roamfree.com/">try again</A> shortly.</P></DIV></body>
+</html>

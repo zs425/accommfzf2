@@ -1,0 +1,67 @@
+<?php
+	$uri = $_SERVER["REQUEST_URI"];
+	$slideshow = $this->getSlideshow('getSlideshow', $uri);
+	if($slideshow) {
+		$images = $this->getSlideshow('getSlideshowImages', $slideshow['slideshow_id']);
+		//if($images){
+			$cssWidth  = (!$slideshow['slideshow_width'])?'100%':$slideshow['slideshow_width'].'px';
+	        $cssHeight = (!$slideshow['slideshow_height'])?'100%':$slideshow['slideshow_height'].'px';
+	        $options = array();
+	
+			switch ($slideshow['slideshow_script']){
+	        	case "nivoslider":
+		    		echo $this->partial('nivoslider/_view',
+    	   				array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight));
+	        		break;
+				case "jcarousellite":
+	        		$delay = ($slideshow['slideshow_delay'] > 1000)?$slideshow['slideshow_delay']:3000;
+	        		echo $this->partial('jcarousellite/_view',
+	       				array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight, 'delay'=>$delay));	
+					break;
+				case "bootstrap":
+	        		$delay = ($slideshow['slideshow_delay'] > 1000)?$slideshow['slideshow_delay']:3000;
+        			echo $this->partial('bootstrap/_view',
+        				array('title' => $title, 'discription' => $discription, 'link' => $link, 'linktext' => $linktext, 'slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight, 'delay'=>$delay));
+					break;
+				case "FeaturedContentSlider":
+        			$delay = ($slideshow['slideshow_delay'] > 1000)?$slideshow['slideshow_delay']:3000;
+        			echo $this->partial('FeaturedContentSlider/_view',
+        				array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight,'delay'=>$delay));
+        			break;	
+				case "wideslider":
+	        		$delay = ($slideshow['slideshow_delay'] > 1000)?$slideshow['slideshow_delay']:3000;
+        			echo $this->partial('wideslider/_view',
+        				array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight,'delay'=>$delay));
+		       		break;
+				case "galleriffic":
+	        		$delay = ($slideshow['slideshow_delay'] > 1000)?$slideshow['slideshow_delay']:3000;
+	        		echo $this->partial('galleriffic/_view',
+	        				array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight,'delay'=>$delay));
+	        		break;
+				case "EstroSlider":
+	        		$delay = ($slideshow['slideshow_delay'] < 3000)?3000:$slideshow['slideshow_delay'];
+	        		echo $this->partial('EstroSlider/_view.phtml',
+	        				array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight,'delay'=>$delay));
+	        		break;
+				case "cycle":
+        			$delay = ($slideshow['slideshow_delay'] < 3000)?3000:$slideshow['slideshow_delay'];
+        			echo $this->partial('cycle/_view.phtml',
+        					array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight,'delay'=>$delay));
+        			break;
+				case "aviaslider":
+        			$delay = ($slideshow['slideshow_delay'] < 3000)?3000:$slideshow['slideshow_delay'];
+        			echo $this->partial('aviaslider/_view.phtml',
+        					array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight,'delay'=>$delay));
+        			break;
+				case "jqfancytransitions":
+					echo $this->partial('jqfancytransitions/_view.phtml',
+        				array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight));
+				default:
+					echo $this->partial('default/_view.phtml',
+        				array('slideshow' => $slideshow, 'images'=>$images, 'cssWidth'=>$cssWidth, 'cssHeight'=>$cssHeight));
+			}
+		//}		
+	}
+	
+	
+ 

@@ -1,0 +1,82 @@
+<div id="more-info<?php echo $this->product['productId'] ?>" class="modal hide fade in product-info-modal"
+     style="display: none;">
+    <div class="modal-header" style="padding:0 10px;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="page-header clearfix" style="border-bottom:0;padding-bottom:0;">
+            <a class="btn btn-success btn-large pull-left" href="<?php echo $this->product['bookUrl'] ?>" rel="external"
+               title="<?php echo $this->provider . '-' . $this->product['productName'] ?>"
+               target="_blank"><?php echo $this->translate('Best Price') ?> - $<?php echo $this->product['GrossRate'] ?>
+                <br><strong><?php echo $this->translate('Book Now') ?></strong></a>
+
+            <h3>
+                <a href="<?php echo $this->url('accommview', array('slug' => $this->product['productId'] . '-' . $this->UrlFilter($this->product['productName']))) ?>"
+                   target="_blank"><?php echo $this->product['productName'] ?></a></h3>
+        </div>
+    </div>
+    <div class="modal-body">
+        <p class="span7"><?php echo $this->product['productDescription'] ?></p>
+        <?php
+        if ((isset($this->product['productMultimedia']) && $this->product['productMultimedia']) || $this->product['productPhoto']) : ?>
+            <ul class="img_holder span3  thumbnails" id="modalmainimage_<?php echo $this->product['productId'] ?>">
+                <?php $n = 0;
+                if ($this->product['productPhoto']) : ?>
+                    <li><a href="<?php echo $this->imagePath($this->product) . $this->product['productPhoto'] ?>"
+                           class="preview" title="<?php echo $this->product['productName'] ?>"><img
+                                src="<?php echo $this->thumbPath($this->product, 100) . $this->product['productPhoto'] ?>"
+                                alt="<?php echo $this->product['productName'] ?>" width="100" class="thumbnail"></a>
+                    </li>
+                    <?php $n++; ?>
+                <?php endif;
+                if (isset($this->product['productMultimedia']) && $this->product['productMultimedia']) :
+                    foreach ($this->product['productMultimedia'] as $multimedia) :
+                        if ($multimedia['multimediaRecordType'] == 'ACCOMM') : ?>
+                            <li>
+                                <a href="<?php echo $this->imagePath($this->product) . $multimedia['multimediaPath'] ?>"
+                                   class="preview"><img
+                                        src="<?php echo $this->thumbPath($this->product, 100) . $multimedia['multimediaPath'] ?>"
+                                        alt="<?php echo $multimedia['multimediaDescription'] ?>" width="100"
+                                        class="thumbnail"></a></li>
+                            <?php $n++;
+                            if ($n >= 4) {
+                                break;
+                            } ?>
+                        <?php endif;
+                    endforeach;
+                endif; ?>
+            </ul>
+        <?php endif; ?>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th><?php echo $this->translate('Provider') ?></th>
+                <th><?php echo $this->translate('Description') ?></th>
+                <th><?php echo $this->translate('Per Night') ?></th>
+                <th><?php echo $this->translate('Total') ?></th>
+                <th><?php echo $this->translate('Book/More Info') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><?php echo $this->provider ?></td>
+                <td><?php echo $this->product['productName'] ?></td>
+                <td>$<?php echo $this->product['GrossRate'] / $this->product['nights'] ?></td>
+                <td>$<?php echo $this->product['GrossRate'] ?></td>
+                <td><a href="<?php echo $this->product['bookUrl'] ?>" rel="external"
+                       title="<?php echo $this->provider . '-' . $this->product['productName'] ?>" target="_blank"><img
+                            src="http://cms.bookaccommodationonline.com.au/shared/list/images/go20.png" alt="Book"
+                            border="0"></a></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true"><?php echo $this->translate('Close') ?></a>
+        <a href="<?php echo $this->url('accommview', array('slug' => $this->product['productId'] . '-' . $this->UrlFilter($this->product['productName']))) ?>"
+           rel="external" title="<?php echo $this->provider . '-' . $this->product['productName'] ?>" target="_blank"
+           class="btn btn-info"><?php echo $this->translate('More Info') ?></a>
+        <a href="<?php echo $this->product['bookUrl'] ?>" target="_blank" rel="external"
+           class="btn btn-success"><?php echo $this->translate('Book Now') ?></a>
+    </div>
+</div>

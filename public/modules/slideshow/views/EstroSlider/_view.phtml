@@ -1,0 +1,58 @@
+<?php
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = $this->cssWidth;
+$cssHeight = $this->cssHeight;
+$delay = $this->delay;
+$slideshowtitle = $this->slideshowtitle;
+
+?>
+
+<link type="text/css" href="/modules/slideshow/scripts/css/skin.min.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/jquery.pixelentity.kenburnsSlider.min.js"></script>
+
+<style>
+.peKenBurns {
+		width: <?= $cssWidth ?>;
+		height: <?= $cssHeight ?>;
+    	margin-left: auto;
+    	margin-right: auto;
+    	margin-top: 10px;
+    	margin-bottom: 20px;
+}
+
+.peKenBurns .slideshowtitle {
+	width:<?= ($cssWidth - 30) ?>px;
+	font-weight: bold;
+}
+
+.slide_container {
+		width:100%;
+}
+
+p.desc{
+	font-weight:bold;
+	font-size:15px;
+}
+
+</style>
+<div class="slide_container">
+    
+	<div class="peKenBurns peActiveWidget" data-mode="kb" data-logo="disabled" data-controls="inner" data-shadow="disabled">
+    <? if ($slideshowtitle){?><div class="slideshowtitle"><?=$slideshowtitle?></div><? }?>
+	
+	<?foreach ($images as $img):?>
+		<div data-delay="5" data-thumb="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/thumb/'.$img['image_path']; ?>">
+			<img src="/modules/slideshow/views/EstroSlider/blank.png" data-src="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/originals/'.$img['image']; ?>" alt="Banner Image 1" <?/*width="<?=$cssWidth?>"*/?> <?= ($img['discription'])?'title="' . $img['discription'] . '"':''?>)" />
+			<? if ($img['discription']) {?><p class="desc"><?= strip_tags($img['discription']) ?></p><? }?>
+		</div>
+	<?endforeach;?>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		$('.peKenBurns').peKenburnsSlider();
+	});
+</script>

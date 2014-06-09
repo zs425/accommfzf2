@@ -1,0 +1,41 @@
+<?php 
+$slideshow = $this->slideshow;
+$images = $this->images;
+//echo "<pre>".print_r($images, true)."</pre>";
+//$this->block_selector;
+$cssWidth = $this->cssWidth;
+$cssHeight = $this->cssHeight;
+
+// required params
+$options['slices'] = '1';
+// options
+$effects = array('fold', 'fade', 'sliceDown', 'sliceDownLeft', 'sliceUp', 'sliceUpLeft', 'sliceUpDown', 'sliceUpDownLeft');
+$options['effect'] = (in_array($slideshow['slideshow_effect'], $effects))?$slideshow['slideshow_effect']:'random';
+$options['controlNav'] = intval($slideshow['slideshow_navigation']);
+$options['directionNav'] = intval($slideshow['slideshow_navigation']);
+$options['pauseTime'] = ($slideshow['slideshow_delay'] > 0)?intval($slideshow['slideshow_delay']):3000;
+
+$slideshow['slideshow_width'] = ($slideshow['slideshow_width'] == 0)?'auto':$slideshow['slideshow_width'].'px';
+$slideshow['slideshow_height'] = ($slideshow['slideshow_height'] == 0)?'auto':$slideshow['slideshow_height'].'px';
+
+?>
+
+<link type="text/css" href="/modules/slideshow/scripts/css/nivo.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/jquery.nivo.slider.pack.js"></script>
+<style>
+	.ace-slider {min-height:100px;width:<?php echo $cssWidth; ?>; height:<?php echo $cssHeight; ?>; overflow:hidden;}
+</style>
+
+<div class="slides_container">
+	<div id="slider" class="ace-slider">
+		<?foreach ($images as $img):?>
+	    	<img src="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/originals/'.$img['image_path']?>" width="<?=$cssWidth?>" <?= ($img['discription'])?'title="' . $img['discription'] . '"':''?>"/>
+		<?endforeach;?>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		$('#slider').nivoSlider(<?php echo Zend\Json\Json::encode($options); ?>);
+	});
+</script>

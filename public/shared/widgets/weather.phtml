@@ -1,0 +1,17 @@
+<?php $forecast = $this->getForecast($this->option('mega_region', 'megamenu')); ?>
+<div class="forecastWidgetContainer">
+    <div class="ntop forecastRegion"><h3><?php echo $this->getAreaName($this->option('mega_region', 'megamenu'))?> <?php echo $this->translate('Forecast')?></h3></div>
+    <div class="forecastContent">
+    <?php foreach($forecast as $cast): ?>
+        <p>
+            <b><?php echo $cast['day']?></b><br/>
+            <img src="<?php echo $cast['iconUri']?>" alt="<?php echo $cast['iconAlt']?>" width="30" style="float:left; margin:0 5px 0 0;" />
+            <?php echo $cast['min'] . ' - ' . $cast['max'] . 'C'?>
+            <br/>
+            <?php echo $cast['description']?>
+            <br clear="all" /> 
+        </p>
+    <?php endforeach;?>
+    <a href="<?php echo $this->url('weather')?>"><?php echo $this->translate('More locations')?></a>
+    </div>
+</div>

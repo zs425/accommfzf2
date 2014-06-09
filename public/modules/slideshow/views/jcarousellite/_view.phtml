@@ -1,0 +1,75 @@
+<?
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = $this->cssWidth;
+$cssHeight = $this->cssHeight;
+$delay = $this->delay;
+?>
+<link type="text/css" href="/modules/slideshow/scripts/css/jcarousel.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/jcarousel.js"></script>
+<script type="text/javascript" src="/modules/slideshow/scripts/easing.js"></script>
+
+<div class="slides_container"> 
+	<div id="slider" class="intro">
+		<div id="placeslideshow">
+			<div id="slideshow">
+				<div id="shadowslideshow"></div>
+				<ul>
+				<?foreach ($images as $img):?>
+	               	<li><img src="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/originals/'.$img['image_path']?>" width="<?=$cssWidth?>" <?= ($img['discription'])?'title="' . $img['discription'] . '"':''?>)" /></li>
+	            <?endforeach;?>
+				</ul>
+			</div>
+			<div id="captionslideshow">
+				<ul>
+				<?foreach ($images as $img):?>
+	               	<li></li>
+	           	<?endforeach;?>
+				</ul>
+			</div>
+		</div>
+			
+		<div id="introright">
+			<ul>
+				<?foreach ($images as $img):?>
+	    			<li style="width:100%"><?=(isset($text[$img]))?$text[$img]:''?></li>
+	           	<?endforeach;?>
+			</ul>
+			<?if ($slideshow['slideshow_navigation']):?>
+				<div id="placenav"><a href="#" class="replace" id="butprev"><span></span>Prev</a> <a href="#" class="replace" id="butnext"><span></span>Next</a></div>
+			<?endif;?>
+		</div>
+	</div>   
+</div>
+<script>
+	$(document).ready(function(){
+		$('#slideshow').jCarouselLite({ 
+	    	btnPrev:   '#placenav #butprev', 
+	        btnNext:   '#placenav #butnext', 
+			easing:'easeInOutExpo', //Animation for Images Slideshow
+			speed:900,
+			auto: <?php echo $delay; ?>,
+			vertical:true,
+			visible:1
+		});
+		
+	    $('#introright').jCarouselLite({ 
+	    	btnPrev:   '#placenav #butprev', 
+		    btnNext:   '#placenav #butnext', 
+			easing:'easeInOutExpo', //Animation for Text
+			speed:900,
+			auto:<?php echo $delay; ?>,
+			visible:1
+		});
+		
+		$('#captionslideshow').jCarouselLite({ 
+	    	btnPrev:   '#placenav #butprev', 
+		    btnNext:   '#placenav #butnext', 
+			easing:'easeInOutExpo', //Animation for Photo Caption
+			speed:900,
+			auto:<?php echo $delay; ?>,
+			visible:1
+		}); 
+	});
+</script>

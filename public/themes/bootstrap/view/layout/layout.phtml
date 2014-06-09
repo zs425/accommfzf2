@@ -1,0 +1,67 @@
+<?php
+echo $this->doctype ();
+$themeUrl = $this->themeUrl = "/themes/bootstrap/view/";
+$assets = $themeUrl = "/themes/bootstrap/assets/";
+$this->config = $this->serviceManager()->get('Config');
+
+if(isset($this->meta)) foreach ($this->meta as $meta) {
+    $this->headMeta()->setName($meta['name'], $meta['value']);
+}
+
+$this->headTitle ()->setSeparator ( ' - ' )->setAutoEscape ( false );
+$basePath = $this->basePath ();
+$this->headLink ()->appendStylesheet('/shared/default.css' )->appendStylesheet ( $this->themeUrl . '/assets/css/bootstrap.css' )/*->appendStylesheet ( $basePath . '/css/style.css' )*/->appendStylesheet ( $this->themeUrl . '/assets/css/bootstrap-responsive.min.css' )->appendStylesheet ( $this->themeUrl . '/assets/css/screen.css' );
+// HTML5 shim, for IE6-8 support of HTML elements
+$this->headScript ()->appendFile ( $this->themeUrl . 'assets/js/html5.js', 'text/javascript', array ('conditional' => 'lt IE 9'))
+->appendFile('http://code.jquery.com/jquery-1.9.1.js', 'text/javascript')
+->appendFile('http://code.jquery.com/ui/1.10.3/jquery-ui.js', 'text/javascript')
+->appendFile($this->themeUrl . '/assets/js/bootstrap.js', 'text/javascript')
+->appendFile('/shared/viewpages/accommodation/enhanced/bootstrap1/js/slides.min.jquery.js', 'text/javascript')
+->appendFile('/bootstrap-editor/scripts/innovaeditor.js', 'text/javascript')
+->appendFile('/bootstrap-editor/scripts/innovamanager.js', 'text/javascript')
+->appendFile('https://maps.googleapis.com/maps/api/js?sensor=true', 'text/javascript')
+->appendFile($this->themeUrl . '/assets/js/jail.js', 'text/javascript')
+->appendFile($this->themeUrl . '/assets/js/custom.js', 'text/javascript');
+?>
+<?php $this->headLink()->appendStylesheet('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css')
+                       ->appendStylesheet( '/shared/viewpages/accommodation/enhanced/bootstrap1/css/bootstrap1.css')
+					   ->appendStylesheet( '/shared/viewpages/accommodation/enhanced/bootstrap1/css/jslider.css')
+					   ->appendStylesheet( $this->themeUrl . '/assets/css/custom.css')
+					   ->headLink(array('rel' => 'shortcut icon', 'href' => 'data:image/x-icon;,', 'type' => 'image/x-icon'))
+;
+?>
+<html lang="en">
+<head>
+<meta charset="utf-8">    
+    
+    <?php echo (isset($this->title)) ? $this->headTitle($this->title) : $this->headTitle($this->config['accomm']['sitename'])?>    
+    <?php echo $this->headMeta()->setName('viewport', 'width=device-width, initial-scale=1.0')?>
+    <?php echo $this->headLink()?>
+<!-- Scripts -->
+    <?php echo $this->headScript() ?>
+    <link href='http://fonts.googleapis.com/css?family=Doppio+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
+   <style type="text/css">
+body {
+	background: url("<?php echo $this->themeUrl?>assets/img/bg.jpg") repeat #F3F1F8;
+	padding-top: 0px;
+}
+</style>
+</head>
+<body>   
+<?php echo $this->partial('layout/nav', array());?>
+    <div class="container">
+    	<div class="header_slider" style="background-image:url(/shared/viewpages/accommodation/enhanced/bootstrap1/images/pattern_4.png); background-color:#222">
+	    	<?php echo $this->partial('layout/headerslider');?>
+	    </div>	
+      	<?php echo $this->content; ?>
+      	<hr>
+		<footer>
+			<p>&copy; 2006 - 2012 by Zend Technologies Ltd. All rights reserved.</p>
+		</footer>
+	</div>
+	<!-- /container -->
+</body>
+</html>

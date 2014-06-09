@@ -1,0 +1,8 @@
+/*** verity ***/
+#wideslider .slide-img {height:290px; display:block; margin:0 auto; border:10px solid #fff;position:relative;
+/*border-bottom:10px solid #fff;*/ background-repeat:no-repeat; background-position:50% 0;}
+#wideslider .slide-pag {width:980px; height:45px; display:block; margin:0 auto;text-align:center;}
+#wideslider .slide-pag img {cursor:pointer;}
+#wideslider .slide-caption {position:absolute;top:230px;right:0;display:none;
+background:url(/modules/slideshow/scripts/images/transp-black.png) repeat;font-size:1.9em;text-align:center;padding:10px 30px;}
+#wideslider .noCaption {margin:0;padding:0;width:0;height:0}

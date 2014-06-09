@@ -1,0 +1,176 @@
+<!-- RIBBON -->
+<div id="ribbon">
+
+	<span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+	<!-- breadcrumb -->
+	<ol class="breadcrumb">
+		<li>Admin</li><li>Central DB</li><li>Sites</li>
+	</ol>
+	<!-- end breadcrumb -->
+
+	<!-- You can also add more buttons to the
+	ribbon for further usability
+
+	Example below:
+
+	<span class="ribbon-button-alignment pull-right">
+	<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+	<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+	<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+	</span> -->
+
+</div>
+<!-- MAIN CONTENT -->
+<div id="content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+			<h1 class="page-title txt-color-blueDark">
+				<i class="fa fa--building fa-fw "></i> 
+					Central DB 
+				<span>> 
+					Sites > Website List
+				</span>
+			</h1>
+		</div>	
+	</div>
+	
+	<!-- widget grid -->
+	<section id="widget-grid" class="">
+	
+		<!-- row -->
+		<div class="row">
+	
+			<!-- NEW WIDGET START -->
+			<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+						<h2>Websites &nbsp;&nbsp;&nbsp;</h2>
+						<a class="btn btn-primary" href="<?php echo $this->url('zfcadmin/centraldb/site/default', array('action' => 'addWebsite'))?>"><?php echo $this->translate('Add New')?></a>
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+	
+						<!-- widget content -->
+						<div class="widget-body">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Thumb</th>
+							            <th>Site</th>
+							            <th>Url</th>
+							            <th>Added</th>
+							            <th>Categories</th>
+			                            <th width="10%"><?php echo $this->translate('Actions')?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ($this->websiteList as $s): ?>
+						            <tr>
+						                <td><img src="<?=$s['image_url']?>"  style="height: 40px;"/></td>
+			                            <td><a href="<?=$s['websiteUrl'];?>" target="_blank"><?=$s['websiteName'];?></a>
+						                </td>
+						                <td>
+						                    <?=$s['websiteUrl'];?>
+						                </td>
+						                <td><?=$s['websiteAdded']->format('Y-m-d');?></td>
+						                
+						                <td><span class="label label-success"><?=$s['websiteCategories'];?></span></td>
+			                            <td>
+			                                <a href="<?php echo $this->url('zfcadmin/centraldb/site/default', array('action' => 'editWebsite', 'id' => $s['websiteId']));?>" class="btn btn-mini" title="Edit Website"><i class="fa fa-edit"></i></a>
+			                                <a href="#<?php echo 'deleteModal-' . $s['websiteId']; ?>" class="delete-btn btn btn-mini" title="Remove Website"><i class="fa fa-times"></i></a>
+			                            </td>
+						            </tr>
+			                        <?php echo $this->partial('shared/modal/link-confirmation', array(
+			                                'id'            => 'deleteModal-' . $s['websiteId'],
+			                                'title'         => $this->translate('Action confirmation'),
+			                                'body'          => $this->translate('You are about to delete a website, continue?'),
+			                                'confirmLabel'  => $this->translate('Delete website'),
+			                                'url'           => $this->url('zfcadmin/centraldb/site/default', array('action' => 'delete', 'id' => $s['websiteId'])),
+			                            )) ?>
+						            <?php endforeach; ?>
+								</tbody>
+								<tfoot class="lightblue">
+						            <tr>
+						                <td colspan="6">Total Sites: <code><?php echo count($this->websiteList)?></code></td>
+						            </tr>
+						        </tfoot>
+							</table>						
+						</div>
+						<!-- end widget content -->
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+	
+	
+			</article>
+			<!-- WIDGET END -->
+	
+	
+		</div>
+	
+		<!-- end row -->
+	
+	
+	</section>
+	<!-- end widget grid -->
+</div>
+
+<script type="text/javascript">
+	
+	$('a.delete-btn').click(function() {
+		$($(this).attr("href")).dialog('open');
+		return false;
+	});
+	
+	$('.confirm-modal').dialog({
+		autoOpen : false,
+		width : 400,
+		resizable : false,
+		modal : true,
+		title : "Confirm Delete?",
+		buttons : [{
+			html : "<i class='fa fa-trash-o'></i>&nbsp; Delete website",
+			"class" : "btn btn-danger",
+			click : function() {
+				window.location.href=$(this).attr("attr");				
+			}
+		}, {
+			html : "<i class='fa fa-times'></i>&nbsp; Cancel",
+			"class" : "btn btn-default",
+			click : function() {
+				$(this).dialog("close");
+			}
+		}]
+	});
+
+	// PAGE RELATED SCRIPTS
+
+</script>

@@ -1,0 +1,140 @@
+
+<!-- widget grid -->
+<section id="widget-grid" class="">
+
+	<!-- START ROW -->
+
+	<div class="row">
+
+		<!-- NEW COL START -->
+		<article class="col-sm-12 col-md-12 col-lg-6">
+
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+				<!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2>Website Information</h2>
+
+				</header>
+
+				<!-- widget div-->
+				<div>
+
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+
+					</div>
+					<!-- end widget edit box -->
+
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						<?php $this->websiteForm->setAttribute('action', $this->action)->setAttribute('class', "smart-form")?>
+						<?php $this->websiteForm->prepare();?>
+						<?php echo $this->form()->openTag($this->websiteForm)?>
+
+							<fieldset>
+								<section>
+									<label class="label"><?php echo $this->translate('Website Name')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->websiteForm->get('websiteName')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->websiteForm->get('websiteName')->setAttribute('class', 'input-sm'))?>
+									</label>
+								</section>
+								
+								<section>
+									<label class="label"><?php echo $this->translate('Url')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->websiteForm->get('websiteUrl')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->websiteForm->get('websiteUrl')->setAttribute('class', 'input-sm'));?>
+									</label>
+								</section>
+
+								<section>
+									<label class="label"><?php echo $this->translate('Slug')?></label>
+									<label class="input <?php echo ($this->formElementErrors($this->websiteForm->get('websiteSlug')))?"state-error":""; ?>">
+										<?php echo $this->formrow($this->websiteForm->get('websiteSlug')->setAttribute('class', 'input-sm'));?>
+									</label>
+								</section>
+							</fieldset>
+							
+							<fieldset>
+								<section>
+									<label class="label"><?php echo $this->translate('Preview')?></label>
+									<?php if($this->action != "/admin/centraldb/site/addWebsite"): ?>
+									<div class="row" style="margin: 0 0">
+										<div class="col-md-3">
+											<img src="<?php echo $this->image_url; ?>" style="width:100%;"/>
+										</div>
+										<div class="col-md-8 col-md-offset-1">
+											<label for="file" class="input input-file <?php echo ($this->formElementErrors($this->websiteForm->get('websitePreviewsmall_file')))?"state-error":""; ?>">
+												<div class="button">
+													<?php echo $this->formElement($this->websiteForm->get('websitePreviewsmall_file')->setAttribute('onchange', 'this.parentNode.nextSibling.value = this.value'))?>Browse
+												</div><input type="text" placeholder="Include website image" readonly="" class="input-sm">
+												<?php echo $this->formElementErrors($this->websiteForm->get('websitePreviewsmall_file')); ?>												
+											</label>
+										</div>
+									</div>
+									<?php else: ?>
+										<label for="file" class="input input-file <?php echo ($this->formElementErrors($this->websiteForm->get('websitePreviewsmall_file')))?"state-error":""; ?>">
+											<div class="button">
+												<?php echo $this->formElement($this->websiteForm->get('websitePreviewsmall_file')->setAttribute('onchange', 'this.parentNode.nextSibling.value = this.value'))?>Browse
+											</div><input type="text" placeholder="Include website image" readonly="" class="input-sm">
+											<?php echo $this->formElementErrors($this->websiteForm->get('websitePreviewsmall_file')); ?>	
+										</label>
+									<?php endif; ?>
+									<?php echo $this->formElement($this->websiteForm->get('websitePreviewsmall'));?>
+								</section>
+								
+								<section>
+									<label class="label"><?php echo $this->translate('Short Description')?></label>
+									<label class="textarea">
+										<?php echo $this->formrow($this->websiteForm->get('websiteShortdesc')->setAttribute('class', 'custom-scroll input-sm')->setAttribute('rows', '3'))?>										
+									</label>									
+								</section>
+								
+								<section>
+									<label class="label"><?php echo $this->translate('Category')?></label>
+									<label class="select select-multiple">
+										<?php echo $this->formrow($this->websiteForm->get('websiteCategories')->setAttribute('class', 'custom-scroll')->setAttribute('multiple', 'multiple')->setAttribute('rows', '3'))?>
+									</label>
+								</section>
+							</fieldset>
+
+							<footer>
+								<?php echo $this->formButton()->render($this->websiteForm->get('submit-websiteForm'), 'Save website'); ?>																
+								<button type="button" class="btn btn-default" onclick="window.history.back();">
+									Back
+								</button>
+							</footer>
+						<?php echo $this->form()->closeTag($this->websiteForm); ?>
+
+					</div>
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+
+			</div>
+			<!-- end widget -->
+
+		</article>
+		<!-- END COL -->
+
+	</div>
+
+	<!-- END ROW -->	
+
+</section>
+<!-- end widget grid -->

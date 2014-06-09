@@ -1,0 +1,46 @@
+<?
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = $this->cssWidth;
+$cssHeight = $this->cssHeight;
+$delay = $this->delay;
+
+$timeout = ($slideshow['slideshow_delay'] > 0)?intval($slideshow['slideshow_delay']):3000;
+$nav = ($slideshow['slideshow_navigation'])?",prev: '#slider_next',next: '#slider_prev'":'';
+$effects = array('scrollUp', 'scrollDown', 'scrollLeft', 'scrollRight', 'scrollHorz', 'scrollVert', 'shuffle', 
+        	 'slideX', 'slideY', 'toss', 'turnUp', 'turnDown', 'turnLeft', 'turnRight', 'uncover', 'growX');
+$fx = (in_array($slideshow['slideshow_effect'], $effects))?$slideshow['slideshow_effect']:'growX';
+?>
+
+<link type="text/css" href="/modules/slideshow/scripts/css/cycle.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/jquery.pfabrics.all.min.js"></script>
+<script type="text/javascript" src="/modules/slideshow/scripts/easing.js"></script>
+<style>
+	.pre_button, .next_button{top: <?php echo (((str_replace('px', '', $cssHeight))/2)- 22); ?>px}
+</style>
+<div class="slides_container">
+	<div class="cycle_container" style="width:<?=$cssWidth?>;height:<?=$cssHeight?>">
+	   	
+	    <div class="slider_image"> 
+	      	<?foreach ($images as $img):?>
+	       	<img src="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/originals/'.$img['image_path']?>" width="<?=$cssWidth?>" <?=($img['discription'])?'title="' . $img['discription'] . '"':''?>)" />
+	       	<?endforeach;?>
+	   	</div>
+	    <?if ($slideshow['slideshow_navigation']):?>
+	       	<a href="#" id="slider_next" class="next_button"></a> <a href="#" id="slider_prev" class="pre_button"></a>
+	    <?endif;?>
+	</div> 
+</div>
+<script>
+	$(document).ready(function(){
+		$('.slider_image').cycle({
+    		fx:'$fx',
+        	speed: 500,
+        	pause: 1,
+        	timeout: <?php echo $timeout; ?>,
+        	delay: 1200
+        	<?php echo $nav; ?>
+        });
+	});
+</script>

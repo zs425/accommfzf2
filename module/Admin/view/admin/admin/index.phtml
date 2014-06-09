@@ -1,0 +1,64 @@
+<?php
+$form = $this->loginForm->setAttribute('class', 'smart-form client-form');;
+$form->prepare();
+
+?>
+
+<!-- possible classes: minified, no-right-panel, fixed-ribbon, fixed-header, fixed-width-->
+<header id="header">
+
+</header>
+
+<div id="main" role="main">
+
+	<!-- MAIN CONTENT -->
+	<div id="content" class="container">
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-7 col-lg-4 hidden-xs hidden-sm">
+				
+
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+				<div class="well no-padding">
+					<?php echo $this->form()->openTag($form); ?>
+						<header>
+							<?php echo $this->translate('Login')?> 
+						</header>
+	
+						<fieldset>
+							
+							<section>
+								<label class="label"><?php echo $this->translate('Username')?></label>
+								<label class="input"> <i class="icon-append fa fa-user"></i>
+									<?php echo $this->formRow($form->get('username')); ?>
+									<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter username</b>
+								</label>
+							</section>
+	
+							<section>
+								<label class="label"><?php echo $this->translate('Password')?></label>
+								<label class="input"> <i class="icon-append fa fa-lock"></i>
+									<?php echo $this->formRow($form->get('password')); ?>
+									<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b>
+								</label>								
+							</section>
+	
+							<section>
+								<label class="checkbox">
+									<?php echo $this->formcheckbox($form->get('rememberMe'))?>
+									<i></i> <?php echo $this->translate('Remember Me'); ?></label>
+							</section>
+						</fieldset>
+						<footer>
+							<?php echo $this->formsubmit($form->get('submit')->setAttribute('class', 'btn btn-primary')); ?>							
+						</footer>
+					<?php echo $this->form()->closeTag($form); ?>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+</div>

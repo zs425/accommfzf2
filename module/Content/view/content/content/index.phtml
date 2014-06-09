@@ -1,0 +1,6 @@
+<?php echo $this->partial('layout/headerslider', array('searchForm' => $this->searchForm));?>
+<div class="page">
+  <div class="contentHead"><h1><?php echo $this->page->getContentTitle() ?></h1></div>
+  <div class="contentBody"><?php echo $this->page->getContentBody() ?></div>
+  <div class="contentFoot"><i><?php echo sprintf($this->translate('Posted by: %s %s'), $this->page->getContentUserId()->getUsername(), Date('d F Y', $this->page->getContentCreated())) ?></i></div>
+</div>

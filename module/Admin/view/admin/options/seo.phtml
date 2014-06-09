@@ -1,0 +1,240 @@
+<!-- RIBBON -->
+<div id="ribbon">
+
+	<span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+	<!-- breadcrumb -->
+	<ol class="breadcrumb">
+		<li>Admin</li><li>Settings</li><li>Seo</li>
+	</ol>
+	<!-- end breadcrumb -->
+
+	<!-- You can also add more buttons to the
+	ribbon for further usability
+
+	Example below:
+
+	<span class="ribbon-button-alignment pull-right">
+	<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+	<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+	<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+	</span> -->
+
+</div>
+<!-- MAIN CONTENT -->
+<div id="content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+			<h1 class="page-title txt-color-blueDark">
+				<i class="fa fa-edit fa-fw "></i> 
+					Settings 
+				<span>> 
+					Seo
+				</span>
+			</h1>
+		</div>
+	</div>
+	
+	<!-- widget grid -->
+	<section id="widget-grid" class="">
+	
+		<!-- START ROW -->
+	
+		<div class="row">
+	
+			<!-- NEW COL START -->
+			<div class="col-sm-12 col-md-12 col-lg-6 ">
+	
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-custombutton="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+						<h2><?php echo $this->translate('Seo Settings')?></h2>
+	
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+	
+						<!-- widget content -->
+						<div class="widget-body no-padding">
+							<?php $this->form->prepare(); ?>
+							<?php echo $this->form()->openTag($this->form);?>
+							<div class="smart-form">
+								<fieldset>
+									<section>
+										<label class="label"><?php echo $this->translate('#1 - keyword_h1')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('keyword_h1')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('keyword_h1'))?>
+										</label>
+										<div class="note">Used as global site title and &lt;h1&gt;</div>							
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('#2 - keyword_h2')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('keyword_h2')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('keyword_h2'))?>
+										</label>
+										<div class="note">Used as &lt;h1&gt; on internal pages eg. "Browse {keyword_h1} Accommodation/Attractions/Events</div>							
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('#3 - keyword_alt')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('keyword_alt')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('keyword_alt'))?>
+										</label>
+										<div class="note">Used as the alt and title tag on the logo</div>							
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('#4 - keyword_p1')?></label>
+										<label class="textarea">
+											<?php echo $this->formrow($this->form->get('keyword_p1')->setAttribute('class', 'custom-scroll input-sm')->setAttribute('rows', '3'))?>										
+										</label>
+										<div class="note">The paragraph 1 text which will go down the left hand side under the preface</div>									
+									</section>
+																		
+									<section>
+										<label class="label"><?php echo $this->translate('#5 - keyword_p2')?></label>
+										<label class="textarea">
+											<?php echo $this->formrow($this->form->get('keyword_p2')->setAttribute('class', 'custom-scroll input-sm')->setAttribute('rows', '3'))?>										
+										</label>
+										<div class="note">The paragraph 2 text which will go down the left hand side under the preface</div>									
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('Show intro block on front page')?></label>
+										<div class="inline-group">
+											<?php $radios = $this->form->get('show_intro_block')->getValueOptions(); ?>
+											<?php foreach($radios as $key => $val): ?>
+												<label class="radio">
+													<input type="radio" name="zfdebug" value="<?php echo $key; ?>" <?php echo ($this->form->get('show_intro_block')->getValue() == $key)?'checked="checked"':''; ?>>
+													<i></i><?php echo $val; ?>
+												</label>
+											<?php endforeach; ?>
+										</div>
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('Front title')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('front_title')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('front_title'))?>
+										</label>																
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('Front Description')?></label>
+										<label class="textarea">
+											<?php echo $this->formrow($form->get('front_desc')->setAttribute('class', 'custom-scroll input-sm')->setAttribute('rows', '3'))?>										
+										</label>									
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('Title for accommodation list pages')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('accommlist_title')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('accommlist_title'))?>
+										</label>																
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('Description for accommodation list pages')?></label>
+										<label class="textarea">
+											<?php echo $this->formrow($form->get('accommlist_desc')->setAttribute('class', 'custom-scroll input-sm')->setAttribute('rows', '3'))?>										
+										</label>									
+									</section>
+																		
+									<section>
+										<label class="label"><?php echo $this->translate('Title for attractions list pages')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('attractionlist_title')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('attractionlist_title'))?>
+										</label>																
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('Description for attractions list pages')?></label>
+										<label class="textarea">
+											<?php echo $this->formrow($form->get('attractionlist_desc')->setAttribute('class', 'custom-scroll input-sm')->setAttribute('rows', '3'))?>										
+										</label>									
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('Title for events list pages')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('eventlist_title')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('eventlist_title'))?>
+										</label>																
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('Description for events list pages')?></label>
+										<label class="textarea">
+											<?php echo $this->formrow($form->get('eventlist_desc')->setAttribute('class', 'custom-scroll input-sm')->setAttribute('rows', '3'))?>										
+										</label>									
+									</section>
+																											
+									<section>
+										<label class="label"><?php echo $this->translate('Area Name 1')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('area_name1')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('area_name1'))?>
+										</label>																
+									</section>
+																		
+									<section>
+										<label class="label"><?php echo $this->translate('Area Name 2')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('area_name2')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('area_name2'))?>
+										</label>																
+									</section>
+									
+									<section>
+										<label class="label"><?php echo $this->translate('Area Name 3')?></label>
+										<label class="input <?php echo ($this->formElementErrors($this->form->get('area_name3')))?"state-error":""; ?>">
+											<?php echo $this->formrow($this->form->get('area_name3'))?>
+										</label>																
+									</section>
+									
+									<?php echo $this->formhidden($this->form->get('frm_type'));?>
+								</fieldset>
+								
+								<footer>
+									<?php echo $this->formsubmit($this->form->get('submit')->setAttribute('class', 'btn btn-primary'))?>															
+									
+								</footer>
+							</div>
+							<?php echo $this->form()->closeTag($this->form); ?>
+						</div>
+						<!-- end widget content -->
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+		
+			</div>
+			<!-- END COL -->
+		
+		</div>
+		
+		<!-- END ROW -->
+	</section>
+</div>

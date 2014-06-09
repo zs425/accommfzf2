@@ -1,0 +1,84 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <?php echo $this->headTitle('Metro Theme - Accommodation Admin')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    							->appendName('MobileOptimized', '320')
+    							->appendName('HandheldFriendly', 'True') ?>
+    
+    <?php echo $this->headLink()->appendStylesheet($this->basePath() . '/admin-assets/css/bootstrap.min.css')
+								->appendStylesheet($this->basePath() . '/admin-assets/css/font-awesome.min.css')
+								->appendStylesheet($this->basePath() . '/admin-assets/css/smartadmin-production.css')
+								->appendStylesheet($this->basePath() . '/admin-assets/css/smartadmin-skins.css')
+								->appendStylesheet($this->basePath() . '/admin-assets/css/demo.css')
+								->headLink(array('rel' => 'shortcut icon', 'href' => 'img/favicon/favicon.ico', 'type' => 'image/x-icon'))
+								->appendStylesheet("http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700")
+								->appendStylesheet($this->basePath() . '/admin-assets/css/custom.css'); ?>
+	
+	<?php echo $this->headScript()->appendFile($this->basePath() . '/admin-assets/js/libs/jquery-2.0.2.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/libs/jquery-ui-1.10.3.min.js')							
+    							  ->appendFile($this->basePath() . '/admin-assets/js/bootstrap/bootstrap.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/notification/SmartNotification.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/smartwidgets/jarvis.widget.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/sparkline/jquery.sparkline.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/jquery-validate/jquery.validate.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/masked-input/jquery.maskedinput.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/select2/select2.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/msie-fix/jquery.mb.browser.min.js')
+								  ->appendFile($this->basePath() . '/admin-assets/js/plugin/smartclick/smartclick.js')
+								  
+								  //->appendFile($this->basePath() . '/admin-assets/js/demo.js')
+								  //->appendFile($this->basePath() . '/admin-assets/js/app.js'); ?>
+ 
+<!-- HTML5 Support for IE -->
+<!--[if lt IE 9]>
+<script src="/admin-assets/js/html5shim.js"></script>
+<![endif]-->
+ 
+</head>
+<body id="login" class="animated fadeInDown">
+	<?php echo $this->content?>
+	
+	<script type="text/javascript" src="<?php echo $this->basePath(); ?>/admin-assets/js/app.js"></script>
+	<script type="text/javascript">
+		runAllForms();
+
+		$(function() {
+			// Validation
+			$("#login-form").validate({
+				// Rules for form validation
+				rules : {
+					username : {
+						required : true,						
+					},
+					password : {
+						required : true,
+						minlength : 3,
+						maxlength : 20
+					}
+				},
+
+				// Messages for form validation
+				messages : {
+					username : {
+						required : 'Please enter your username',						
+					},
+					password : {
+						required : 'Please enter your password'
+					}
+				},
+
+				// Do not change code below
+				errorPlacement : function(error, element) {
+					error.insertAfter(element.parent());
+				}
+			});
+		});
+	</script>
+</body>      
+</html>

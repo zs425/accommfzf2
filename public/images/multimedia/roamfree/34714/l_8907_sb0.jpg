@@ -1,0 +1,147 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="ctl00_HtmlHead"><title>
+	File Not Found
+</title><meta name="verify-v1" content="SbL6ZS4XAVV10LJfL7H90ZMISVyDeRCOuP0OI0tApPg=" /><link href="/css/Styles.css" rel="stylesheet" type="text/css" /><link href="/css/GridView.css" rel="stylesheet" type="text/css" />
+    
+    <script language="javascript" type="text/javascript" src="/js/mootools.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/slimbox.js"></script>
+    <link href="/css/slimbox.css" rel="stylesheet" type="text/css" />
+
+    
+    <script language="javascript" type="text/javascript" src="/js/quicklinks.js"></script>
+
+    
+    <script language="javascript" type="text/javascript" src="/js/totalOverlay.js"></script>
+<meta name="description" content="Best Rates - Book Direct Accommodation with thousands of Hotels, Resorts, Motels and more" /></head>
+<body id="ctl00_body1">
+    <div id="overlayBackground" class="over-back-hidden" onclick="hideOverlay();">
+    </div>
+    <div id="attentionOverlay" class="over-hidden">
+        <div class="overlayTabsCont">
+            <div class="tabs">
+                <div class="tabText">
+                    <a href="javascript:void(0);" onclick="hideOverlay();" title="Click to Close" id="overLayTabTitle">
+                        &nbsp;</a> <a href="javascript:void(0);" onclick="hideOverlay();" title="Click to Close"
+                            id="overLayTabTitleCloser">
+                            <img id="ctl00_CloseImage" src="/images/alert-close-button.gif" border="0" /></a>
+                </div>
+                <div class="tabLeftArt">
+                </div>
+                <div class="tabRightArt">
+                </div>
+            </div>
+        </div>
+        <div class="outerContainer">
+            <div class="innerContainer" id="overLayContent">
+                &nbsp;
+            </div>
+            <div id="overlayButtons" style="display: none; text-align: center; padding: 4px 0px 2px 0px;
+                border-top: dotted 1px #CCCCCC;">
+                <input type="button" id="overlayCloseButton" value="Close" onclick="hideOverlay();"
+                    style="font-size: 8.5pt;" />
+            </div>
+        </div>
+    </div>
+    <form name="aspnetForm" method="post" action="FileNotFound.aspx" id="aspnetForm">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTEwMDUyNjYzMjhkZOOGjAuo6KB5qnF5lj3cvyFAwPg5" />
+
+        <div id="nonFooter">
+            <div id="header">
+                
+                
+                <a title="Click here to go to Home" href="http://www.roamfree.com/Default.aspx">
+                    Home</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to Site Map" href="http://www.roamfree.com/SiteMap.aspx">
+                    Site Map</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to List Your Accommodation" href="http://www.roamfree.com/corporate/list-your-accommodation/">
+                    List Your Accommodation</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to FAQ" href="http://www.roamfree.com/AboutUs.aspx?contentTypeId=7">
+                    FAQ</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to My Accommodation Bookings" href="http://www.roamfree.com/My_Bookings/MyBookings.aspx">
+                    My Accommodation Bookings</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to My Roamfree" href="http://www.roamfree.com/corporate/my-roamfree/">
+                    My Roamfree</a>
+                
+            </div>
+            <div id="logo">
+                <div id="ctl00_DefaultLogoPanel" class="defaultLogo">
+	
+                    <h1>
+                        <span class="logo_roamfree">roamfree.com</span> <span class="logo_gas">GLOBAL ACCOMMODATION
+                            SEARCH</span>
+                    </h1>
+                
+</div>
+                <div id="ctl00_CustomLogoPanel" class="customLogo">
+	
+                    <img id="ctl00_LogoImage" src="/images/filler.gif" border="0" />
+</div>
+            </div>
+            <div id="searchAreaContainer">
+                
+                <div id="ctl00_CustomBannerPanel" class="customBanner">
+	
+                    <img id="ctl00_BannerImage" src="/images/filler.gif" border="0" />
+</div>
+                
+<h1>File Not Found</h1>
+<p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+
+            </div>
+            <div id="spacer-above-footer">
+                
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footer-links">
+                
+                
+                
+                <a title="Click here to go to About Roamfree" href="http://www.roamfree.com/corporate/">
+                    About Roamfree</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to Accommodation Suppliers Login" href="http://www.roamfree.com/corporate/for-accommodation-suppliers/">
+                    Accommodation Suppliers Login</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to Affiliate Program" href="http://www.roamfree.com/AffiliateProgram.aspx">
+                    Affiliate Program</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to Terms And Conditions" href="http://www.roamfree.com/TermsAndConditions.aspx">
+                    Terms And Conditions</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to Privacy" href="http://www.roamfree.com/Privacy.aspx">
+                    Privacy</a>
+                <img src='/images/divider-orange.gif' alt='' />
+                <a title="Click here to go to Contact Roamfree" href="http://www.roamfree.com/corporate/roamfree-company-profile/contact-information/">
+                    Contact Roamfree</a>
+                
+                <div class="footerblurb">
+                    <span id="ctl00_lblFooterBlurb">Please note: All bookings and payments are made direct with the accommodation provider or their nominated representative - roamfree.com seeks to offer the best rate of the day, however cannot guarantee this.</span>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1915602-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+    
+    
+</body>
+</html>

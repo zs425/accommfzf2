@@ -1,0 +1,676 @@
+body {
+    background: url("/themes/bootstrap/view/assets/img/bg.jpg") repeat #F3F1F8;
+}
+
+.contentboxrow {
+    margin-left: 0;
+    margin-top: 30px;
+}
+
+/*---- Top section ----*/
+.mapinc {
+    width: 770px;
+    height: 300px;
+    position: relative;
+    background-color: rgb(229, 227, 223);
+    overflow: hidden;
+}
+
+.required {
+    font-weight: bold;
+    color: red;
+}
+
+.popin {
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 0 20px #999;
+    border-radius: 2px;
+}
+
+.wellside {
+    font-family: 'Open Sans', sans-serif;
+
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    border: 1px solid #DBDBDB;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+
+    background: #F3F1F8; /* url("/themes/bootstrap1/assets/img/bgside.png") repeat currently 404 */
+
+}
+
+.side_heading {
+    padding: 5px;
+    display: block;
+    border: 0;
+    border-bottom: 1px solid #E4E4E4;
+
+}
+
+.page-schres {
+    padding-bottom: 0;
+    margin: 0 0;
+}
+
+.page-schres h4 {
+    line-height: 1;
+    color: black;
+}
+
+.page-schres small {
+    color: #FC6656;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.thumby img {
+    width: 260px;
+    max-height: 180px;
+}
+
+/*---- Main ----*/
+
+.heading_featured {
+
+    display: block;
+    background-color: #8EC95F;
+    background-image: -moz-linear-gradient(top, #8EC95F, #70AF3A);
+    background-image: -ms-linear-gradient(top, #8EC95F, #70AF3A);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8EC95F), to(#70AF3A));
+    background-image: -webkit-linear-gradient(top, #8EC95F, #70AF3A);
+    background-image: -o-linear-gradient(top, #8EC95F, #70AF3A);
+    background-image: linear-gradient(top, #8EC95F, #70AF3A);
+    background-repeat: repeat-x;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    color: white;
+    border: 1px dashed #8EC95F;
+
+}
+
+.heading_featured h4 {
+
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.heading_featured i {
+
+    padding-right: 5px;
+    margin-top: 3px;
+
+}
+
+.errorpage {
+
+    padding-top: 0;
+    padding-left: 90px;
+
+}
+
+.hero-error {
+    background: url("/themes/bootstrap1/assets//img/bgerror.png") repeat #F3F1F8;
+
+    padding: 60px;
+    margin-bottom: 30px;
+    background-color: white;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #DBDBDB;
+}
+
+.hero-error h1 {
+
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 0;
+    font-size: 90px;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: inherit;
+}
+
+.hero-error p {
+    font: 400 23px/1.6 'Gudea', Verdana, Helvetica, sans-serif;
+    font-weight: 200;
+    line-height: 27px;
+    color: inherit;
+}
+
+/*---- Footer ----*/
+
+.footblock {
+    background: url("/themes/bootstrap1/assets//img/bgfoot.png") repeat #F3F1F8;
+    display: block;
+    width: 100%;
+    height: 60px;
+
+}
+
+.foot_copy {
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+
+}
+
+.secfoot {
+    background: url("../img/bgmain.png") repeat #F3F1F8;
+
+    display: block;
+    width: 100%;
+    height: 350px;
+
+    clear: both;
+}
+
+.foot_logo {
+    padding: 25px 10px 10px 5px;
+}
+
+.foot_list {
+    padding: 10px 0 10px 0;
+}
+
+.headingfoot {
+    margin: 15px;
+    font-family: 'Open Sans', sans-serif;
+    color: #AFAFAF;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-top: 1px dashed #D7D7D7;
+    border-bottom: 1px dashed #D7D7D7;
+    border-width: thin;
+}
+
+.headingfoot_contact {
+    margin: 15px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    background: grey;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-top: 1px dashed #D7D7D7;
+    border-bottom: 1px dashed #D7D7D7;
+    border-width: thin;
+}
+
+.footlinks {
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.footlinks a {
+    color: #333333;
+}
+
+.footlinks a:hover {
+    color: #333333;
+}
+
+.foottext {
+    font-size: 13px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    color: #404040;
+    padding-left: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.foot_contact {
+    font-size: 11px;
+    color: #6D7272;
+    padding: 20px;
+}
+
+.foot_contact a {
+    font-size: 11px;
+    color: #6D7272;
+}
+
+/*---- Misc. Classes ----*/
+
+.usericon {
+    width: 30px;
+    height: 30px;
+}
+
+.error_heading {
+    font-size: 90px;
+}
+
+.iconsin {
+    padding-left: 10px;
+}
+
+a.btnlogo {
+    width: 253px;
+    height: 81px;
+    display: block;
+    background: url("/themes/bootstrap1/assets/img/logo_small.png") 0 0;
+}
+
+a.btnlogo:hover {
+
+    background-position: 0 -80px;
+}
+
+/* ----------------  slideshow -------------- */
+
+#middle .slideshow {
+    width: 966px;
+    padding: 7px;
+    margin: 0;
+    height: 274px;
+    background: #fff
+}
+
+#middle .slideshow img {
+    display: block
+}
+
+#middle {
+    margin-top: 45px;
+}
+
+.idealform ul li {
+    list-style: none;
+}
+
+.idealform label {
+    width: 25%;
+    float: left;
+    padding-top: 4px
+}
+
+.idealform text, .idealform select {
+    width: 60%;
+}
+
+/* datepicker fixes */
+.datepick-month-year {
+    width: 45%;
+    padding: 0;
+}
+
+form #searchAccomm {
+    display: block !important;
+}
+
+.text-highlight-small {
+    font-size: 24px;
+    color: #FF9228;
+}
+
+.my-carousel-indicators {
+    text-align: center;
+}
+
+.gallery-thumb-wrapper {
+    display: inline-block;
+}
+
+.gallery-thumb {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    height: 55px;
+    width: 55px;
+}
+
+.gallery-thumb img {
+    max-width: 40px;
+    max-height: 40px;
+    cursor: pointer;
+}
+
+.carousel-content {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 200px;
+}
+
+.carousel-content .item img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#propertyMap {
+    height: 270px;
+}
+
+.forecastWidgetContainer {
+    padding-right: 32px;
+}
+
+.forecastContent a {
+    text-align: center;
+    font-size: 16px;
+}
+
+.weatherContent {
+    display: none;
+}
+
+.weatherContent .loading {
+    display: none;
+    background: url(../img/ajax-loader.gif);
+    height: 32px;
+    width: 32px;
+    margin: 15px auto 0;
+}
+
+.weatherContent .weatherData {
+    display: none;
+    margin-top: 15px;
+}
+
+.weatherContent .weatherData table {
+    width: 100%;
+    text-align: left;
+}
+
+.weatherHeader {
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.weatherData .day {
+    font-size: 17px;
+}
+
+.weatherData .time {
+    width: 15%;
+}
+
+.weatherData .icon {
+    width: 8%;
+}
+
+.weatherData .forecast {
+    width: 36%;
+}
+
+.weatherData .wind {
+    width: 12%;
+}
+
+.weatherData .rain {
+    width: 12%;
+}
+
+.weatherData .humidity {
+    width: 10%;
+}
+
+.weatherData .temp {
+    width: 7%;
+}
+
+.weatherData .icon img {
+    max-width: none;
+}
+
+.weatherData td {
+    vertical-align: middle;
+}
+
+.weatherContainer {
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+
+.search-results-table td {
+    vertical-align: middle;
+    height: 40px;
+}
+
+.search-results-table img {
+    margin-left: 4px;
+}
+
+.product-info-modal {
+    width: 60%;
+    margin-left: -30%;
+    min-width: 200px;
+    max-width: 1000px;
+}
+
+.img_holder.thumbnails li {
+    margin: 2px;
+}
+
+.img_holder.thumbnails {
+    margin-left: 20px;
+    width: 230px;
+}
+
+.search-results-table td {
+    text-align: center;
+}
+
+.search-results-table .weekend {
+    background: #fcf8e3 !important;
+}
+
+.search-results-table .selected {
+    background: #d9edf7 !important;
+}
+
+.legend-selected {
+    width: 16px;
+    height: 16px;
+    background: #d9edf7;
+}
+
+.legend-weekend {
+    width: 16px;
+    height: 16px;
+    background: #fcf8e3;
+}
+
+p.legend {
+    line-height: 15px;
+}
+
+.accommodation-area-well {
+    margin-top: 20px;
+}
+
+.accommodation-area-well li {
+    list-style: none;
+    float: left;
+    width: 165px;
+}
+
+.accommodation-area-well li a {
+    color: #333333;
+}
+
+.accommodation-area-well li.active {
+    font-weight: bold;
+}
+
+.product-primary-image {
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+
+.product-gallery-image{
+	border: 1px solid #499eb3;
+    height:40px;
+}
+
+.accom-header .span4{
+	position:relative !important;
+}
+
+.accom-header .accommodation-area-well{
+	float: right;
+	width: 730px;
+}
+
+.search-form-wrapper{
+	position: relative;
+}
+
+.search-form-div{
+	margin-left:0px;
+	margin-top:20px;
+}
+
+.search-form-wrapper.homepage .search-form-div{
+	position:absolute;
+	top:-440px;
+	margin-left:60px;
+	z-index:20;
+	opacity:0.9;
+}
+
+.categories {
+    padding-left:20px;
+    padding-right:90px;
+}
+
+.panel-heading{
+    font-weight:bold;
+}
+
+.panel-heading a{
+    color:#333;
+}
+
+ul.subCat {
+    padding-left:20px;
+}
+
+ul.subCat li a{
+    color:#333;
+}
+ul.subCat li.selected a{
+    font-weight:bold;
+}
+ul.subCat li:hover{
+    /*background:#0088cc;*/
+}
+ul.subCat li:hover a{
+    text-decoration:none;
+}
+
+/* Tour calendar styles */
+.calendardate table{
+	margin-bottom:18px;
+	width:100%;
+}
+.calendardatehead td {
+	cursor: default;
+	height: 20px;
+	margin:0 1px 1px 0;
+	padding: 5px;
+	text-align: center;
+	position: relative;
+	background-color: #00759a;
+	color: #ffffff;
+	border: 1px solid #00759a;
+	width:80px;
+}
+
+.calendardate a{
+	text-decoration:none;
+}
+
+.daterow td, .datarow td a{
+	height: 92px;
+	margin:0 1px 1px 0;
+	padding: 5px;
+	text-align: right;
+	position: relative;
+	border: 1px solid #E0DBD5;
+}
+
+.daterow .blank{ 
+	background-color: #ffffff; 
+}
+
+.daterow .na{
+	background-color: #dfd8d0;
+	color: #8f8880;
+}
+
+.daterow em {
+	color: #00759A;
+	font-size: 1.67em;
+	position: absolute;
+	top: 20px;
+	right: 10px;
+}
+
+.daterow .na em{
+	color: #999999;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.daterow strong {
+	color: #333333;
+	bottom: 5px;
+	display: block;
+	position: absolute;
+	right: 5px;
+	font-weight: normal;
+	font-size: 0.92em;
+}
+
+.daterow .na strong{
+	right: 0;
+	padding: 0 10px;
+	text-align: center;
+	line-height: 1.3;
+}
+
+.daterow strong em.price {
+	font-size: 1.64em;
+	font-weight: bold;
+	text-transform: none;
+	position:static;
+}
+
+.datarow .av:hover{
+	background-color: #E8F6F9;
+	color: #ffffff;
+	border: 1px solid #00759a;
+}
+
+h4.calendar_month{
+	float:left;
+	margin-left: 30px;
+}
+
+p.selectMonth{
+	float:right;
+	margin-right:30px;
+}
+
+p.selectMonth select{
+	width:100px;
+}

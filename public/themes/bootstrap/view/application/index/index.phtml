@@ -1,0 +1,10 @@
+<div class="search-form-wrapper homepage">
+	<?php echo $this->partial('layout/searchform', array(
+				'searchForm'	=> $this->searchForm,
+			));?>
+</div><!-- <div class="container"> end -->
+<div class="row contentboxrow">
+    <?php foreach ($contentboxes as $box):?>
+    <?php echo $this->partial('layout/contentbox', array('title'=>$box->ctbox_title,'image'=>$box->ctbox_image,'url'=>$box->ctbox_link,'anchor'=>$box->ctbox_anchor,'text'=>$box->ctbox_desc));?>
+    <?php endforeach;?>
+</div>

@@ -1,0 +1,157 @@
+<!-- RIBBON -->
+<div id="ribbon">
+
+	<span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+	<!-- breadcrumb -->
+	<ol class="breadcrumb">
+		<li>Admin</li><li>Central DB</li><li>New Destinations</li>
+	</ol>
+	<!-- end breadcrumb -->
+
+	<!-- You can also add more buttons to the
+	ribbon for further usability
+
+	Example below:
+
+	<span class="ribbon-button-alignment pull-right">
+	<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+	<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+	<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+	</span> -->
+
+</div>
+<!-- MAIN CONTENT -->
+<div id="content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+			<h1 class="page-title txt-color-blueDark">
+				<i class="fa fa--building fa-fw "></i> 
+					Central DB
+				<span>> 
+					New Destinations
+				</span>
+			</h1>
+		</div>	
+	</div>
+	
+	<!-- widget grid -->
+	<section id="widget-grid" class="">
+		<!-- row -->
+		<div class="row">
+	
+			<!-- NEW WIDGET START -->
+			<article class="col-sm-12">
+	
+				<div class="alert alert-success fade in">
+					<button class="close" data-dismiss="alert">
+						×
+					</button>
+					<i class="fa-fw fa fa-check"></i>
+					<strong><?php echo $this->message; ?></strong>
+				</div>			
+	
+			</article>
+			<!-- WIDGET END -->
+	
+		</div>
+	
+		<!-- end row -->
+	
+		<!-- row -->
+		<div class="row">
+	
+			<!-- NEW WIDGET START -->
+			<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	
+				<!-- Widget ID (each widget will need unique ID)-->
+				<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="false">
+					<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+	
+					data-widget-colorbutton="false"
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true"
+					data-widget-sortable="false"
+	
+					-->
+					<header>
+						<span class="widget-icon"> <i class="fa fa-align-justify"></i> </span>
+						<h2>Import &nbsp;&nbsp;&nbsp;</h2>						
+					</header>
+	
+					<!-- widget div-->
+					<div>
+	
+						<!-- widget edit box -->
+						<div class="jarviswidget-editbox">
+							<!-- This area used as dropdown edit box -->
+	
+						</div>
+						<!-- end widget edit box -->
+	
+						<!-- widget content -->
+						<div class="widget-body">
+							
+							<button type="button" class="btn btn-primary btn-import">Import</button>
+							
+							<div class="row padding-top-10 div-progressing" style="display:none;">
+								<div class="col-sm-12">
+									<p class="alert alert-info">
+										<i class="fa fa-spinner fa-spin"></i>								
+										
+									</p>
+								</div>
+							</div>
+																		
+						</div>
+						<!-- end widget content -->
+	
+					</div>
+					<!-- end widget div -->
+	
+				</div>
+				<!-- end widget -->
+	
+	
+			</article>
+			<!-- WIDGET END -->
+	
+	
+		</div>
+	
+		<!-- end row -->
+	
+	
+	</section>
+	<!-- end widget grid -->
+</div>
+
+<script>
+    function notify() {
+    	$( ".btn-import" ).attr('disabled', 'disabled');
+    	$( ".btn-import" ).addClass('disabled');
+		$('.div-progressing').css('display','block');
+        $.ajax({
+			url: "/admin/centraldb/geonames/process",
+            cache: false,
+            success:function( html ) {
+            	//console.log(html);
+                $( ".div-progressing" ).html( html );
+                notify();
+            },
+            error: function(html){
+                $(".div-progressing").html('<div class="padding-10"><p class="alert alert-danger">Failure!</p></div>');
+                notify();
+            }
+        })
+
+    }
+    $( document ).ready(function() {
+    	$( ".btn-import" ).on( "click", notify );
+    });
+</script>

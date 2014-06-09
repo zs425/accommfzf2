@@ -1,0 +1,152 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+				&times;
+			</button>
+			<h4 class="modal-title" id="myModalLabel">Information</h4>
+		</div>
+		<div class="modal-body">
+		<?php 
+			switch($this->type) {
+				case "roamfree": ?>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="roamfreeId">Roamfree Id</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['roamfreeId']; ?>" disabled = "disabled"/>
+							</div>							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="roamfreeName">Roamfree Name</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['roamfreeName']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="liveHotels">Live Hotels</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['liveHotels']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="destType">Destination Type</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['destType']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="stateName">State Name</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['stateName']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="regionName">Region Name</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['regionName']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="areaName">Area Name</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['areaName']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="roamfreeParent">Roamfee Parent</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['roamfreeParent']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="destinationId">Destination Id</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['destinationId']; ?>" disabled = "disabled"/>
+							</div>							
+						</div>
+					</div>
+				<?php break; 
+				case "destination": ?>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="id">Destination Id</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['id']; ?>" disabled = "disabled"/>
+							</div>							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name">Destination Name</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['name']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="parentId">Parent Id</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['parentId']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="destinationType">Destination Type</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['destinationType']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="stateName">State Name</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['stateName']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="regionName">Region Name</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['regionName']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="areaName">Area Name</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['areaName']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="roamfreeId">Roamfee Id</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['roamfreeId']; ?>" disabled = "disabled"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="roamfreeParent">Roamfee Parent</label>
+								<input type="text" class="form-control" value="<?php echo $this->result['roamfreeParent']; ?>" disabled = "disabled"/>
+							</div>							
+						</div>
+					</div>
+				<?php break; 
+			} ?>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">
+				close
+			</button>
+		</div>
+	</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

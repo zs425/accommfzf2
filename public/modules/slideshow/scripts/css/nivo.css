@@ -1,0 +1,76 @@
+/*============================*/
+/*=== Custom Slider Styles ===*/
+/*============================*/
+.ace-slider {
+	position:relative;
+	background:url(/modules/slideshow/scripts/images/loading.gif) no-repeat 50% 50%;
+}
+.ace-slider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+}
+.ace-slider a {
+	border:0;
+	display:block;
+}
+
+.nivo-controlNav {
+	position:absolute;
+	top:1px;
+	right:30px;
+}
+.nivo-controlNav a {
+	display:block;
+	width:22px;
+	height:22px;
+	background:url(/modules/slideshow/scripts/images/bullets.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin-right:3px;
+	float:left;
+}
+.nivo-controlNav a.active {
+	background-position:0 -22px;
+}
+
+.nivo-directionNav a {
+	display:block;
+	width:30px;
+	height:30px;
+	background:url(/modules/slideshow/scripts/images/arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+}
+a.nivo-nextNav {
+	background-position:-30px 0;
+	right:30px;
+	margin:0;
+	padding:0;
+	top:40%;
+	position:absolute
+}
+a.nivo-prevNav {
+	left:15px;
+    margin:0;
+    padding:0;	
+    top:40%;	
+    position:absolute	
+}
+
+.nivo-caption {
+    text-shadow:none;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.nivo-caption a { 
+    color:#efe9d1;
+    text-decoration:underline;
+}
+
+/*====================*/
+/*=== Other Styles ===*/
+/*====================*/
+.clear {
+	clear:both;
+}

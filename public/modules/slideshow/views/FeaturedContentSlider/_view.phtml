@@ -1,0 +1,55 @@
+<?php
+$slideshow = $this->slideshow;
+$images = $this->images;
+//$this->block_selector;
+$cssWidth = $this->cssWidth;
+$cssHeight = $this->cssHeight;
+$delay = $this->delay;           
+?>
+<link type="text/css" href="/modules/slideshow/scripts/css/featuredcontentslider.css" />
+<script type="text/javascript" src="/modules/slideshow/scripts/fcSlider.js"></script>
+<style>
+	div[id*="slideshow-"] .blockContent{width: <?php echo $cssWidth; ?>}
+</style>
+<div class="slides_container">
+	<div id="fcSlider" style="width:<?=$cssWidth?>; height:<?=$cssHeight?>;">
+		<div class="whitebg">
+	    	<div id="slider" class="ace-slider sliderwrapper">
+	        <?foreach ($images as $img):?>
+	        	<div class="contentdiv">
+	            	<img src="/uploads/slideshow/slideshow-<?=$slideshow['slideshow_id'].'/originals/'.$img['image_path']?>" width="<?=$cssWidth?>" <?= ($img['description'])?'title="' . $img['description'] . '"':''?> />
+	       		</div>
+			<?endforeach;?>
+	                        
+	       		<div class="clear"></div>
+	       	</div>
+	 	</div>
+	</div>
+	            
+	<div class="clear"></div>
+	
+	<div class="fcSlider_bullets">
+	 	<div class="inner">
+	       	<div class="links">
+	      		<div id="paginate-slider" class="fcSliderPagination" >
+	      			<div class="clear"></div>
+	      		</div>
+	            <div class="clear"></div>
+	     	</div>
+	        <div class="clear"></div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		featuredcontentslider.init({
+        	id: 'slider',  //id of main slider DIV
+        	contentsource: ['inline', ''],  //Valid values: ['inline', ''] or ['ajax', 'path_to_file']
+        	toc: '#increment',  //Valid values: '#increment', 'markup', ['label1', 'label2', etc]
+        	nextprev: ['Previous', 'Next'],  //labels for 'prev' and 'next' links. Set to '' to hide.
+        	revealtype: 'click', //Behavior of pagination links to reveal the slides: 'click' or 'mouseover'
+        	enablefade: [true, 0.2],  //[true/false, fadedegree]
+        	autorotate: [true, <?php echo $delay; ?>],  //[true/false, pausetime]
+       });
+	});
+</script>

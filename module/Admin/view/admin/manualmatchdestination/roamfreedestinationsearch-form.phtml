@@ -1,0 +1,56 @@
+<?php 
+   	$this->roamfreeDestinationSearchForm->prepare();
+	$this->roamfreeDestinationSearchForm->setAttribute('action', $this->action);
+	echo $this->form()->openTag($this->roamfreeDestinationSearchForm);
+?>
+
+<div class="smart-form">	
+	<fieldset>
+		<div class="row">
+			<section class="col col-6">
+				<label class="label"><?php echo $this->translate("Roamfree destination name")?></label>
+				<label class="input">
+					<?php echo $this->formrow($this->roamfreeDestinationSearchForm->get('roamfreeName')->setAttribute('class', 'input-sm'));?>												
+				</label>
+			</section>
+			<section class="col col-6">
+				<label class="label"><?php echo $this->translate("Roamfree destination id")?></label>
+				<label class="input">
+					<?php echo $this->formrow($this->roamfreeDestinationSearchForm->get('roamfreeId')->setAttribute('class', 'input-sm'));?>												
+				</label>
+				<div class="note">Only a number.</div>
+			</section>
+		</div>
+		<section>
+			<label class="label"><?php echo $this->roamfreeDestinationSearchForm->get('searchOption')->getLabel(); ?></label>
+			<div class="">
+				<?php $radios = $this->roamfreeDestinationSearchForm->get('searchOption')->getValueOptions(); ?>
+				<?php foreach($radios as $key => $val): ?>
+					<label class="radio">
+						<input type="radio" name="searchOption" value="<?php echo $key; ?>" <?php echo ($this->roamfreeDestinationSearchForm->get('searchOption')->getValue() == $key)?'checked="checked"':''; ?>>
+						<i></i><?php echo $val; ?>
+					</label>
+				<?php endforeach; ?>
+			</div>
+		</section>
+	</fieldset>
+	<footer>
+		<?php echo $this->formButton()->render($this->roamfreeDestinationSearchForm->get('search')->setAttribute('class', 'btn btn-primary'), 'Search'); ?>
+	</footer>
+</div>
+<?php echo $this->form()->closeTag($this->roamfreeDestinationSearchForm) ?>
+
+<script>
+	$("#searchRoamfreeDestination").click(function(){
+		$('#wid-id-0 .widget-body').addClass('widget-body-ajax-loading');
+		$.ajax({
+			type: "POST",
+			url:"<?php echo $this->action; ?>",
+			data: $('#roamfreedestinationsearchform').serialize(),
+		}).done(function(html) {
+			$('.roamfree-destination-content').html(html);
+			$('#wid-id-0 .widget-body').removeClass('widget-body-ajax-loading');
+		});
+		return false;
+	});
+</script>
